@@ -56,16 +56,16 @@
         },
         {
             "name": "apollo11/env-analyzer",
-            "version": "v1.0.0",
+            "version": "v1.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apolloeleven/env-analyzer.git",
-                "reference": "c3611f8fd7843101334cd4a0f7dfa801d1a91e04"
+                "reference": "72b66d316e47898da691c9bbe5a2d4102e0b6c6c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/apolloeleven/env-analyzer/zipball/c3611f8fd7843101334cd4a0f7dfa801d1a91e04",
-                "reference": "c3611f8fd7843101334cd4a0f7dfa801d1a91e04",
+                "url": "https://api.github.com/repos/apolloeleven/env-analyzer/zipball/72b66d316e47898da691c9bbe5a2d4102e0b6c6c",
+                "reference": "72b66d316e47898da691c9bbe5a2d4102e0b6c6c",
                 "shasum": ""
             },
             "require": {
