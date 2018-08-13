@@ -1,0 +1,2 @@
+php create-database.php
+php console/yii app/setup
