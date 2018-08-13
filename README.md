@@ -1,20 +1,23 @@
-# Yii 2 Starter Kit
+# Lobi CMS
 
 <!-- BADGES/ -->
 
-[![Packagist](https://img.shields.io/packagist/v/trntv/yii2-starter-kit.svg)](https://packagist.org/packages/trntv/yii2-starter-kit)
-[![Packagist](https://img.shields.io/packagist/dt/trntv/yii2-starter-kit.svg)](https://packagist.org/packages/trntv/yii2-starter-kit)
-[![PayPal donate button](https://img.shields.io/badge/paypal-donate-yellow.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=X7UFA3F3ALPM8 "Donate once-off to this project using Paypal")
-[![Dependency Status](https://www.versioneye.com/php/trntv:yii2-starter-kit/badge.svg)](https://www.versioneye.com/php/trntv:yii2-starter-kit)
-[![Build Status](https://travis-ci.org/trntv/yii2-starter-kit.svg?branch=master)](https://travis-ci.org/trntv/yii2-starter-kit)
-
 <!-- /BADGES -->
 
-This is Yii2 start application template.
+Fast, secure and user friendly CMS with "Frontend Editing" tool, based on Yii2 framework.
+ 
+We started with the [Yii2 starter kit](https://github.com/trntv/yii2-starter-kit).
 
-It was created and developing as a fast start for building an advanced sites based on Yii2. 
+The CMS uses [Lobiadmin](http://lobianijs.com/site/lobiadmin) as an html admin template for its backend.
 
-It covers typical use cases for a new project and will help you not to waste your time doing the same work in every project
+## Installation
+1. Clone the project and go to the project root directory
+2. Run `composer install`. After this process is finished, it will ask you to provide configuration parameters. 
+For most of them you can leave them default, but make sure you have correct parameters for database access. 
+(You can leave all parameters default and change them later from `.env` file)
+3. Run `./setup` bash file which will create database (If it does not exist) and run migration scripts.
+
+
 
 ## Before you start
 Please, consider helping project via [contributions](https://github.com/trntv/yii2-starter-kit/issues) or [donations](#donations). 
