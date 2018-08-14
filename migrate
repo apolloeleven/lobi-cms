@@ -1,0 +1,2 @@
+php console/yii migrate
+php console/yii rbac-migrate
