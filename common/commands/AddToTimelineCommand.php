@@ -2,10 +2,11 @@
 
 namespace common\commands;
 
-use common\models\TimelineEvent;
+use apollo11\lobicms\models\TimelineEvent;
 use trntv\bus\interfaces\SelfHandlingCommand;
 use Yii;
 use yii\base\BaseObject;
+use yii\helpers\Json;
 
 /**
  * @author Eugene Terentev <eugene@terentev.net>
@@ -15,15 +16,34 @@ class AddToTimelineCommand extends BaseObject implements SelfHandlingCommand
     /**
      * @var string
      */
+    public $group;
+
+    /**
+     * @var string
+     */
     public $category;
+
     /**
      * @var string
      */
     public $event;
+
+    /**
+     * @var
+     */
+    public $record_id;
+
+    /**
+     * @var
+     */
+    public $record_name;
+
     /**
      * @var mixed
      */
     public $data;
+
+    public $createdBy;
 
     /**
      * @param AddToTimelineCommand $command
@@ -33,9 +53,13 @@ class AddToTimelineCommand extends BaseObject implements SelfHandlingCommand
     {
         $model = new TimelineEvent();
         $model->application = Yii::$app->id;
+        $model->group = $this->group;
         $model->category = $command->category;
         $model->event = $command->event;
-        $model->data = json_encode($command->data, JSON_UNESCAPED_UNICODE);
+        $model->record_id = $command->record_id;
+        $model->record_name = $command->record_name;
+        $model->created_by = $command->createdBy;
+        $model->data = Json::encode($command->data);
         return $model->save(false);
     }
 }
