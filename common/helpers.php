@@ -62,3 +62,9 @@ function env($key, $default = null)
 
     return $value;
 }
+
+
+function rawSql(\yii\db\ActiveQuery $query)
+{
+    return $query->prepare(Yii::$app->db->queryBuilder)->createCommand()->rawSql;
+}
