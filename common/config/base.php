@@ -1,10 +1,10 @@
 <?php
 $config = [
-    'name' => 'Yii2 Starter Kit',
+    'name' => 'LobiCMS',
     'vendorPath' => __DIR__ . '/../../vendor',
     'extensions' => require(__DIR__ . '/../../vendor/yiisoft/extensions.php'),
-    'sourceLanguage' => 'en-US',
-    'language' => 'en-US',
+    'sourceLanguage' => 'en',
+    'language' => env('DEFAULT_LANGUAGE', 'en'),
     'bootstrap' => ['log'],
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
@@ -18,7 +18,36 @@ $config = [
             'assignmentTable' => '{{%rbac_auth_assignment}}',
             'ruleTable' => '{{%rbac_auth_rule}}'
         ],
-
+        'contentTree' => [
+            'class' => \apollo11\lobicms\components\ContentTree::class,
+            'customViews' => [
+                'page' => [
+                    'wide' => 'Wide',
+                    'with_header' => 'With Header',
+                    'parent_with_header' => 'Centered header',
+                    'with_pack_shot' => 'With Pack Shot',
+                ],
+                'video_section' => [
+                    'with_caption' => 'With Caption',
+                    'without_caption' => 'Without Caption',
+                ],
+                'service' => [
+                    'pdf' => 'PDF',
+                    'app' => 'App',
+                    'video' => 'Video',
+                ],
+                'section' => [
+                    'white_bg' => 'White Background',
+                ],
+                'pharmaceutical_form' => [
+                    'packshot_header' => 'Packshot Header',
+                    'pdf' => 'PDF',
+                ],
+//                'teaser' => [
+//                    '' => Yii::t('common', 'Default')
+//                ]
+            ]
+        ],
         'cache' => [
             'class' => yii\caching\FileCache::class,
             'cachePath' => '@common/runtime/cache'
@@ -36,7 +65,8 @@ $config = [
         ],
 
         'formatter' => [
-            'class' => yii\i18n\Formatter::class
+            'class' => yii\i18n\Formatter::class,
+            'sizeFormatBase' => 1000
         ],
 
         'glide' => [
@@ -53,8 +83,17 @@ $config = [
             'messageConfig' => [
                 'charset' => 'UTF-8',
                 'from' => env('ADMIN_EMAIL')
-            ]
+            ],
+            'transport' => [
+                'class' => 'Swift_SmtpTransport',
+                'host' => env('SMTP_HOST'),
+                'username' => env('SMTP_USERNAME'),
+                'password' => env('SMTP_PASSWORD'),
+                'port' => env('SMTP_PORT'),
+                'encryption' => env('SMTP_ENCRYPTION'),
+            ],
         ],
+
 
         'db' => [
             'class' => yii\db\Connection::class,
@@ -67,7 +106,7 @@ $config = [
         ],
 
         'log' => [
-            'traceLevel' => YII_DEBUG ? 3 : 0,
+            'traceLevel' => YII_DEBUG ? 15 : 0,
             'targets' => [
                 'db' => [
                     'class' => 'yii\log\DbTarget',
@@ -89,26 +128,25 @@ $config = [
                     'class' => yii\i18n\PhpMessageSource::class,
                     'basePath' => '@common/messages',
                 ],
+//                '*' => [
+//                    'class' => yii\i18n\PhpMessageSource::class,
+//                    'basePath' => '@common/messages',
+//                    'fileMap' => [
+//                        'common' => 'common.php',
+//                        'backend' => 'backend.php',
+//                        'frontend' => 'frontend.php',
+//                    ],
+//                    'on missingTranslation' => [backend\modules\translation\Module::class, 'missingTranslation']
+//                ],
+                //Uncomment this code to use DbMessageSource
                 '*' => [
-                    'class' => yii\i18n\PhpMessageSource::class,
-                    'basePath' => '@common/messages',
-                    'fileMap' => [
-                        'common' => 'common.php',
-                        'backend' => 'backend.php',
-                        'frontend' => 'frontend.php',
-                    ],
-                    'on missingTranslation' => [backend\modules\translation\Module::class, 'missingTranslation']
-                ],
-                /* Uncomment this code to use DbMessageSource
-                 '*'=> [
                     'class' => 'yii\i18n\DbMessageSource',
-                    'sourceMessageTable'=>'{{%i18n_source_message}}',
-                    'messageTable'=>'{{%i18n_message}}',
+                    'sourceMessageTable' => '{{%i18n_source_message}}',
+                    'messageTable' => '{{%i18n_message}}',
                     'enableCaching' => YII_ENV_DEV,
                     'cachingDuration' => 3600,
                     'on missingTranslation' => ['\backend\modules\translation\Module', 'missingTranslation']
                 ],
-                */
             ],
         ],
 
@@ -161,14 +199,13 @@ $config = [
         'robotEmail' => env('ROBOT_EMAIL'),
         'availableLocales' => [
             'en-US' => 'English (US)',
-            'ru-RU' => 'Русский (РФ)',
-            'uk-UA' => 'Українська (Україна)',
-            'es' => 'Español',
-            'vi' => 'Tiếng Việt',
-            'zh-CN' => '简体中文',
-            'pl-PL' => 'Polski (PL)',
+            'de' => 'German',
         ],
     ],
+    'on beforeRequest' => function () {
+        Yii::$app->mailer->transport->setUsername(env('SMTP_USERNAME'));
+        Yii::$app->mailer->transport->setPassword(env('SMTP_PASSWORD'));
+    }
 ];
 
 if (YII_ENV_PROD) {
