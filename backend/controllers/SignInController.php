@@ -15,13 +15,13 @@ use trntv\filekit\actions\DeleteAction;
 use trntv\filekit\actions\UploadAction;
 use Yii;
 use yii\filters\VerbFilter;
-use yii\imagine\Image;
+use yii\helpers\ArrayHelper;
 use yii\web\Controller;
 
 class SignInController extends Controller
 {
 
-    public $defaultAction = 'login';
+    public $defaultAction = 'unlock';
 
     public function behaviors()
     {
@@ -55,9 +55,17 @@ class SignInController extends Controller
     }
 
 
+    /**
+     *
+     *
+     * @author Zura Sekhniashvili <zurasekhniashvili@gmail.com>
+     * @return string|\yii\web\Response
+     * @throws \yii\web\ForbiddenHttpException
+     */
     public function actionLogin()
     {
         $this->layout = 'base';
+        $this->getView()->params['body-style'] = "background-image: url('/img/login-bg.jpg')";
         if (!Yii::$app->user->isGuest) {
             return $this->goHome();
         }
@@ -78,6 +86,48 @@ class SignInController extends Controller
         return $this->goHome();
     }
 
+    /**
+     *
+     *
+     * @author Zura Sekhniashvili <zurasekhniashvili@gmail.com>
+     * @return string|\yii\web\Response
+     * @throws \yii\web\ForbiddenHttpException
+     */
+    public function actionUnlock()
+    {
+        $this->layout = 'base';
+        $lockedUser = Yii::$app->session->get('lockedUser');
+        $lockedUserUsername = ArrayHelper::getValue($lockedUser, 'username');
+        if (!$lockedUserUsername) {
+            return $this->redirect(['login']);
+        }
+
+        $model = new LoginForm();
+        $model->username = $lockedUserUsername;
+        if ($model->load(Yii::$app->request->post()) && $model->login()) {
+            return $this->goBack();
+        } else {
+            return $this->render('unlock', [
+                'lockedUser' => $lockedUser,
+                'model' => $model
+            ]);
+        }
+
+    }
+
+    public function actionLock()
+    {
+        $user = Yii::$app->user->identity;
+        Yii::$app->user->logout();
+        Yii::$app->session->set('lockedUser', [
+            'username' => $user->username,
+            'email' => $user->email,
+            'fullname' => $user->userProfile->getFullName(),
+            'avatar' => $user->userProfile->getAvatar('/img/anonymous.jpg')
+        ]);
+        return $this->redirect(['unlock']);
+    }
+
     public function actionProfile()
     {
         $model = Yii::$app->user->identity->userProfile;
@@ -91,6 +141,13 @@ class SignInController extends Controller
         return $this->render('profile', ['model' => $model]);
     }
 
+    /**
+     *
+     *
+     * @author Zura Sekhniashvili <zurasekhniashvili@gmail.com>
+     * @return string|\yii\web\Response
+     * @throws \yii\base\Exception
+     */
     public function actionAccount()
     {
         $user = Yii::$app->user->identity;

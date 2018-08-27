@@ -3,6 +3,7 @@ $config = [
     'homeUrl' => Yii::getAlias('@backendUrl'),
     'controllerNamespace' => 'backend\controllers',
     'defaultRoute' => 'timeline-event/index',
+    'defaultAlias' => 'website',
     'components' => [
         'errorHandler' => [
             'errorAction' => 'site/error',
@@ -14,15 +15,22 @@ $config = [
         'user' => [
             'class' => yii\web\User::class,
             'identityClass' => common\models\User::class,
-            'loginUrl' => ['sign-in/login'],
+            'loginUrl' => ['sign-in/unlock'],
             'enableAutoLogin' => true,
             'as afterLogin' => common\behaviors\LoginTimestampBehavior::class,
         ],
+        'assetManager' => [
+            'bundles' => [
+                'yii\bootstrap\BootstrapAsset' => [
+                    'sourcePath' => null,   // do not publish the bundle
+                    'css' => [
+                        'css/bootstrap.min.css',
+                    ]
+                ],
+            ],
+        ],
     ],
     'modules' => [
-        'content' => [
-            'class' => backend\modules\content\Module::class,
-        ],
         'widget' => [
             'class' => backend\modules\widget\Module::class,
         ],
@@ -39,6 +47,9 @@ $config = [
             'class' => backend\modules\rbac\Module::class,
             'defaultRoute' => 'rbac-auth-item/index',
         ],
+        'core' => [
+            'class' => \apollo11\lobicms\Module::class,
+        ],
     ],
     'as globalAccess' => [
         'class' => common\behaviors\GlobalAccessBehavior::class,
@@ -47,7 +58,7 @@ $config = [
                 'controllers' => ['sign-in'],
                 'allow' => true,
                 'roles' => ['?'],
-                'actions' => ['login'],
+                'actions' => ['login', 'unlock'],
             ],
             [
                 'controllers' => ['sign-in'],
@@ -69,7 +80,7 @@ $config = [
             [
                 'controllers' => ['user'],
                 'allow' => true,
-                'roles' => ['administrator'],
+                'roles' => [\common\models\User::ROLE_ADMINISTRATOR],
             ],
             [
                 'controllers' => ['user'],
@@ -77,7 +88,7 @@ $config = [
             ],
             [
                 'allow' => true,
-                'roles' => ['manager', 'administrator'],
+                'roles' => [\common\models\User::ROLE_EDITOR, \common\models\User::ROLE_MANAGER, \common\models\User::ROLE_ADMINISTRATOR],
             ],
         ],
     ],

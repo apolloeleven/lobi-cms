@@ -2,24 +2,25 @@
 /**
  * Eugine Terentev <eugine@terentev.net>
  * @var $this \yii\web\View
- * @var $model \common\models\TimelineEvent
+ * @var $model \apollo11\lobicms\models\TimelineEvent
  * @var $dataProvider \yii\data\ActiveDataProvider
  */
 $this->title = Yii::t('backend', 'Application timeline');
 $icons = [
-    'user'=>'<i class="fa fa-user bg-blue"></i>'
+    'user' => '<i class="fa fa-user bg-blue"></i>'
 ];
 ?>
 <?php \yii\widgets\Pjax::begin() ?>
 <div class="row">
     <div class="col-md-12">
         <?php if ($dataProvider->count > 0): ?>
-            <ul class="timeline">
-                <?php foreach($dataProvider->getModels() as $model): ?>
-                    <?php if(!isset($date) || $date != Yii::$app->formatter->asDate($model->created_at)): ?>
+            <ul class="timeline padding-vertical-10">
+
+                <?php foreach ($dataProvider->getModels() as $model): ?>
+                    <?php if (!isset($date) || $date != Yii::$app->formatter->asDate($model->created_at)): ?>
                         <!-- timeline time label -->
                         <li class="time-label">
-                            <span class="bg-blue">
+                            <span style="display: inline-block;padding: 5px 0;background: #FFF;">
                                 <?php echo Yii::$app->formatter->asDate($model->created_at) ?>
                             </span>
                         </li>
@@ -27,12 +28,12 @@ $icons = [
                     <?php endif; ?>
                     <li>
                         <?php
-                            try {
-                                $viewFile = sprintf('%s/%s', $model->category, $model->event);
-                                echo $this->render($viewFile, ['model' => $model]);
-                            } catch (\yii\base\InvalidArgumentException $e) {
-                                echo $this->render('_item', ['model' => $model]);
-                            }
+                        try {
+                            $viewFile = sprintf('%s/%s', $model->category, $model->event);
+                            echo $this->render($viewFile, ['model' => $model]);
+                        } catch (\yii\base\InvalidArgumentException $e) {
+                            echo $this->render('_item', ['model' => $model]);
+                        }
                         ?>
                     </li>
                 <?php endforeach; ?>
@@ -47,7 +48,7 @@ $icons = [
     </div>
     <div class="col-md-12 text-center">
         <?php echo \yii\widgets\LinkPager::widget([
-            'pagination'=>$dataProvider->pagination,
+            'pagination' => $dataProvider->pagination,
             'options' => ['class' => 'pagination']
         ]) ?>
     </div>

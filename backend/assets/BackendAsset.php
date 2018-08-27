@@ -16,15 +16,30 @@ class BackendAsset extends AssetBundle
     public $baseUrl = '@web';
 
     public $css = [
-        'css/style.css'
+        'css/lobiadmin-with-plugins.css',
+        'css/style.css',
+        'css/bootstrap-tour.min.css',
+
     ];
     public $js = [
-        'js/app.js'
+        'js/lobiplugins/lobibox.js',
+        'js/highlight.pack.js',
+        'js/config.js',
+        'js/lobiadmin.js',
+        'js/lobiadmin-app.js',
+        'js/mark.js',
+        'js/app.js',
+        'js/bootstrap-tour.min.js',
+        'js/jstree.min.js',
+
     ];
 
     public $depends = [
         'yii\web\YiiAsset',
-        'common\assets\AdminLte',
+        'yii\web\JqueryAsset',
+        'yii\jui\JuiAsset',
+        'yii\bootstrap\BootstrapPluginAsset',
+        'common\assets\FontAwesome',
         'common\assets\Html5shiv'
     ];
 }

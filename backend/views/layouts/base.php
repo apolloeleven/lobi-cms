@@ -28,11 +28,12 @@ $this->params['body-class'] = array_key_exists('body-class', $this->params) ?
 <?php echo Html::beginTag('body', [
     'class' => implode(' ', [
         ArrayHelper::getValue($this->params, 'body-class'),
-        Yii::$app->keyStorage->get('backend.theme-skin', 'skin-blue'),
-        Yii::$app->keyStorage->get('backend.layout-fixed') ? 'fixed' : null,
-        Yii::$app->keyStorage->get('backend.layout-boxed') ? 'layout-boxed' : null,
-        Yii::$app->keyStorage->get('backend.layout-collapsed-sidebar') ? 'sidebar-collapse' : null,
-    ])
+        Yii::$app->keyStorage->get('backend.theme-skin', ''),
+        Yii::$app->keyStorage->get('backend.header-fixed') ? 'header-fixed' : null,
+        Yii::$app->keyStorage->get('backend.menu-fixed') ? 'menu-fixed' : null,
+        Yii::$app->keyStorage->get('backend.ribbon-fixed') ? 'ribbon-fixed' : null,
+    ]),
+    'style' => ArrayHelper::getValue($this->params, 'body-style'),
 ])?>
     <?php $this->beginBody() ?>
         <?php echo $content ?>

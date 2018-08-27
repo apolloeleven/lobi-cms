@@ -1,31 +1,26 @@
 <?php
 /**
  * @author Eugene Terentev <eugene@terentev.net>
- * @var $model common\models\TimelineEvent
+ * @var $model apollo11\lobicms\models\TimelineEvent
  */
 ?>
-<div class="timeline-item">
-    <span class="time">
-        <i class="fa fa-clock-o"></i>
-        <?php echo Yii::$app->formatter->asRelativeTime($model->created_at) ?>
-    </span>
-    <h3 class="timeline-header">
-        <?php echo Yii::t('backend', 'You have new event') ?>
-    </h3>
-
-    <div class="timeline-body">
-        <dl>
-            <dt><?php echo Yii::t('backend', 'Application') ?>:</dt>
-            <dd><?php echo $model->application ?></dd>
-
-            <dt><?php echo Yii::t('backend', 'Category') ?>:</dt>
-            <dd><?php echo $model->category ?></dd>
-
-            <dt><?php echo Yii::t('backend', 'Event') ?>:</dt>
-            <dd><?php echo $model->event ?></dd>
-
-            <dt><?php echo Yii::t('backend', 'Date') ?>:</dt>
-            <dd><?php echo Yii::$app->formatter->asDatetime($model->created_at) ?></dd>
-        </dl>
+<div class="timeline-badge bg-cyan"><i class="fa <?php echo $model->getIcon() ?>"></i></div>
+<div class="timeline-panel">
+    <div class="timeline-heading">
+        <h5 class="timeline-title"><b><?php echo $model->getDisplayText() ?></b></h5>
+        <small class="text-muted"><?php echo Yii::$app->formatter->asRelativeTime($model->created_at) ?></small>
     </div>
+<!--    <div class="timeline-body">-->
+<!--        <div class="media">-->
+<!--            <div class="media-left">-->
+<!--                <a href="#">-->
+<!--                    <img class="media-object" src="img/demo/100x100-6.jpg" width="50" alt="...">-->
+<!--                </a>-->
+<!--            </div>-->
+<!--            <div class="media-body">-->
+<!--                <h5 class="media-heading">--><?php //echo $model->record_name ?><!--</h5>-->
+<!--                <small class="text-muted">03:15</small>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
 </div>

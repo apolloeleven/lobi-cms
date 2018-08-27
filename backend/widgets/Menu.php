@@ -28,7 +28,7 @@ class Menu extends \yii\widgets\Menu
     /**
      * @var string
      */
-    public $badgeClass = 'label pull-right';
+    public $badgeClass = 'badge badge-xs badge-cyan';
     /**
      * @var string
      */
@@ -63,7 +63,7 @@ class Menu extends \yii\widgets\Menu
                     ? Html::tag(
                         'span',
                         Html::tag('small', $item['badge'], $item['badgeOptions']),
-                        ['class' => 'pull-right-container']
+                        ['class' => 'badge-wrapper']
                     )
                     : '',
                 '{icon}' => isset($item['icon']) ? $item['icon'] : '',

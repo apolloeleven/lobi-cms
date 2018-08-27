@@ -1,68 +1,151 @@
 body {
-  /* add sorting icons to gridview sort links */
+    /* add sorting icons to gridview sort links */
 }
+
 body > .header .logo {
-  font-family: inherit;
+    font-family: inherit;
 }
+
 body > .header .navbar .nav > li > a > .badge {
-  position: absolute;
-  top: 4px;
-  right: 0;
-  font-size: 75%;
+    position: absolute;
+    top: 4px;
+    right: 0;
+    font-size: 75%;
 }
+
 body .navbar-nav > .notifications-menu > .dropdown-menu > li .menu > li > a > .glyphicon,
 body .navbar-nav > .notifications-menu > .dropdown-menu > li .menu > li > a > .fa,
 body .navbar-nav > .notifications-menu > .dropdown-menu > li .menu > li > a > .ion {
-  background: none;
-  color: inherit;
+    background: none;
+    color: inherit;
 }
+
 body .user-panel > .info {
-  padding-left: 10px;
+    padding-left: 10px;
 }
+
 body a.asc:after,
 body a.desc:after {
-  position: relative;
-  top: 1px;
-  display: inline-block;
-  font-family: 'Glyphicons Halflings';
-  font-style: normal;
-  font-weight: normal;
-  line-height: 1;
-  padding-left: 5px;
+    position: relative;
+    top: 1px;
+    display: inline-block;
+    font-family: 'Glyphicons Halflings';
+    font-style: normal;
+    font-weight: normal;
+    line-height: 1;
+    padding-left: 5px;
 }
+
 body a.asc:after {
-  content: "\e151";
+    content: "\e151";
 }
+
 body a.desc:after {
-  content: "\e152";
+    content: "\e152";
 }
+
 body .sort-numerical a.asc:after {
-  content: "\e153";
+    content: "\e153";
 }
+
 body .sort-numerical a.desc:after {
-  content: "\e154";
+    content: "\e154";
 }
+
 body .sort-ordinal a.asc:after {
-  content: "\e155";
+    content: "\e155";
 }
+
 body .sort-ordinal a.desc:after {
-  content: "\e156";
+    content: "\e156";
 }
+
 body .grid-view th {
-  white-space: nowrap;
+    white-space: nowrap;
 }
+
 body .hint-block {
-  display: block;
-  margin-top: 5px;
-  color: #999;
+    display: block;
+    margin-top: 5px;
+    color: #999;
 }
+
 body .error-summary {
-  color: #a94442;
-  background: #fdf7f7;
-  border-left: 3px solid #eed3d7;
-  padding: 10px 20px;
-  margin: 0 0 15px 0;
+    color: #a94442;
+    background: #fdf7f7;
+    border-left: 3px solid #eed3d7;
+    padding: 10px 20px;
+    margin: 0 0 15px 0;
 }
+
 body .table .bootstrap-datetimepicker-widget {
-  z-index: 9999;
+    z-index: 9999;
+}
+
+.menu .menu-items-header {
+    padding: 5px 10px;
+    font-size: 15px;
+    font-weight: bold;
+    background: rgba(0, 0, 0, 0.1)
+}
+
+.content-view {
+    height: 300px;
+    overflow: auto;
+    padding: 8px;
+    background-color: #f4f4f4;
+    margin-bottom: 20px;
+}
+
+.tree-children-draggable {
+    width: 4px;
+}
+
+.menu {
+    width: 300px;
+}
+
+#main {
+    margin-left: 300px;
+}
+
+.menu nav ul > li > a {
+    white-space: normal;
+}
+
+.menu nav > ul > li > ul > li ul > li > a {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-right: 24px;
+}
+
+@media screen and (min-width: 992px) {
+    body.menu-hidden .menu {
+        left: -290px;
+    }
+}
+
+.menu nav ul > li > a .menu-item-toggle-icon {
+    top: 0;
+    right: 0;
+    padding: 10px 10px;
+    height: 40px;
+}
+
+.menu nav > ul > li > ul > li ul > li > a .menu-item-toggle-icon {
+    height: 31px;
+    padding-top: 8px;
+}
+
+/*.dropdown-notifications.dropdown-timeline .notifications-body>li>.notification .notification-msg{*/
+/*margin-left: 0;*/
+/*}*/
+.dropdown-notifications.dropdown-system-logs .notifications-body > li > .notification {
+    min-height: 34px;
+}
+
+@media screen and (min-width: 900px) {
+    .modal-dialog {
+        width: 800px;
+    }
 }

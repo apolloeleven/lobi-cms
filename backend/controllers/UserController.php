@@ -5,7 +5,7 @@ namespace backend\controllers;
 use backend\models\search\UserSearch;
 use backend\models\UserForm;
 use common\models\User;
-use common\models\UserToken;
+use apollo11\lobicms\models\UserToken;
 use Yii;
 use yii\filters\VerbFilter;
 use yii\helpers\ArrayHelper;
@@ -48,6 +48,7 @@ class UserController extends Controller
      * Displays a single User model.
      * @param integer $id
      * @return mixed
+     * @throws NotFoundHttpException
      */
     public function actionView($id)
     {
@@ -64,6 +65,7 @@ class UserController extends Controller
      */
     public function actionLogin($id)
     {
+        $url = Yii::$app->request->get('url', '');
         $model = $this->findModel($id);
         $tokenModel = UserToken::create(
             $model->getId(),
@@ -72,7 +74,7 @@ class UserController extends Controller
         );
 
         return $this->redirect(
-            Yii::$app->urlManagerFrontend->createAbsoluteUrl(['user/sign-in/login-by-pass', 'token' => $tokenModel->token])
+            Yii::$app->urlManagerFrontend->createAbsoluteUrl(['user/sign-in/login-by-pass', 'token' => $tokenModel->token, 'url' => $url])
         );
     }
 
@@ -80,6 +82,7 @@ class UserController extends Controller
      * Creates a new User model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
+     * @throws \yii\base\Exception
      */
     public function actionCreate()
     {
@@ -99,6 +102,8 @@ class UserController extends Controller
      * Updates an existing User model.
      * @param integer $id
      * @return mixed
+     * @throws NotFoundHttpException
+     * @throws \yii\base\Exception
      */
     public function actionUpdate($id)
     {
@@ -119,6 +124,9 @@ class UserController extends Controller
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
+     * @throws NotFoundHttpException
+     * @throws \Throwable
+     * @throws \yii\db\StaleObjectException
      */
     public function actionDelete($id)
     {

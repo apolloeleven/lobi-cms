@@ -7,7 +7,8 @@
 use backend\assets\BackendAsset;
 use backend\modules\system\models\SystemLog;
 use backend\widgets\Menu;
-use common\models\TimelineEvent;
+use apollo11\lobicms\models\ContentTree;
+use apollo11\lobicms\models\TimelineEvent;
 use yii\bootstrap\Alert;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
@@ -23,258 +24,330 @@ $bundle = BackendAsset::register($this);
 
 <div class="wrapper">
     <!-- header logo: style can be found in header.less -->
-    <header class="main-header">
-        <a href="<?php echo Yii::$app->urlManagerFrontend->createAbsoluteUrl('/') ?>" class="logo">
-            <!-- Add the class icon to your logo image or logo icon to add the margining -->
-            <?php echo Yii::$app->name ?>
+    <nav class="navbar navbar-default navbar-header header">
+        <a class="navbar-brand" href="<?php echo Yii::getAlias('@frontendUrl') ?>">
+            <div class="navbar-brand-img"></div>
+            <!--<img src="img/logo/lobiadmin-logo-text-white-32.png" class="hidden-xs" alt="" />-->
         </a>
-        <!-- Header Navbar: style can be found in header.less -->
-        <nav class="navbar navbar-static-top" role="navigation">
-            <!-- Sidebar toggle button-->
-            <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
-                <span class="sr-only"><?php echo Yii::t('backend', 'Toggle navigation') ?></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
+        <!--Menu show/hide toggle button-->
+        <ul class="nav navbar-nav pull-left show-hide-menu">
+            <li>
+                <a href="#" class="border-radius-0 btn font-size-lg" data-action="show-hide-sidebar">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </li>
+        </ul>
+        <form class="navbar-search pull-left" action="<?= Url::to(['/search']) ?>">
+            <label for="search" class="sr-only">Search...</label>
+            <input type="text" class="font-size-lg" name="Search[content]" id="content" placeholder="Search...">
+            <a class="btn btn-search">
+                <span class="glyphicon glyphicon-search"></span>
             </a>
-            <div class="navbar-custom-menu">
-                <ul class="nav navbar-nav">
-                    <li id="timeline-notifications" class="notifications-menu">
-                        <a href="<?php echo Url::to(['/timeline-event/index']) ?>">
-                            <i class="fa fa-bell"></i>
-                            <span class="label label-success">
-                                <?php echo TimelineEvent::find()->today()->count() ?>
-                            </span>
-                        </a>
-                    </li>
-                    <!-- Notifications: style can be found in dropdown.less -->
-                    <li id="log-dropdown" class="dropdown notifications-menu">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <i class="fa fa-warning"></i>
-                            <span class="label label-danger">
-                                <?php echo SystemLog::find()->count() ?>
-                            </span>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li class="header"><?php echo Yii::t('backend', 'You have {num} log items', ['num' => SystemLog::find()->count()]) ?></li>
-                            <li>
-                                <!-- inner menu: contains the actual data -->
-                                <ul class="menu">
-                                    <?php foreach (SystemLog::find()->orderBy(['log_time' => SORT_DESC])->limit(5)->all() as $logEntry): ?>
-                                        <li>
-                                            <a href="<?php echo Yii::$app->urlManager->createUrl(['/system/log/view', 'id' => $logEntry->id]) ?>">
-                                                <i class="fa fa-warning <?php echo $logEntry->level === Logger::LEVEL_ERROR ? 'text-red' : 'text-yellow' ?>"></i>
-                                                <?php echo $logEntry->category ?>
-                                            </a>
-                                        </li>
-                                    <?php endforeach; ?>
-                                </ul>
-                            </li>
-                            <li class="footer">
-                                <?php echo Html::a(Yii::t('backend', 'View all'), ['/system/log/index']) ?>
-                            </li>
-                        </ul>
-                    </li>
-                    <!-- User Account: style can be found in dropdown.less -->
-                    <li class="dropdown user user-menu">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <img src="<?php echo Yii::$app->user->identity->userProfile->getAvatar($this->assetManager->getAssetUrl($bundle, 'img/anonymous.jpg')) ?>"
-                                 class="user-image">
-                            <span><?php echo Yii::$app->user->identity->username ?> <i class="caret"></i></span>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <!-- User image -->
-                            <li class="user-header light-blue">
-                                <img src="<?php echo Yii::$app->user->identity->userProfile->getAvatar($this->assetManager->getAssetUrl($bundle, 'img/anonymous.jpg')) ?>"
-                                     class="img-circle" alt="User Image"/>
-                                <p>
-                                    <?php echo Yii::$app->user->identity->username ?>
-                                    <small>
-                                        <?php echo Yii::t('backend', 'Member since {0, date, short}', Yii::$app->user->identity->created_at) ?>
-                                    </small>
-                            </li>
-                            <!-- Menu Footer-->
-                            <li class="user-footer">
-                                <div class="pull-left">
-                                    <?php echo Html::a(Yii::t('backend', 'Profile'), ['/sign-in/profile'], ['class' => 'btn btn-default btn-flat']) ?>
-                                </div>
-                                <div class="pull-left">
-                                    <?php echo Html::a(Yii::t('backend', 'Account'), ['/sign-in/account'], ['class' => 'btn btn-default btn-flat']) ?>
-                                </div>
-                                <div class="pull-right">
-                                    <?php echo Html::a(Yii::t('backend', 'Logout'), ['/sign-in/logout'], ['class' => 'btn btn-default btn-flat', 'data-method' => 'post']) ?>
-                                </div>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <?php echo Html::a('<i class="fa fa-cogs"></i>', ['/system/settings']) ?>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-    </header>
-    <!-- Left side column. contains the logo and sidebar -->
-    <aside class="main-sidebar">
-        <!-- sidebar: style can be found in sidebar.less -->
-        <section class="sidebar">
-            <!-- Sidebar user panel -->
-            <div class="user-panel">
-                <div class="pull-left image">
-                    <img src="<?php echo Yii::$app->user->identity->userProfile->getAvatar($this->assetManager->getAssetUrl($bundle, 'img/anonymous.jpg')) ?>"
-                         class="img-circle"/>
-                </div>
-                <div class="pull-left info">
-                    <p><?php echo Yii::t('backend', 'Hello, {username}', ['username' => Yii::$app->user->identity->getPublicIdentity()]) ?></p>
-                    <a href="<?php echo Url::to(['/sign-in/profile']) ?>">
-                        <i class="fa fa-circle text-success"></i>
-                        <?php echo Yii::$app->formatter->asDatetime(time()) ?>
+            <a class="btn btn-remove">
+                <span class="glyphicon glyphicon-remove"></span>
+            </a>
+        </form>
+        <div class="navbar-items">
+            <!--User avatar dropdown-->
+            <ul class="nav navbar-nav navbar-right user-actions">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <img src="<?php echo Yii::$app->user->identity->userProfile->getAvatar($this->assetManager->getAssetUrl($bundle,
+                            'img/anonymous.jpg')) ?>"
+                             class="user-avatar">
+                        <span><?php echo Yii::$app->user->identity->username ?> <i class="caret"></i></span>
                     </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="<?php echo Url::to(['/sign-in/profile']) ?>"><span
+                                        class="glyphicon glyphicon-user"></span> &nbsp;&nbsp;Profile</a>
+                        </li>
+                        <li><a href="<?php echo Url::to(['/sign-in/account']) ?>"><span
+                                        class="fa fa-key"></span> &nbsp;&nbsp;Account</a>
+                        </li>
+                        <li><a href="<?php echo Url::to(['/timeline-event/index']) ?>"><i class="fa fa-code-fork"></i>
+                                &nbsp;&nbsp;Timeline</a></li>
+                        <!--                        <li><a href="#lobimail"><span class="glyphicon glyphicon-envelope"></span> &nbsp;&nbsp;Messages</a></li>-->
+                        <li class="divider"></li>
+                        <li><a href="<?php echo Url::to(['/sign-in/lock']) ?>" data-method="post">
+                                <span class="glyphicon glyphicon-lock"></span> &nbsp;&nbsp;Lock screen</a></li>
+                        <li>
+                            <a href="<?php echo Url::to(['/sign-in/logout']) ?>" data-method="post">
+                                <span class="glyphicon glyphicon-off"></span>
+                                &nbsp;&nbsp;<?php echo Yii::t('backend', 'Log out') ?>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <div class="clearfix-xxs"></div>
+        <div class="navbar-items-2">
+            <!--Choose languages dropdown-->
+            <ul class="nav navbar-nav navbar-actions">
+                <li>
+                    <a href="#" data-toggle="dropdown" class="dropdown-toggle">
+                        <i class="fa fa-bell"></i>
+                        <span class="badge badge-danger badge-xs">
+                            <?php echo TimelineEvent::find()->today()->count() ?>
+                        </span>
+                    </a>
+                    <div class="dropdown-menu dropdown-notifications dropdown-timeline notification-news border-1 animated-fast flipInX">
+                        <div class="notifications-heading border-bottom-1 bg-white">
+                            <?php echo Yii::t('backend', 'Timeline') ?>
+                        </div>
+                        <ul class="notifications-body max-h-300">
+                            <?php foreach (TimelineEvent::getLatestNItems() as $latestItem): ?>
+                                <li>
+                                    <div class="notification">
+                                        <img class="notification-image"
+                                             src="<?php echo $latestItem->getCreatorAvatar() ?>"
+                                             alt="<?php echo $latestItem->getCreatorPublicIdentity() ?>">
+                                        <div class="notification-msg">
+                                            <h5 class="notification-sub-heading text-gray-darker">
+                                                <?php echo $latestItem->getDisplayText() ?>
+                                            </h5>
+                                            <p class="body-text"><i
+                                                        class="fa fa-clock-o"></i> <?php echo $latestItem->getDisplayDate() ?>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </li>
+                            <?php endforeach; ?>
+                        </ul>
+                        <div class="notifications-footer border-top-1 bg-white text-center">
+                            <?php echo Html::a(Yii::t('backend', 'View all'), ['/timeline-event/index']) ?>
+                        </div>
+                    </div>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <span class="fa fa-warning"></span>
+                        <span class="badge badge-danger badge-xs"><?php $count = SystemLog::find()->count();
+                            echo $count ?></span>
+                    </a>
+                    <div class="dropdown-menu dropdown-notifications dropdown-system-logs notification-news border-1 animated-fast flipInX">
+                        <div class="notifications-heading border-bottom-1 bg-white">
+                            <?php echo Yii::t('backend', 'You have {num} log items',
+                                ['num' => $count]) ?>
+                        </div>
+                        <ul class="notifications-body max-h-300">
+                            <?php foreach (SystemLog::find()->orderBy(['log_time' => SORT_DESC])->limit(50)->all() as $logEntry): ?>
+                                <li>
+                                    <a href="<?php echo Yii::$app->urlManager->createUrl([
+                                        '/system/log/view',
+                                        'id' => $logEntry->id
+                                    ]) ?>" class="notification">
+                                        <i class="fa fa-warning <?php echo $logEntry->level === Logger::LEVEL_ERROR ? 'text-red' : 'text-yellow' ?>"></i>
+                                        <?php echo $logEntry->category ?>
+                                    </a>
+                                </li>
+                            <?php endforeach; ?>
+
+                        </ul>
+                        <div class="notifications-footer border-top-1 bg-white text-center">
+                            <?php echo Html::a(Yii::t('backend', 'View all'), ['/system/log/index']) ?>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="clearfix"></div>
+    </nav>
+
+    <div class="menu">
+        <div class="menu-heading">
+            <div class="menu-header-buttons-wrapper clearfix">
+                <button type="button" class="btn btn-info btn-menu-header-collapse">
+                    <i class="fa fa-cogs"></i>
+                </button>
+                <!--Put your favourite pages here-->
+                <div class="menu-header-buttons">
+                    <a href="<?php echo Url::to(['/sign-in/profile']) ?>" class="btn btn-info btn-outline"
+                       data-title="Profile">
+                        <i class="fa fa-user"></i>
+                    </a>
+                    <?php if (Yii::$app->user->can(\common\models\User::ROLE_MANAGER)): ?>
+                        <a href="<?php echo Url::to(['/user/index']) ?>" class="btn btn-info btn-outline"
+                           data-title="Users">
+                            <i class="fa fa-users"></i>
+                        </a>
+                    <?php endif; ?>
+                    <a href="<?php echo Url::to(['/translation/default/index']) ?>" class="btn btn-info btn-outline"
+                       data-title="Translations">
+                        <i class="fa fa-language"></i>
+                    </a>
+                    <?php if (Yii::$app->user->can(\common\models\User::ROLE_MANAGER)): ?>
+                        <a href="<?php echo Url::to(['/system/cache/index']) ?>" class="btn btn-info btn-outline"
+                           data-title="Cache">
+                            <i class="fa fa-refresh"></i>
+                        </a>
+                    <?php endif; ?>
                 </div>
             </div>
-            <!-- sidebar menu: : style can be found in sidebar.less -->
-            <?php echo Menu::widget([
+        </div>
+        <nav>
+            <?php
+
+            echo Menu::widget([
                 'options' => ['class' => 'sidebar-menu'],
-                'linkTemplate' => '<a href="{url}">{icon}<span>{label}</span>{right-icon}{badge}</a>',
-                'submenuTemplate' => "\n<ul class=\"treeview-menu\">\n{items}\n</ul>\n",
+                'linkTemplate' => '<a href="{url}"><i class="{icon} menu-item-icon"></i><span class="inner-text">{label}</span>{badge}</a>',
                 'activateParents' => true,
+                'activeCssClass' => 'opened',
                 'items' => [
                     [
-                        'label' => Yii::t('backend', 'Main'),
-                        'options' => ['class' => 'header'],
-                    ],
-                    [
                         'label' => Yii::t('backend', 'Timeline'),
-                        'icon' => '<i class="fa fa-bar-chart-o"></i>',
+                        'icon' => 'fa fa-bar-chart-o',
                         'url' => ['/timeline-event/index'],
                         'badge' => TimelineEvent::find()->today()->count(),
                         'badgeBgClass' => 'label-success',
                     ],
                     [
-                        'label' => Yii::t('backend', 'Users'),
-                        'icon' => '<i class="fa fa-users"></i>',
-                        'url' => ['/user/index'],
-                        'active' => (Yii::$app->controller->id == 'user'),
-                        'visible' => Yii::$app->user->can('administrator'),
-                    ],
-                    [
                         'label' => Yii::t('backend', 'Content'),
-                        'options' => ['class' => 'header'],
+                        'options' => ['class' => 'menu-items-header'],
+                        'visible' => Yii::$app->user->can(\common\models\User::ROLE_EDITOR),
                     ],
                     [
-                        'label' => Yii::t('backend', 'Static pages'),
-                        'url' => ['/content/page/index'],
-                        'icon' => '<i class="fa fa-thumb-tack"></i>',
-                        'active' => (Yii::$app->controller->id == 'page'),
-                    ],
-                    [
-                        'label' => Yii::t('backend', 'Articles'),
-                        'url' => '#',
-                        'icon' => '<i class="fa fa-files-o"></i>',
-                        'options' => ['class' => 'treeview'],
-                        'active' => (Yii::$app->controller->module->id == 'article'),
-                        'items' => [
-                            [
-                                'label' => Yii::t('backend', 'Articles'),
-                                'url' => ['/content/article/index'],
-                                'icon' => '<i class="fa fa-file-o"></i>',
-                                'active' => (Yii::$app->controller->id == 'default'),
-                            ],
-                            [
-                                'label' => Yii::t('backend', 'Categories'),
-                                'url' => ['/content/category/index'],
-                                'icon' => '<i class="fa fa-folder-open-o"></i>',
-                                'active' => (Yii::$app->controller->id == 'category'),
-                            ],
-                        ],
+                        'label' => Yii::t('backend', 'Content Tree'),
+                        'icon' => 'fa fa-bar-chart-o',
+                        'url' => ['/content-tree/index'],
+                        'visible' => Yii::$app->user->can(\common\models\User::ROLE_EDITOR),
+                        'items' => ContentTree::getItemsAsTree([
+                            'name' => 'label',
+                            'alias',
+                            'url' => function ($item, $parentItem) {
+                                $url = $item['alias'];
+                                /** @var $parentItem \common\components\Node */
+                                if ($parentItem) {
+                                    $processedData = $parentItem->getProcessedData();
+                                    $url = $processedData['url']['nodes'] . '/' . $url;
+                                }
+                                return ['/content-tree/index', 'nodes' => $url];
+                            },
+                            'icon' => function ($item) {
+                                return 'fa ' . Yii::$app->contentTree->getIcon($item['table_name'],
+                                        $item['link_id']);
+                            }
+                        ])
                     ],
                     [
                         'label' => Yii::t('backend', 'Widgets'),
                         'url' => '#',
-                        'icon' => '<i class="fa fa-code"></i>',
+                        'icon' => 'fa fa-code',
                         'options' => ['class' => 'treeview'],
                         'active' => (Yii::$app->controller->module->id == 'widget'),
+                        'visible' => Yii::$app->user->can(\common\models\User::ROLE_EDITOR),
                         'items' => [
                             [
                                 'label' => Yii::t('backend', 'Text Blocks'),
                                 'url' => ['/widget/text/index'],
-                                'icon' => '<i class="fa fa-circle-o"></i>',
+                                'icon' => 'fa fa-circle-o',
                                 'active' => (Yii::$app->controller->id == 'text'),
                             ],
-                            [
-                                'label' => Yii::t('backend', 'Menu'),
-                                'url' => ['/widget/menu/index'],
-                                'icon' => '<i class="fa fa-circle-o"></i>',
-                                'active' => (Yii::$app->controller->id == 'menu'),
-                            ],
-                            [
-                                'label' => Yii::t('backend', 'Carousel'),
-                                'url' => ['/widget/carousel/index'],
-                                'icon' => '<i class="fa fa-circle-o"></i>',
-                                'active' => in_array(Yii::$app->controller->id, ['carousel', 'carousel-item']),
-                            ],
+//                                [
+//                                    'label' => Yii::t('backend', 'Menu'),
+//                                    'url' => ['/widget/menu/index'],
+//                                    'icon' => 'fa fa-circle-o',
+//                                    'active' => (Yii::$app->controller->id == 'menu'),
+//                                ],
+//                                [
+//                                    'label' => Yii::t('backend', 'Carousel'),
+//                                    'url' => ['/widget/carousel/index'],
+//                                    'icon' => 'fa fa-circle-o',
+//                                    'active' => in_array(Yii::$app->controller->id, ['carousel', 'carousel-item']),
+//                                ],
                         ],
                     ],
                     [
+                        'label' => Yii::t('backend', 'Menu'),
+                        'url' => ['/menu'],
+                        'visible' => Yii::$app->user->can(\common\models\User::ROLE_EDITOR),
+                        'icon' => 'fa fa-bars'
+                    ],
+                    [
                         'label' => Yii::t('backend', 'Translation'),
-                        'options' => ['class' => 'header'],
+                        'visible' => Yii::$app->user->can(\common\models\User::ROLE_EDITOR),
+                        'options' => ['class' => 'menu-items-header'],
                     ],
                     [
                         'label' => Yii::t('backend', 'Translation'),
                         'url' => ['/translation/default/index'],
-                        'icon' => '<i class="fa fa-language"></i>',
+                        'icon' => 'fa fa-language',
                         'active' => (Yii::$app->controller->module->id == 'translation'),
+                        'visible' => Yii::$app->user->can(\common\models\User::ROLE_EDITOR),
+                    ],
+                    [
+                        'label' => Yii::t('backend', 'Country'),
+                        'url' => ['/country/index'],
+                        'icon' => 'fa fa-map',
+                        'visible' => Yii::$app->user->can(\common\models\User::ROLE_EDITOR),
+                    ],
+                    [
+                        'label' => Yii::t('backend', 'Continent'),
+                        'url' => ['/continent/index'],
+                        'icon' => 'fa fa-map',
+                        'visible' => Yii::$app->user->can(\common\models\User::ROLE_EDITOR),
                     ],
                     [
                         'label' => Yii::t('backend', 'System'),
-                        'options' => ['class' => 'header'],
+                        'options' => ['class' => 'menu-items-header'],
+                        'visible' => Yii::$app->user->can(\common\models\User::ROLE_ADMINISTRATOR),
+                    ],
+                    [
+                        'label' => Yii::t('backend', 'Users'),
+                        'icon' => 'fa fa-users',
+                        'url' => ['/user/index'],
+                        'active' => (Yii::$app->controller->id == 'user'),
+                        'visible' => Yii::$app->user->can(\common\models\User::ROLE_ADMINISTRATOR),
                     ],
                     [
                         'label' => Yii::t('backend', 'RBAC Rules'),
                         'url' => '#',
-                        'icon' => '<i class="fa fa-flag"></i>',
+                        'icon' => 'fa fa-flag',
+                        'visible' => Yii::$app->user->can(\common\models\User::ROLE_ADMINISTRATOR),
                         'options' => ['class' => 'treeview'],
-                        'active' => in_array(Yii::$app->controller->id, ['rbac-auth-assignment', 'rbac-auth-item', 'rbac-auth-item-child', 'rbac-auth-rule']),
+                        'active' => in_array(Yii::$app->controller->id,
+                            ['rbac-auth-assignment', 'rbac-auth-item', 'rbac-auth-item-child', 'rbac-auth-rule']),
                         'items' => [
                             [
                                 'label' => Yii::t('backend', 'Auth Assignment'),
                                 'url' => ['/rbac/rbac-auth-assignment/index'],
-                                'icon' => '<i class="fa fa-circle-o"></i>',
+                                'icon' => 'fa fa-circle-o',
                             ],
                             [
                                 'label' => Yii::t('backend', 'Auth Items'),
                                 'url' => ['/rbac/rbac-auth-item/index'],
-                                'icon' => '<i class="fa fa-circle-o"></i>',
+                                'icon' => 'fa fa-circle-o',
                             ],
                             [
                                 'label' => Yii::t('backend', 'Auth Item Child'),
                                 'url' => ['/rbac/rbac-auth-item-child/index'],
-                                'icon' => '<i class="fa fa-circle-o"></i>',
+                                'icon' => 'fa fa-circle-o',
                             ],
                             [
                                 'label' => Yii::t('backend', 'Auth Rules'),
                                 'url' => ['/rbac/rbac-auth-rule/index'],
-                                'icon' => '<i class="fa fa-circle-o"></i>',
+                                'icon' => 'fa fa-circle-o',
                             ],
                         ],
                     ],
                     [
                         'label' => Yii::t('backend', 'Files'),
                         'url' => '#',
-                        'icon' => '<i class="fa fa-th-large"></i>',
+                        'icon' => 'fa fa-th-large',
+                        'visible' => Yii::$app->user->can(\common\models\User::ROLE_MANAGER),
                         'options' => ['class' => 'treeview'],
                         'active' => (Yii::$app->controller->module->id == 'file'),
                         'items' => [
                             [
                                 'label' => Yii::t('backend', 'Storage'),
                                 'url' => ['/file/storage/index'],
-                                'icon' => '<i class="fa fa-database"></i>',
+                                'icon' => 'fa fa-database',
                                 'active' => (Yii::$app->controller->id == 'storage'),
                             ],
                             [
                                 'label' => Yii::t('backend', 'Manager'),
                                 'url' => ['/file/manager/index'],
-                                'icon' => '<i class="fa fa-television"></i>',
+                                'icon' => 'fa fa-television',
                                 'active' => (Yii::$app->controller->id == 'manager'),
                             ],
                         ],
@@ -282,36 +355,57 @@ $bundle = BackendAsset::register($this);
                     [
                         'label' => Yii::t('backend', 'Key-Value Storage'),
                         'url' => ['/system/key-storage/index'],
-                        'icon' => '<i class="fa fa-arrows-h"></i>',
+                        'icon' => 'fa fa-arrows-h',
+                        'visible' => Yii::$app->user->can(\common\models\User::ROLE_MANAGER),
                         'active' => (Yii::$app->controller->id == 'key-storage'),
                     ],
                     [
                         'label' => Yii::t('backend', 'Cache'),
                         'url' => ['/system/cache/index'],
-                        'icon' => '<i class="fa fa-refresh"></i>',
+                        'icon' => 'fa fa-refresh',
+
+                        'visible' => Yii::$app->user->can(\common\models\User::ROLE_ADMINISTRATOR),
                     ],
                     [
                         'label' => Yii::t('backend', 'System Information'),
                         'url' => ['/system/information/index'],
-                        'icon' => '<i class="fa fa-dashboard"></i>',
+                        'icon' => 'fa fa-dashboard',
+
+                        'visible' => Yii::$app->user->can(\common\models\User::ROLE_ADMINISTRATOR),
                     ],
                     [
                         'label' => Yii::t('backend', 'Logs'),
                         'url' => ['/system/log/index'],
-                        'icon' => '<i class="fa fa-warning"></i>',
-                        'badge' => SystemLog::find()->count(),
+                        'icon' => 'fa fa-warning',
+                        'badge' => $count,
                         'badgeBgClass' => 'label-danger',
+
+                        'visible' => Yii::$app->user->can(\common\models\User::ROLE_ADMINISTRATOR),
                     ],
                 ],
-            ]) ?>
-        </section>
-        <!-- /.sidebar -->
-    </aside>
+            ]);
+            ?>
+        </nav>
+        <div class="menu-collapse-line">
+            <!--Menu collapse/expand icon is put and control from LobiAdmin.js file-->
+            <div class="menu-toggle-btn" data-action="collapse-expand-sidebar"></div>
+        </div>
+    </div>
 
-    <!-- Right side column. Contains the navbar and content of the page -->
-    <aside class="content-wrapper">
-        <!-- Content Header (Page header) -->
-        <section class="content-header">
+    <div id="main">
+        <div id="ribbon" class="hidden-print">
+            <a href="#dashboard" class="btn-ribbon" data-container="#main" data-toggle="tooltip"
+               data-title="Show dashboard"><i class="fa fa-home"></i></a>
+            <span class="vertical-devider">&nbsp;</span>
+            <button class="btn-ribbon" data-container="#main" data-action="reload" data-toggle="tooltip"
+                    data-title="Reload content by ajax"><i class="fa fa-refresh"></i></button>
+            <?php echo Breadcrumbs::widget([
+                'homeLink' => false,
+                'tag' => 'ol',
+                'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+            ]) ?>
+        </div>
+        <div id="content">
             <h1>
                 <?php echo $this->title ?>
                 <?php if (isset($this->params['subtitle'])): ?>
@@ -319,23 +413,16 @@ $bundle = BackendAsset::register($this);
                 <?php endif; ?>
             </h1>
 
-            <?php echo Breadcrumbs::widget([
-                'tag' => 'ol',
-                'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-            ]) ?>
-        </section>
-
-        <!-- Main content -->
-        <section class="content">
             <?php if (Yii::$app->session->hasFlash('alert')): ?>
                 <?php echo Alert::widget([
                     'body' => ArrayHelper::getValue(Yii::$app->session->getFlash('alert'), 'body'),
                     'options' => ArrayHelper::getValue(Yii::$app->session->getFlash('alert'), 'options'),
                 ]) ?>
             <?php endif; ?>
+
             <?php echo $content ?>
-        </section><!-- /.content -->
-    </aside><!-- /.right-side -->
+        </div>
+    </div>
 </div><!-- ./wrapper -->
 
 <?php $this->endContent(); ?>
