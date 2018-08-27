@@ -2,7 +2,7 @@
 
 namespace backend\modules\widget\models\search;
 
-use common\models\WidgetText;
+use apollo11\lobicms\models\WidgetText;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 

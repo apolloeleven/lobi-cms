@@ -17,21 +17,25 @@ $this->params['breadcrumbs'][] = $this->title;
 
 ?>
 
-    <div class="box box-success collapsed-box">
-        <div class="box-header with-border">
-            <h3 class="box-title"><?php echo Yii::t('backend', 'Create {modelClass}', ['modelClass' => 'Source Message']) ?></h3>
-            <div class="box-tools pull-right">
-                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i>
-                </button>
+<div id="accordion" class="panel-group" role="tablist">
+    <div class="panel panel-success">
+        <div class="panel-heading collapsed" role="tab" id="headingOne" data-toggle="collapse" data-parent="#accordion" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+            <h4 class="panel-title">
+                <?php echo Yii::t('backend', 'Create {modelClass}', ['modelClass' => 'Source Message']) ?>
+                <i class="fa fa-plus-square icon-collapsed pull-right"></i>
+                <i class="fa fa-minus-square icon-expanded pull-right"></i>
+            </h4>
+        </div>
+        <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+            <div class="panel-body">
+                <?php echo $this->render('_form', [
+                    'model' => $model,
+                    'languages' => $languages,
+                ]) ?>
             </div>
         </div>
-        <div class="box-body">
-            <?php echo $this->render('_form', [
-                'model' => $model,
-                'languages' => $languages,
-            ]) ?>
-        </div>
     </div>
+</div>
 
 <?php
 

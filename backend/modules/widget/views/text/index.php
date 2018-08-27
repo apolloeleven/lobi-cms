@@ -1,7 +1,7 @@
 <?php
 
 use common\grid\EnumColumn;
-use common\models\WidgetText;
+use apollo11\lobicms\models\WidgetText;
 use yii\grid\GridView;
 use yii\helpers\Html;
 
@@ -9,7 +9,6 @@ use yii\helpers\Html;
  * @var $this         yii\web\View
  * @var $searchModel  backend\modules\widget\models\search\TextSearch
  * @var $dataProvider yii\data\ActiveDataProvider
- * @var $model        common\models\WidgetText
  */
 
 $this->title = Yii::t('backend', 'Text Blocks');
@@ -17,20 +16,11 @@ $this->title = Yii::t('backend', 'Text Blocks');
 $this->params['breadcrumbs'][] = $this->title;
 
 ?>
-
-<div class="box box-success collapsed-box">
-    <div class="box-header with-border">
-        <h3 class="box-title"><?php echo Yii::t('backend', 'Create {modelClass}', ['modelClass' => 'Text Block']) ?></h3>
-        <div class="box-tools pull-right">
-            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i></button>
-        </div>
-    </div>
-    <div class="box-body">
-        <?php echo $this->render('_form', [
-            'model' => $model,
-        ]) ?>
-    </div>
-</div>
+<p>
+    <a href="<?php echo \yii\helpers\Url::to(['create', 'language' => Yii::$app->language])?>" class="btn btn-default">
+        <i class="fa fa-plus"></i> <?php echo Yii::t('backend', 'Create Text Snippet') ?>
+    </a>
+</p>
 
 <?php echo GridView::widget([
     'dataProvider' => $dataProvider,
@@ -47,7 +37,7 @@ $this->params['breadcrumbs'][] = $this->title;
         [
             'attribute' => 'title',
             'value' => function ($model) {
-                return Html::a($model->title, ['update', 'id' => $model->id]);
+                return Html::a($model->getTitle(), ['update', 'id' => $model->id]);
             },
             'format' => 'raw',
         ],

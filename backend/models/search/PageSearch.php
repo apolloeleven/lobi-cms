@@ -1,12 +1,15 @@
 <?php
 
-namespace backend\modules\content\models\search;
+namespace backend\models\search;
 
-use common\models\ArticleCategory;
+use apollo11\lobicms\models\Page;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 
-class ArticleCategorySearch extends ArticleCategory
+/**
+ * PageSearch represents the model behind the search form about `apollo11\lobicms\models\Page`.
+ */
+class PageSearch extends Page
 {
     /**
      * @inheritdoc
@@ -15,7 +18,7 @@ class ArticleCategorySearch extends ArticleCategory
     {
         return [
             [['id', 'status'], 'integer'],
-            [['slug', 'title'], 'safe'],
+            [['slug', 'title', 'body'], 'safe'],
         ];
     }
 
@@ -30,12 +33,11 @@ class ArticleCategorySearch extends ArticleCategory
 
     /**
      * Creates data provider instance with search query applied
-     *
      * @return ActiveDataProvider
      */
     public function search($params)
     {
-        $query = ArticleCategory::find();
+        $query = Page::find();
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -51,7 +53,8 @@ class ArticleCategorySearch extends ArticleCategory
         ]);
 
         $query->andFilterWhere(['like', 'slug', $this->slug])
-            ->andFilterWhere(['like', 'title', $this->title]);
+            ->andFilterWhere(['like', 'title', $this->title])
+            ->andFilterWhere(['like', 'body', $this->body]);
 
         return $dataProvider;
     }

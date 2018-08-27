@@ -1,15 +1,16 @@
 <?php
 
-namespace backend\modules\widget\models\search;
+namespace backend\models;
 
-use common\models\WidgetMenu;
+use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
+use apollo11\lobicms\models\Menu;
 
 /**
- * WidgetMenuSearch represents the model behind the search form about `common\models\WidgetMenu`.
+ * MenuSearch represents the model behind the search form about `apollo11\lobicms\models\Menu`.
  */
-class MenuSearch extends WidgetMenu
+class MenuSearch extends Menu
 {
     /**
      * @inheritdoc
@@ -17,8 +18,8 @@ class MenuSearch extends WidgetMenu
     public function rules()
     {
         return [
-            [['id', 'status'], 'integer'],
-            [['key', 'title', 'items'], 'safe'],
+            [['id'], 'integer'],
+            [['name', 'key'], 'safe'],
         ];
     }
 
@@ -34,11 +35,13 @@ class MenuSearch extends WidgetMenu
     /**
      * Creates data provider instance with search query applied
      *
+     * @param array $params
+     *
      * @return ActiveDataProvider
      */
     public function search($params)
     {
-        $query = WidgetMenu::find();
+        $query = Menu::find();
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -50,12 +53,10 @@ class MenuSearch extends WidgetMenu
 
         $query->andFilterWhere([
             'id' => $this->id,
-            'status' => $this->status,
         ]);
 
-        $query->andFilterWhere(['like', 'key', $this->key])
-            ->andFilterWhere(['like', 'title', $this->title])
-            ->andFilterWhere(['like', 'items', $this->items]);
+        $query->andFilterWhere(['like', 'name', $this->name])
+            ->andFilterWhere(['like', 'key', $this->key]);
 
         return $dataProvider;
     }

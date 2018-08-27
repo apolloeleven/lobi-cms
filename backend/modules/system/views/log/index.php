@@ -45,6 +45,7 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
         'category',
         'prefix',
+        'message',
         [
             'attribute' => 'log_time',
             'format' => 'datetime',
