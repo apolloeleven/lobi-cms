@@ -3,7 +3,6 @@
 namespace console\controllers;
 
 use Yii;
-use yii\base\Module;
 use yii\console\Controller;
 use yii\helpers\Console;
 
@@ -55,6 +54,10 @@ class AppController extends Controller
         $this->runAction('set-executable', ['interactive' => $this->interactive]);
         $this->runAction('set-keys', ['interactive' => $this->interactive]);
         \Yii::$app->runAction('migrate/up', ['interactive' => $this->interactive]);
+        \Yii::$app->runAction('migrate/up', [
+            'interactive' => $this->interactive,
+            'migrationPath' => '@vendor/apollo11/lobi-cms-core/migrations'
+        ]);
         \Yii::$app->runAction('rbac-migrate/up', ['interactive' => $this->interactive]);
     }
 
