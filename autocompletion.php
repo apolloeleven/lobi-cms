@@ -35,7 +35,7 @@ abstract class BaseApplication extends yii\base\Application
  *
  * @property User $user User component.
  */
-class WebApplication extends yii\web\Application
+class WebApplication extends \apollo11\lobicms\web\Application
 {
 }
 
@@ -51,8 +51,8 @@ class ConsoleApplication extends yii\console\Application
  * User component
  * Include only Web application related components here
  *
- * @property \common\models\User $identity User model.
- * @method \common\models\User getIdentity() returns User model.
+ * @property \apollo11\lobicms\models\User $identity User model.
+ * @method \apollo11\lobicms\models\User getIdentity() returns User model.
  */
 class User extends \yii\web\User
 {
