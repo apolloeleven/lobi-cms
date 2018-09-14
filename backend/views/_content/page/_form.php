@@ -2,7 +2,7 @@
 
 use backend\widgets\LanguageSelector;
 use common\widgets\CKEditor;
-use kartik\file\FileInput;
+use apollo11\lobicms\widgets\FileInput;
 use yii\helpers\Html;
 use yii\helpers\Url;
 
@@ -33,30 +33,9 @@ use yii\helpers\Url;
 
 <?php echo $form->field($model, 'meta_description')->textarea() ?>
 
-<?php
-$pluginOptions = [
-    'showUpload' => false
-];
-if ($model->fileManagerImage && $model->fileManagerImage->name) {
-    echo $form->field($model, 'deletedImages')->hiddenInput()->label(false);
-    $pluginOptions['initialPreview'] = [Html::img($model->fileManagerImage->getUrl(), ['style' => 'height:160px;'])];
-    $pluginOptions['initialCaption'] = [$model->fileManagerImage->name];
-    $pluginOptions['initialPreviewConfig'] = [
-        [
-            'caption' => $model->fileManagerImage ? $model->fileManagerImage->name : '',
-            'size' => $model->fileManagerImage ? $model->fileManagerImage->size : '',
-            'height' => "120px",
-            'key' => $model->fileManagerImage->id,
-            'url' => Url::to(['base/delete-file-item'])
-        ]
-    ];
-}
-
-echo $form->field($model, 'image')->widget(FileInput::class, [
-    'options' => ['accept' => 'image/*', 'multiple' => false, 'id' => $model->id],
-    'pluginOptions' => $pluginOptions,
-]); ?>
-
+<?php echo $form->field($model, 'image')->widget(FileInput::class, [
+    'options' => ['accept' => 'image/*', 'multiple' => false],
+]);
 
 
 

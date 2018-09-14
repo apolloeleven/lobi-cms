@@ -22,12 +22,7 @@ use yii\helpers\Html;
         [
             'label' => 'Image',
             'format' => 'html',
-            'value' => function($data) {
-                if($data->activeTranslation->fileManagerImage && substr($data->activeTranslation->fileManagerImage->type, 0,6) === 'image/') {
-                    return Html::img($data->activeTranslation->fileManagerImage->getUrl(),['style' => 'width:120px']);
-                }
-                return '';
-            }
+            'value' => Html::img($model->activeTranslation->image->getUrl(), ['style' => 'width: 120px;'])
         ],
         'created_at:datetime', // creation date formatted as datetime
         'updated_at:datetime',
