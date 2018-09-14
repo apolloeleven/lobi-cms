@@ -157,7 +157,7 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/apolloeleven/lobi-cms-core.git",
-                "reference": "0353f7ecd7ce9e1e9c2080a5cdc84de9ed93a899"
+                "reference": "8358b5987be5a706d92c81669f79df3753f28fb8"
             },
             "require": {
                 "yiisoft/yii2": "~2.0.0"
@@ -184,7 +184,7 @@
                 "yii2",
                 "yii2 CMS core"
             ],
-            "time": "2018-08-15T08:02:38+00:00"
+            "time": "2018-09-14 08:02:20"
         },
         {
             "name": "asofter/yii2-imperavi-redactor",
@@ -235,7 +235,7 @@
                 "imperavi redactor",
                 "yii"
             ],
-            "time": "2017-12-16T06:41:54+00:00"
+            "time": "2017-12-16 06:41:54"
         },
         {
             "name": "bower-asset/ace-builds",
@@ -1658,7 +1658,7 @@
                 "widget",
                 "yii2"
             ],
-            "time": "2018-07-26T11:13:31+00:00"
+            "time": "2018-07-26 11:13:31"
         },
         {
             "name": "league/flysystem",
@@ -3375,7 +3375,7 @@
                 "widget",
                 "yii2"
             ],
-            "time": "2018-03-17T15:18:47+00:00"
+            "time": "2018-03-17 15:18:47"
         },
         {
             "name": "trntv/yii2-file-kit",
