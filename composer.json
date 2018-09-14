@@ -52,7 +52,10 @@
     "alexantr/yii2-elfinder": "^1.3",
     "trntv/sitemaped": "^0.1",
     "apollo11/env-analyzer": "~1.0",
-    "creocoder/yii2-nested-sets": "^0.9.0"
+    "creocoder/yii2-nested-sets": "^0.9.0",
+    "2amigos/yii2-ckeditor-widget": "^2.1",
+    "kartik-v/yii2-widget-fileinput": "@dev",
+    "apollo11/lobi-cms-core": "dev-master"
   },
   "require-dev": {
     "yiisoft/yii2-debug": "^2.0.0",
@@ -76,6 +79,10 @@
     {
       "type": "composer",
       "url": "https://asset-packagist.org"
+    },
+    {
+      "type": "git",
+      "url": "https://github.com/apolloeleven/lobi-cms-core.git"
     }
   ],
   "scripts": {
