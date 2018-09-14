@@ -113,7 +113,7 @@ echo \yii\grid\GridView::widget([
             'buttons' => [
                 'view' => function ($url, $model) {
                     /** @var \apollo11\lobicms\models\ContentTree $model */
-                    $url = Url::to(['content-tree/index', 'nodes' => $model->getActualItemActiveTranslation()->alias]);
+                    $url = Url::to(['content-tree/index', 'nodes' => $model->getActualItemActiveTranslation()->alias_path]);
 //                        return Html::a('<span class="glyphicon glyphicon-eye-open"></span>', $url, [
 //                            'title' => Yii::t('backend', 'view'),
 //                        ]);
