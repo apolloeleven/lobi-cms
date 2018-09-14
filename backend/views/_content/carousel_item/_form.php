@@ -1,6 +1,6 @@
 <?php
 
-use kartik\file\FileInput;
+use apollo11\lobicms\widgets\FileInput;
 use backend\widgets\LanguageSelector;
 
 /**
@@ -19,12 +19,8 @@ use backend\widgets\LanguageSelector;
 ]) ?>
 
 <?php
-$pluginOptions = [
-    'showUpload' => false
-];
 echo $form->field($model, 'image')->widget(FileInput::class, [
     'options' => ['accept' => 'image/*', 'multiple' => false],
-    'pluginOptions' => $pluginOptions,
 ]); ?>
 
 <?php echo $form->field($model, 'status')->checkbox() ?>
