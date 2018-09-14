@@ -23,32 +23,17 @@ use yii\helpers\Html;
         [
             'label' => 'Og Image',
             'format' => 'html',
-            'value' => function($data) {
-                if($data->activeTranslation->fileManagerOgImage && substr($data->activeTranslation->fileManagerOgImage->type, 0,6) === 'image/') {
-                    return Html::img($data->activeTranslation->fileManagerOgImage->getUrl(),['style' => 'width:120px']);
-                }
-                return '';
-            }
+            'value' => Html::img($model->activeTranslation->og_image->getUrl(), ['style' => 'width: 120px;'])
         ],
         [
             'label' => 'Logo Image',
             'format' => 'html',
-            'value' => function($data) {
-                if($data->activeTranslation->fileManagerLogoImage && substr($data->activeTranslation->fileManagerLogoImage->type, 0,6) === 'image/') {
-                    return Html::img($data->activeTranslation->fileManagerLogoImage->getUrl(),['style' => 'width:120px']);
-                }
-                return '';
-            }
+            'value' => Html::img($model->activeTranslation->logo_image->getUrl(), ['style' => 'width: 120px;'])
         ],
         [
             'label' => 'Claim Image',
             'format' => 'html',
-            'value' => function($data) {
-                if($data->activeTranslation->fileManagerClaimImage && substr($data->activeTranslation->fileManagerClaimImage->type, 0,6) === 'image/') {
-                    return Html::img($data->activeTranslation->fileManagerClaimImage->getUrl(),['style' => 'width:120px']);
-                }
-                return '';
-            }
+            'value' => Html::img($model->activeTranslation->claim_image->getUrl(), ['style' => 'width: 120px;'])
         ],
         'activeTranslation.google_tag_manager_code',
         'activeTranslation.html_code_before_close_body',
