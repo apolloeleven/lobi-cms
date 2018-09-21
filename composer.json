@@ -1,6 +1,6 @@
 {
-  "name": "trntv/yii2-starter-kit",
-  "description": "Yii2 Starter Kit Application Template",
+  "name": "apolloeleven/lobi-cms",
+  "description": "CMS based on Yii2 Starter Kit Application",
   "keywords": [
     "yii2",
     "framework",
@@ -11,17 +11,17 @@
   ],
   "authors": [
     {
-      "name": "Eugene Terentev",
-      "email": "eugene@terentev.net",
-      "homepage": "http://terentev.net",
+      "name": "Zura Sekhniashvili",
+      "email": "zura@apollo11.ge",
+      "homepage": "http://zuse.me",
       "role": "Developer"
     }
   ],
   "type": "project",
   "license": "BSD-3-Clause",
   "support": {
-    "issues": "https://github.com/trntv/yii2-starter-kit/issues?state=open",
-    "source": "https://github.com/trntv/yii2-starter-kit"
+    "issues": "https://github.com/apolloeleven/lobi-cms/issues?state=open",
+    "source": "https://github.com/apolloeleven/lobi-cms"
   },
   "require": {
     "php": ">=7.1.0",
@@ -55,7 +55,7 @@
     "creocoder/yii2-nested-sets": "^0.9.0",
     "2amigos/yii2-ckeditor-widget": "^2.1",
     "kartik-v/yii2-widget-fileinput": "@dev",
-    "apollo11/lobi-cms-core": "dev-master"
+    "apollo11/lobi-cms-core": "^1.0"
   },
   "require-dev": {
     "yiisoft/yii2-debug": "^2.0.0",

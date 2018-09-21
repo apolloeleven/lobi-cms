@@ -2,13 +2,13 @@
 $config = [
     'homeUrl' => Yii::getAlias('@frontendUrl'),
     'controllerNamespace' => 'frontend\controllers',
-    'defaultRoute' => 'site/index',
+    'defaultRoute' => 'home',
     'bootstrap' => ['maintenance'],
     'modules' => [
         'user' => [
             'class' => frontend\modules\user\Module::class,
             'shouldBeActivated' => false,
-            'enableLoginByPass' => false,
+            'enableLoginByPass' => true,
         ],
     ],
     'components' => [
@@ -50,7 +50,7 @@ $config = [
             'cookieValidationKey' => env('FRONTEND_COOKIE_VALIDATION_KEY')
         ],
         'user' => [
-            'class' => yii\web\User::class,
+            'class' => apollo11\lobicms\web\User::class,
             'identityClass' => common\models\User::class,
             'loginUrl' => ['/user/sign-in/login'],
             'enableAutoLogin' => true,

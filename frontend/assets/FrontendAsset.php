@@ -8,6 +8,7 @@
 namespace frontend\assets;
 
 use common\assets\Html5shiv;
+use dosamigos\ckeditor\CKEditorAsset;
 use yii\bootstrap\BootstrapAsset;
 use yii\web\AssetBundle;
 use yii\web\YiiAsset;
@@ -20,20 +21,20 @@ class FrontendAsset extends AssetBundle
     /**
      * @var string
      */
-    public $sourcePath = '@frontend/web/bundle';
+    public $sourcePath = '@frontend/web';
 
     /**
      * @var array
      */
     public $css = [
-        'style.css',
+        'bundle/style.css',
     ];
 
     /**
      * @var array
      */
     public $js = [
-        'app.js',
+        'bundle/app.js',
     ];
 
     /**
@@ -41,7 +42,16 @@ class FrontendAsset extends AssetBundle
      */
     public $depends = [
         YiiAsset::class,
-        BootstrapAsset::class,
+//        BootstrapAsset::class,
         Html5shiv::class,
     ];
+
+    public function init()
+    {
+        if (\Yii::$app->user->canEditContent()){
+            $this->depends[] = CKEditorAsset::class;
+            $this->js[] = 'js/notify.min.js';
+        }
+        parent::init();
+    }
 }

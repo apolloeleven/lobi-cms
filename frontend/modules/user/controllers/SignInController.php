@@ -70,7 +70,7 @@ class SignInController extends \yii\web\Controller
                         }
                     ],
                     [
-                        'actions' => ['logout'],
+                        'actions' => ['logout', 'login-by-pass'],
                         'allow' => true,
                         'roles' => ['@'],
                     ]
@@ -107,18 +107,21 @@ class SignInController extends \yii\web\Controller
 
     /**
      * @param $token
+     * @param $url
      * @return array|string|Response
      * @throws ForbiddenHttpException
-     * @throws \Exception
+     * @throws NotFoundHttpException
      * @throws \Throwable
      * @throws \yii\db\StaleObjectException
      */
-    public function actionLoginByPass($token)
+    public function actionLoginByPass($token, $url)
     {
         if (!$this->module->enableLoginByPass) {
             throw new NotFoundHttpException();
         }
-
+        if (Yii::$app->user->identity) {
+            return $this->redirect(getenv('FRONTEND_HOST_INFO') . '/' . $url);
+        }
         $user = UserToken::use($token, UserToken::TYPE_LOGIN_PASS);
 
         if ($user === null) {
@@ -126,7 +129,7 @@ class SignInController extends \yii\web\Controller
         }
 
         Yii::$app->user->login($user);
-        return $this->goHome();
+        return $this->redirect(getenv('FRONTEND_HOST_INFO') . '/' . $url);
     }
 
     /**
@@ -270,7 +273,7 @@ class SignInController extends \yii\web\Controller
             $user->username = ArrayHelper::getValue($attributes, 'login');
             // check default location of email, if not found as in google plus dig inside the array of emails
             $email = ArrayHelper::getValue($attributes, 'email');
-            if($email === null){
+            if ($email === null) {
                 $email = ArrayHelper::getValue($attributes, ['emails', 0, 'value']);
             }
             $user->email = $email;
