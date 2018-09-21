@@ -5,8 +5,6 @@
  * @var $model apollo11\lobicms\models\Website
  */
 
-use yii\helpers\Html;
-
 ?>
 
 <?php echo \common\widgets\DetailView::widget([
@@ -22,18 +20,18 @@ use yii\helpers\Html;
         'activeTranslation.copyright',
         [
             'label' => 'Og Image',
-            'format' => 'html',
-            'value' => Html::img($model->activeTranslation->og_image->getUrl(), ['style' => 'width: 120px;'])
+            'attribute' => 'activeTranslation.og_image',
+            'format' => 'thumbnail',
         ],
         [
             'label' => 'Logo Image',
-            'format' => 'html',
-            'value' => Html::img($model->activeTranslation->logo_image->getUrl(), ['style' => 'width: 120px;'])
+            'attribute' => 'activeTranslation.logo_image',
+            'format' => 'thumbnail',
         ],
         [
             'label' => 'Claim Image',
-            'format' => 'html',
-            'value' => Html::img($model->activeTranslation->claim_image->getUrl(), ['style' => 'width: 120px;'])
+            'attribute' => 'activeTranslation.claim_image',
+            'format' => 'thumbnail',
         ],
         'activeTranslation.google_tag_manager_code',
         'activeTranslation.html_code_before_close_body',
