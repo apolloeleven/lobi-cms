@@ -1,0 +1,109 @@
+@editable-container-border-width: 1px;
+@editable-container-border: @editable-container-border-width solid #cecece;
+
+.content-editable {
+
+  .cke_button_label.cke_button__inlinesave_label {
+    display: inline;
+  }
+
+  .content-editable-container {
+    position: relative;
+    outline: 0;
+    border: @editable-container-border;
+    [data-editable=true] {
+      position: relative;
+      //border-bottom: 0;
+    }
+    .button-toolbar {
+      display: none;
+      position: absolute;
+      text-align: center;
+      top: 100%;
+      margin-left: -@editable-container-border-width;
+      margin-right: -@editable-container-border-width;
+      width: calc(%(~"100% + %a", 2*@editable-container-border-width));
+      background: white;
+      z-index: 99991;
+      border: @editable-container-border;
+      border-top: none;
+      button {
+        margin: 0 5px;
+      }
+    }
+    .upload-btn-wrapper {
+      position: absolute;
+      text-align: center;
+      opacity: 0;
+      width: 100px;
+      height: 40px;
+      left: 50%;
+      margin-left: -50px;
+      top: 50%;
+      margin-top: -20px;
+      overflow: hidden;
+      display: inline-block;
+    }
+
+    .upload-btn-wrapper input[type=file] {
+      font-size: 100px;
+      position: absolute;
+      left: 0;
+      top: 0;
+      opacity: 0;
+    }
+
+    &.active {
+      border-bottom-color: transparent;
+      .button-toolbar {
+        display: block;
+      }
+    }
+    &:hover {
+      .upload-btn-wrapper {
+        opacity: 1;
+      }
+    }
+  }
+
+  .content-editable-section {
+    .upper-button-toolbar {
+      display: none;
+      position: absolute;
+      text-align: center;
+      top: 0;
+      margin-right: 0;
+      z-index: 999;
+    }
+
+    &.hidden {
+      display: none;
+    }
+
+    &:hover {
+      .upper-button-toolbar {
+        display: block;
+      }
+    }
+  }
+
+  .hidden-item-container {
+    .hidden-btn {
+      display: none;
+      &.block {
+        display: block;
+      }
+    }
+    .hidden-section {
+      min-width: 400px;
+      .hidden-item {
+        margin-left: 10px;
+      }
+    }
+  }
+
+  .content-hidden {
+    opacity: 0.5;
+  }
+
+}

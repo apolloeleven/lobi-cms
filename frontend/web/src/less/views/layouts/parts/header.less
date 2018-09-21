@@ -1,0 +1,18 @@
+@editable-content-header-height: 50px;
+
+body.content-editable {
+  header {
+    margin-top: @editable-content-header-height;
+  }
+
+}
+
+.content-editor {
+  position: fixed;
+  padding: 0 10px;
+  height: @editable-content-header-height;
+  line-height: @editable-content-header-height;
+  width: 100%;
+  z-index: 10000;
+  top: 0;
+}
