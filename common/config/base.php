@@ -65,7 +65,7 @@ $config = [
         ],
 
         'formatter' => [
-            'class' => yii\i18n\Formatter::class,
+            'class' => \apollo11\lobicms\i18n\Formatter::class,
             'sizeFormatBase' => 1000
         ],
 
@@ -192,6 +192,10 @@ $config = [
         'queue' => [
             'class' => \yii\queue\file\Queue::class,
             'path' => '@common/runtime/queue',
+        ],
+
+        'view' => [
+            'class' => \apollo11\lobicms\web\View::class,
         ],
     ],
     'params' => [
