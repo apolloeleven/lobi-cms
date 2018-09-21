@@ -3,9 +3,10 @@
 namespace backend\controllers;
 
 use apollo11\lobicms\models\Search;
+use apollo11\lobicms\web\BackendController;
 use Yii;
 
-class SearchController extends \yii\web\Controller
+class SearchController extends BackendController
 {
     public function actionIndex()
     {

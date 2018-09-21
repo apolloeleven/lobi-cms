@@ -3,18 +3,18 @@
 namespace backend\controllers;
 
 use apollo11\lobicms\models\Language;
+use apollo11\lobicms\web\BackendController;
 use Yii;
 use apollo11\lobicms\models\Continent;
 use backend\models\search\ContinentSearch;
 use yii\helpers\ArrayHelper;
-use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
  * ContinentController implements the CRUD actions for Continent model.
  */
-class ContinentController extends Controller
+class ContinentController extends BackendController
 {
 
     /** @inheritdoc */

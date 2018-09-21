@@ -8,6 +8,7 @@
 
 namespace backend\controllers;
 
+use apollo11\lobicms\web\BackendController;
 use backend\models\AccountForm;
 use backend\models\LoginForm;
 use Intervention\Image\ImageManagerStatic;
@@ -16,9 +17,8 @@ use trntv\filekit\actions\UploadAction;
 use Yii;
 use yii\filters\VerbFilter;
 use yii\helpers\ArrayHelper;
-use yii\web\Controller;
 
-class SignInController extends Controller
+class SignInController extends BackendController
 {
 
     public $defaultAction = 'unlock';

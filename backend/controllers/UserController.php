@@ -2,6 +2,7 @@
 
 namespace backend\controllers;
 
+use apollo11\lobicms\web\BackendController;
 use backend\models\search\UserSearch;
 use backend\models\UserForm;
 use common\models\User;
@@ -9,13 +10,12 @@ use apollo11\lobicms\models\UserToken;
 use Yii;
 use yii\filters\VerbFilter;
 use yii\helpers\ArrayHelper;
-use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 
 /**
  * UserController implements the CRUD actions for User model.
  */
-class UserController extends Controller
+class UserController extends BackendController
 {
     public function behaviors()
     {

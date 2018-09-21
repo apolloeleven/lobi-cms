@@ -4,18 +4,18 @@ namespace backend\controllers;
 
 use apollo11\lobicms\models\Continent;
 use apollo11\lobicms\models\Language;
+use apollo11\lobicms\web\BackendController;
 use Yii;
 use apollo11\lobicms\models\Country;
 use backend\models\search\CountrySearch;
 use yii\helpers\ArrayHelper;
-use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
  * CountryController implements the CRUD actions for Country model.
  */
-class CountryController extends Controller
+class CountryController extends BackendController
 {
 
     /** @inheritdoc */

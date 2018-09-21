@@ -2,14 +2,14 @@
 
 namespace backend\controllers;
 
+use apollo11\lobicms\web\BackendController;
 use backend\models\search\TimelineEventSearch;
 use Yii;
-use yii\web\Controller;
 
 /**
  * Application timeline controller
  */
-class TimelineEventController extends Controller
+class TimelineEventController extends BackendController
 {
     public $layout = 'common';
 

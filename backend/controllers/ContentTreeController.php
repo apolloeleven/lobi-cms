@@ -7,8 +7,8 @@
 
 namespace backend\controllers;
 
+use apollo11\lobicms\web\BackendController;
 use backend\models\ContentTree;
-use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 
 
@@ -18,7 +18,7 @@ use yii\web\NotFoundHttpException;
  * @author Zura Sekhniashvili <zurasekhniashvili@gmail.com>
  * @package backend\controllers
  */
-class ContentTreeController extends Controller
+class ContentTreeController extends BackendController
 {
     /**
      *

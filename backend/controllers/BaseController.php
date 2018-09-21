@@ -2,11 +2,11 @@
 
 namespace backend\controllers;
 
-use common\commands\AddToTimelineCommand;
 use apollo11\lobicms\models\BaseModel;
 use apollo11\lobicms\models\BaseTranslateModel;
 use apollo11\lobicms\models\ContentTreeMenu;
 use apollo11\lobicms\models\TimelineEvent;
+use apollo11\lobicms\web\BackendController;
 use common\models\User;
 use apollo11\lobicms\models\UserToken;
 use common\traits\FormAjaxValidationTrait;
@@ -14,10 +14,9 @@ use backend\models\ContentTree;
 use Yii;
 use yii\filters\VerbFilter;
 use yii\helpers\ArrayHelper;
-use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 
-class BaseController extends Controller
+class BaseController extends BackendController
 {
     use FormAjaxValidationTrait;
 

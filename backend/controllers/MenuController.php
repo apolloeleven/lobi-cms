@@ -2,17 +2,17 @@
 
 namespace backend\controllers;
 
+use apollo11\lobicms\web\BackendController;
 use Yii;
 use apollo11\lobicms\models\Menu;
 use backend\models\MenuSearch;
-use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
  * MenuController implements the CRUD actions for Menu model.
  */
-class MenuController extends Controller
+class MenuController extends BackendController
 {
 
     /** @inheritdoc */
