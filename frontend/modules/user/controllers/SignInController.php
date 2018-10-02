@@ -2,20 +2,16 @@
 
 namespace frontend\modules\user\controllers;
 
-use common\commands\SendEmailCommand;
+use apollo11\lobicms\models\UserToken;
 use common\models\User;
-use common\models\UserToken;
 use frontend\modules\user\models\LoginForm;
 use frontend\modules\user\models\PasswordResetRequestForm;
 use frontend\modules\user\models\ResetPasswordForm;
 use frontend\modules\user\models\SignupForm;
 use Yii;
-use yii\authclient\AuthAction;
-use yii\base\Exception;
 use yii\base\InvalidArgumentException;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
-use yii\helpers\ArrayHelper;
 use yii\web\BadRequestHttpException;
 use yii\web\ForbiddenHttpException;
 use yii\web\NotFoundHttpException;
@@ -29,19 +25,6 @@ use yii\widgets\ActiveForm;
  */
 class SignInController extends \yii\web\Controller
 {
-
-    /**
-     * @return array
-     */
-    public function actions()
-    {
-        return [
-            'oauth' => [
-                'class' => AuthAction::class,
-                'successCallback' => [$this, 'successOAuthCallback']
-            ]
-        ];
-    }
 
     /**
      * @return array
@@ -252,89 +235,5 @@ class SignInController extends \yii\web\Controller
         return $this->render('resetPassword', [
             'model' => $model,
         ]);
-    }
-
-    /**
-     * @param $client \yii\authclient\BaseClient
-     * @return bool
-     * @throws Exception
-     */
-    public function successOAuthCallback($client)
-    {
-        // use BaseClient::normalizeUserAttributeMap to provide consistency for user attribute`s names
-        $attributes = $client->getUserAttributes();
-        $user = User::find()->where([
-            'oauth_client' => $client->getName(),
-            'oauth_client_user_id' => ArrayHelper::getValue($attributes, 'id')
-        ])->one();
-        if (!$user) {
-            $user = new User();
-            $user->scenario = 'oauth_create';
-            $user->username = ArrayHelper::getValue($attributes, 'login');
-            // check default location of email, if not found as in google plus dig inside the array of emails
-            $email = ArrayHelper::getValue($attributes, 'email');
-            if ($email === null) {
-                $email = ArrayHelper::getValue($attributes, ['emails', 0, 'value']);
-            }
-            $user->email = $email;
-            $user->oauth_client = $client->getName();
-            $user->oauth_client_user_id = ArrayHelper::getValue($attributes, 'id');
-            $user->status = User::STATUS_ACTIVE;
-            $password = Yii::$app->security->generateRandomString(8);
-            $user->setPassword($password);
-            if ($user->save()) {
-                $profileData = [];
-                if ($client->getName() === 'facebook') {
-                    $profileData['firstname'] = ArrayHelper::getValue($attributes, 'first_name');
-                    $profileData['lastname'] = ArrayHelper::getValue($attributes, 'last_name');
-                }
-                $user->afterSignup($profileData);
-                $sentSuccess = Yii::$app->commandBus->handle(new SendEmailCommand([
-                    'view' => 'oauth_welcome',
-                    'params' => ['user' => $user, 'password' => $password],
-                    'subject' => Yii::t('frontend', '{app-name} | Your login information', ['app-name' => Yii::$app->name]),
-                    'to' => $user->email
-                ]));
-                if ($sentSuccess) {
-                    Yii::$app->session->setFlash(
-                        'alert',
-                        [
-                            'options' => ['class' => 'alert-success'],
-                            'body' => Yii::t('frontend', 'Welcome to {app-name}. Email with your login information was sent to your email.', [
-                                'app-name' => Yii::$app->name
-                            ])
-                        ]
-                    );
-                }
-
-            } else {
-                // We already have a user with this email. Do what you want in such case
-                if ($user->email && User::find()->where(['email' => $user->email])->count()) {
-                    Yii::$app->session->setFlash(
-                        'alert',
-                        [
-                            'options' => ['class' => 'alert-danger'],
-                            'body' => Yii::t('frontend', 'We already have a user with email {email}', [
-                                'email' => $user->email
-                            ])
-                        ]
-                    );
-                } else {
-                    Yii::$app->session->setFlash(
-                        'alert',
-                        [
-                            'options' => ['class' => 'alert-danger'],
-                            'body' => Yii::t('frontend', 'Error while oauth process.')
-                        ]
-                    );
-                }
-
-            };
-        }
-        if (Yii::$app->user->login($user, 3600 * 24 * 30)) {
-            return true;
-        }
-
-        throw new Exception('OAuth error');
     }
 }
