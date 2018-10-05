@@ -7,8 +7,10 @@
 
 namespace backend\controllers;
 
+use apollo11\lobicms\models\ContentTreeTranslation;
 use apollo11\lobicms\web\BackendController;
 use backend\models\ContentTree;
+use Yii;
 use yii\web\NotFoundHttpException;
 
 
@@ -46,6 +48,19 @@ class ContentTreeController extends BackendController
         return $this->render('index', [
             'contentTreeItem' => $contentTreeItem
         ]);
+    }
+
+    public function actionUpdate($id)
+    {
+        $model = ContentTreeTranslation::find()->byTreeId($id)->one();
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['view', 'id' => $model->id]);
+        } else {
+            return $this->render('_update_tree_item', [
+                'model' => $model,
+            ]);
+        }
     }
 
     /**
