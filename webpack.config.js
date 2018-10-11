@@ -3,7 +3,10 @@ const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 module.exports  = {
     entry: {
-        app: path.resolve(__dirname, './frontend/web/src/js/app.js'),
+        app: [
+            path.resolve(__dirname, './frontend/web/src/js/app.js'),
+            path.resolve(__dirname, './frontend/web/js/content-editable/app.js'),
+        ],
         style: path.resolve(__dirname, './frontend/web/src/less/style.less'),
     },
     output: {
