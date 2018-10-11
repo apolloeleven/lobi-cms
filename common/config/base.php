@@ -20,33 +20,7 @@ $config = [
         ],
         'contentTree' => [
             'class' => \apollo11\lobicms\components\ContentTree::class,
-            'customViews' => [
-                'page' => [
-                    'wide' => 'Wide',
-                    'with_header' => 'With Header',
-                    'parent_with_header' => 'Centered header',
-                    'with_pack_shot' => 'With Pack Shot',
-                ],
-                'video_section' => [
-                    'with_caption' => 'With Caption',
-                    'without_caption' => 'Without Caption',
-                ],
-                'service' => [
-                    'pdf' => 'PDF',
-                    'app' => 'App',
-                    'video' => 'Video',
-                ],
-                'section' => [
-                    'white_bg' => 'White Background',
-                ],
-                'pharmaceutical_form' => [
-                    'packshot_header' => 'Packshot Header',
-                    'pdf' => 'PDF',
-                ],
-//                'teaser' => [
-//                    '' => Yii::t('common', 'Default')
-//                ]
-            ]
+            'customViews' => []
         ],
         'cache' => [
             'class' => yii\caching\FileCache::class,
