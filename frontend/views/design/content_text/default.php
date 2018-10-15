@@ -8,7 +8,7 @@
 /** @var $this \yii\web\View */
 /** @var $contentTreeItem \frontend\models\ContentTree */
 /** @var $index integer */
-/** @var $model \common\models\ContentText */
+/** @var $model \apollo11\lobicms\models\ContentText */
 
 
 ?>

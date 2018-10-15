@@ -2,6 +2,7 @@
 
 namespace backend\controllers;
 
+use apollo11\lobicms\commands\AddToTimelineCommand;
 use apollo11\lobicms\models\BaseModel;
 use apollo11\lobicms\models\BaseTranslateModel;
 use apollo11\lobicms\models\ContentTreeMenu;
