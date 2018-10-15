@@ -140,9 +140,17 @@ class ContentTreeController extends Controller
      */
     protected function findContentTreeByFullPath()
     {
+        $contentTree = null;
         $aliasPath = Yii::$app->getCurrentAlias();
-        if (!($contentTree = ContentTree::find()->byAliasPath($aliasPath)->notHidden()->notDeleted()->one())) {
-            throw new NotFoundHttpException("Incorrect alias Path given");
+        if ($aliasPath){
+            $contentTree = ContentTree::find()->byAliasPath($aliasPath)->notHidden()->notDeleted()->one();
+        }
+        if ($contentTree){
+            return $contentTree;
+        }
+
+        if (!($contentTree = ContentTree::find()->byIdAndLanguage(Yii::$app->defaultContentId, Yii::$app->language)->notHidden()->notDeleted()->one())) {
+            throw new NotFoundHttpException("Content does not exist for [ID = 2], [language = ".\Yii::$app->language."]");
         }
         $this->getView()->contentTreeObject = $contentTree;
         return $contentTree;
