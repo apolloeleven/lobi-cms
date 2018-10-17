@@ -140,11 +140,58 @@ class ContentTreeController extends Controller
      */
     protected function findContentTreeByFullPath()
     {
+        $contentTree = null;
         $aliasPath = Yii::$app->getCurrentAlias();
-        if (!($contentTree = ContentTree::find()->byAliasPath($aliasPath)->notHidden()->notDeleted()->one())) {
-            throw new NotFoundHttpException("Incorrect alias Path given");
+        if ($aliasPath) {
+            $contentTree = ContentTree::find()->byAliasPath($aliasPath)->notHidden()->notDeleted()->one();
+        }
+        if ($contentTree) {
+            return $contentTree;
+        }
+
+        if (!($contentTree = ContentTree::find()->byIdAndLanguage(Yii::$app->defaultContentId, Yii::$app->language)->notHidden()->notDeleted()->one())) {
+            throw new NotFoundHttpException("Content does not exist for [ID = 2], [language = " . \Yii::$app->language . "]");
         }
         $this->getView()->contentTreeObject = $contentTree;
         return $contentTree;
     }
+
+    /**
+     *
+     * @throws \Exception
+     */
+    public function actionGetTree()
+    {
+        $tree = ContentTree::getItemsAsTreeForLink(null, ['page']);
+        return json_encode($tree);
+    }
+
+    /**
+     * @return array
+     */
+    public function actionLinkTree()
+    {
+        $res = ['success' => false];
+        $parentId = intval(Yii::$app->request->post('parentId'));
+        $currentLinkId = intval(Yii::$app->request->post('linkId'));
+        $parentLinkId = intval(Yii::$app->request->post('parentLinkId'));
+
+        $parentContentTree = ContentTree::find()->byId($parentId)->linkedIdIsNull()->one();
+        $linkedParentTree = ContentTree::find()->byId($parentLinkId)->linkedIdIsNull()->one();
+
+        if ($parentContentTree && $linkedParentTree) {
+            $linkedTree = new ContentTree();
+            $linkedTree->link_id = $linkedParentTree->id;
+            $linkedTree->record_id = $linkedParentTree->record_id;
+            $linkedTree->table_name = $linkedParentTree->table_name;
+            if ($linkedTree->appendTo($parentContentTree)) {
+                $currentLinkTree = ContentTree::find()->byId($currentLinkId)->one();
+                $currentLinkTree->markDelete();
+                $res = ['success' => true, 'url' => $linkedParentTree->getUrl()];
+            }
+        }
+
+        return json_encode($res);
+    }
+
 }
