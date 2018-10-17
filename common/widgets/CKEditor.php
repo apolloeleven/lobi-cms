@@ -7,7 +7,9 @@
 
 namespace common\widgets;
 
+use dosamigos\ckeditor\CKEditorWidgetAsset;
 use yii\helpers\Json;
+use yii\web\View;
 
 
 /**
@@ -26,16 +28,32 @@ class CKEditor extends \dosamigos\ckeditor\CKEditor
     {
         parent::run();
         $csspath = getenv('FRONTEND_HOST_INFO') . '/bundle/style.css';
-        $configPath = getenv('BACKNED_HOST_INFO') . '/js/ck.config.js';
+
+        // TODO: uncomment if necessary
+        $configPath = getenv('BACKEND_HOST_INFO') . '/js/ck-config.js';
+
+        $lobiUploaderPluginPath = getenv('BACKEND_HOST_INFO') . '/js/lobi-uploader.plugin.js';
+
         $this->getView()->registerJs("
         CKEDITOR.stylesSet.add( 'default', " . Json::encode(\Yii::$app->ckEditorStyles->customStyles) . " );
         CKEDITOR.config.contentsCss = '$csspath';
         CKEDITOR.config.bodyClass = 'xmlblock';
         CKEDITOR.config.removeButtons = 'Underline';
-        CKEDITOR.config.customConfig = '$configPath';
+        
+        // TODO: uncomment if necessary
+        // CKEDITOR.config.customConfig = '$configPath';
+        
+        
         setTimeout(function(){
             $('.cke_contents').css('height','200px');
         },1000);
         ");
+
+        $this->getView()->registerJsFile($lobiUploaderPluginPath,[
+            'depends' => [
+                CKEditorWidgetAsset::class
+            ]
+        ]);
+
     }
 }
