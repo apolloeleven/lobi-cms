@@ -5,17 +5,16 @@ import RichTextEditor from './RichTextEditor';
 import SectionEditor from './SectionEditor';
 import Modal from './ModalEditor';
 import LinkEditor from './LinkEditor';
-// console.log(ImageEditor);
 
-if ($('body').hasClass('content-editable')) {
-    CKEDITOR.disableAutoInline = true;
-}
-if (sessionStorage.hasOwnProperty('scroll')) {
-    $(window).scrollTop(sessionStorage.scroll);
-    sessionStorage.removeItem('scroll')
-}
+$(function () {
 
-setTimeout(() => {
+    if ($('body').hasClass('content-editable')) {
+        CKEDITOR.disableAutoInline = true;
+    }
+    if (sessionStorage.hasOwnProperty('scroll')) {
+        $(window).scrollTop(sessionStorage.scroll);
+        sessionStorage.removeItem('scroll')
+    }
 
     $('[data-editable=true]').each(function () {
         var $this = $(this);
@@ -43,23 +42,27 @@ setTimeout(() => {
             modal = initModal();
         }
         var linkEditor = new LinkEditor($(this), modal);
-    })
+    });
 
-
-    $('#with-hidden-checkbox').change(() => {
+    $('#with-hidden-checkbox').change(function () {
         sessionStorage.scroll = $(window).scrollTop();
-        var urlString = window.location.href.toString();
-        var param = urlString.indexOf('?') > -1 ? '&hidden=1' : '?hidden=1';
-        var replaceParam = urlString.indexOf('&hidden=1') > -1 ? '&hidden=1' : urlString.indexOf('&') > -1 ? 'hidden=1' : '?hidden=1';
 
-        if ($('#with-hidden-checkbox:checked').length > 0) {
-            window.location.href = urlString + param;
+        let search = location.search;
+        if (search.indexOf('&hidden=1') > -1) {
+            search = search.replace('&hidden=1', '')
+        } else if (search.indexOf('?hidden=1&') > -1) {
+            search = search.replace('?hidden=1&', '')
+        } else if (search.indexOf('?hidden=1') > -1) {
+            search = '';
         } else {
-            window.location.href = urlString.replace(replaceParam, '');
+            if (search === '?' || !search) {
+                search = '?hidden=1';
+            } else {
+                search += '&hidden=1';
+            }
         }
 
-    })
+        window.location.href = location.origin + location.pathname + search + location.hash;
 
-}, 100)
-
-
+    });
+});
