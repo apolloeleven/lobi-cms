@@ -74,7 +74,11 @@ $config = [
     ],
     'as locale' => [
         'class' => common\behaviors\LocaleBehavior::class,
-        'enablePreferredLanguage' => false
+        'enablePreferredLanguage' => false,
+        'domainLanguageMapping' => [
+            'lobicms.test' => 'en',
+            'lobicms.local' => 'de'
+        ]
     ]
 ];
 

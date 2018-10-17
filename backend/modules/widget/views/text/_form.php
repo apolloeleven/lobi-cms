@@ -42,6 +42,11 @@ use yii\helpers\Html;
             'preset' => 'full'
         ]) ?>
 
+        <?php echo $form->field($modelTranslation, 'short_description')->widget(CKEditor::class, [
+            'options' => ['rows' => 10],
+            'preset' => 'full'
+        ]) ?>
+
     </div>
 
     <div class="form-group">

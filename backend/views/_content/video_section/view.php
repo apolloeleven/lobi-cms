@@ -19,15 +19,16 @@ use yii\helpers\Url;
         'content_bottom:html',
         [                      // the owner name of the model
             'label' => Yii::t('backend', 'Video File'),
-            'format'=> 'html',
-            'value' => function ($data) {
-                if ($data->fileManagerVideoFile) {
-                    return Html::a($data->fileManagerVideoFile->name, $data->fileManagerVideoFile->getUrl());
-                }
-                return '';
-            }
+            'format' => 'html',
+            'value' => Html::a($model->getAttrForFile('videoFile', 'name'), $model->getUrlForFile('videoFile')),
         ],
-    ],
+        [
+            'label' => Yii::t('backend', 'Mobile Video File'),
+            'format' => 'html',
+            'value' => Html::a($model->getAttrForFile('mobileVideoFile', 'name'),
+                $model->getUrlForFile('mobileVideoFile')),
+        ]
+    ]
 ]);
 
 ?>

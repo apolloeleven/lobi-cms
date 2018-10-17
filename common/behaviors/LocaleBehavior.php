@@ -4,6 +4,7 @@ namespace common\behaviors;
 
 use Yii;
 use yii\base\Behavior;
+use yii\helpers\ArrayHelper;
 use yii\web\Application;
 
 /**
@@ -16,6 +17,8 @@ class LocaleBehavior extends Behavior
      * @var string
      */
     public $cookieName = '_locale';
+
+    public $domainLanguageMapping = [];
 
     /**
      * @var bool
@@ -44,7 +47,8 @@ class LocaleBehavior extends Behavior
         } else {
             $locale = $this->resolveLocale();
         }
-        Yii::$app->language = $locale;
+        $currentDomain = Yii::$app->request->hostName;
+        Yii::$app->language = ArrayHelper::getValue($this->domainLanguageMapping, $currentDomain, $locale);
     }
 
     public function resolveLocale()

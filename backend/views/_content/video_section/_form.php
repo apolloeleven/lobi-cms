@@ -1,5 +1,6 @@
 <?php
 
+use apollo11\lobicms\widgets\FileInput;
 use common\widgets\CKEditor;
 use backend\widgets\LanguageSelector;
 
@@ -23,42 +24,50 @@ use backend\widgets\LanguageSelector;
 ]) ?>
 
 
-<?php echo $form->field($model, 'videoFile', [
-    'template' => '{label}<label class="input input-file">
-        <div class="input-button">
-            {input}
-            <i class="fa fa-upload"></i>
-            ' . Yii::t('backend', 'Choose file') . '
-        </div><input type="text" readonly="" placeholder="" id="idVideoFileInput" value="' . ($model->fileManagerVideoFile ? $model->fileManagerVideoFile->name : '') . '">
-    </label>',
-    'inputOptions' => [
-        'onchange' => "this.parentNode.nextSibling.value = this.value"
-    ]
-])->fileInput(); ?>
-<?php echo $form->field($model, 'removeVideo')->hiddenInput(['id' => 'idRemoveVideo', 'value' => '0'])->label(false); ?>
-<div class="row">
-    <div class="col-md-12">
-        <button class="pull-right btn btn-danger" id="idRemoveVideoButton">Remove Video</button>
-    </div>
-</div>
+<?php echo $form->field($model, 'videoFile')->widget(FileInput::class, [
+    'options' => ['multiple' => false],
+]); ?>
+
+<?php echo $form->field($model, 'mobileVideoFile')->widget(FileInput::class, [
+    'options' => ['multiple' => false],
+]); ?>
+
+<?php //echo $form->field($model, 'videoFile', [
+//    'template' => '{label}<label class="input input-file">
+//        <div class="input-button">
+//            {input}
+//            <i class="fa fa-upload"></i>
+//            ' . Yii::t('backend', 'Choose file') . '
+//        </div><input type="text" readonly="" placeholder="" id="idVideoFileInput" value="' . ($model->fileManagerVideoFile ? $model->fileManagerVideoFile->name : '') . '">
+//    </label>',
+//    'inputOptions' => [
+//        'onchange' => "this.parentNode.nextSibling.value = this.value"
+//    ]
+//])->fileInput(); ?>
+<?php //echo $form->field($model, 'removeVideo')->hiddenInput(['id' => 'idRemoveVideo', 'value' => '0'])->label(false); ?>
+<!--<div class="row">-->
+<!--    <div class="col-md-12">-->
+<!--        <button class="pull-right btn btn-danger" id="idRemoveVideoButton">Remove Video</button>-->
+<!--    </div>-->
+<!--</div>-->
 
 
 
-<?php echo $form->field($model, 'mobileVideoFile', [
-    'template' => '{label}<label class="input input-file">
-        <div class="input-button">
-            {input}
-            <i class="fa fa-upload"></i>
-            ' . Yii::t('backend', 'Choose file') . '
-        </div><input type="text" readonly="" placeholder="" id="idMobileVideoFileInput" value="' . ($model->fileManagerMobileVideoFile ? $model->fileManagerMobileVideoFile->name : '') . '">
-    </label>',
-    'inputOptions' => [
-        'onchange' => "this.parentNode.nextSibling.value = this.value"
-    ]
-])->fileInput(); ?>
-<?php echo $form->field($model, 'removeMobileVideo')->hiddenInput(['id' => 'idRemoveMobileVideo', 'value' => '0'])->label(false); ?>
-<div class="row">
-    <div class="col-md-12">
-        <button class="pull-right btn btn-danger" id="idRemoveMobileVideoButton">Remove Mobile Video</button>
-    </div>
-</div>
+<?php //echo $form->field($model, 'mobileVideoFile', [
+//    'template' => '{label}<label class="input input-file">
+//        <div class="input-button">
+//            {input}
+//            <i class="fa fa-upload"></i>
+//            ' . Yii::t('backend', 'Choose file') . '
+//        </div><input type="text" readonly="" placeholder="" id="idMobileVideoFileInput" value="' . ($model->fileManagerMobileVideoFile ? $model->fileManagerMobileVideoFile->name : '') . '">
+//    </label>',
+//    'inputOptions' => [
+//        'onchange' => "this.parentNode.nextSibling.value = this.value"
+//    ]
+//])->fileInput(); ?>
+<?php //echo $form->field($model, 'removeMobileVideo')->hiddenInput(['id' => 'idRemoveMobileVideo', 'value' => '0'])->label(false); ?>
+<!--<div class="row">-->
+<!--    <div class="col-md-12">-->
+<!--        <button class="pull-right btn btn-danger" id="idRemoveMobileVideoButton">Remove Mobile Video</button>-->
+<!--    </div>-->
+<!--</div>-->
