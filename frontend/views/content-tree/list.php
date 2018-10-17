@@ -28,11 +28,15 @@ echo \yii\widgets\ListView::widget([
     'summary' => '',
     'itemView' => function ($item, $key, $index, $widget) use ($viewFile) {
         /** @var \frontend\models\ContentTree $item */
-        return $this->render($viewFile ?: '@frontend/views/design/' . $item->table_name . '/' . ($item->view ?: 'default'),
+        $view = $item->view ?: 'default';
+        $content = '<!-- Start of ' . ($view) . ':' . $item->table_name . ':' . $item->id . '-->';
+        $content .= $this->render($viewFile ?: '@frontend/views/design/' . $item->table_name . '/' . ($view),
             [
                 'index' => $index,
-                'contentTreeItem' => $item,
+                'contentTreeItem' => $item->getActualItem(),
                 'model' => $item->getModel(),
             ]);
+        $content .= '<!-- End of ' . $view . ':' . $item->table_name . ':' . $item->id . '-->';
+        return $content;
     }
 ]);
