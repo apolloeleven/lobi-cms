@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f1912aa9c38e3d404696006693a99611",
+    "content-hash": "b580bcbb53426e23605ddc2514c75755",
     "packages": [
         {
             "name": "2amigos/yii2-ckeditor-widget",
@@ -153,11 +153,11 @@
         },
         {
             "name": "apollo11/lobi-cms-core",
-            "version": "v1.1.1",
+            "version": "v1.1.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apolloeleven/lobi-cms-core.git",
-                "reference": "8b3baa8ceaabd4b45f7c2b815272157d89cecbdf"
+                "reference": "8aa0fd39c2d3af86c8c85f0a7a33243651f464ef"
             },
             "require": {
                 "yiisoft/yii2": "~2.0.0"
@@ -184,7 +184,7 @@
                 "yii2",
                 "yii2 CMS core"
             ],
-            "time": "2018-10-03T12:03:47+00:00"
+            "time": "2018-10-16T14:52:58+00:00"
         },
         {
             "name": "asofter/yii2-imperavi-redactor",
