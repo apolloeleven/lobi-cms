@@ -8,7 +8,7 @@
 /** @var $this \yii\web\View */
 /** @var $contentTreeItem \frontend\models\ContentTree */
 /** @var $index integer */
-/** @var $model \common\models\VideoSection */
+/** @var $model \apollo11\lobicms\models\VideoSection */
 
 ?>
 <div class="video-wrapper">
