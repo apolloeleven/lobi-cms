@@ -13,7 +13,7 @@
 
 ?>
 
-<div class="container">
+<div class="container" <?php echo $contentTreeItem->getEditableAttributesForSection('section'); ?>>
     <div class="xmlblock-wrapper">
         <div class="xmlblock" <?php echo $contentTreeItem->getEditableAttributes('multi_line','rich-text') ?>>
             <?php echo $model->activeTranslation->multi_line; ?>
