@@ -176,7 +176,7 @@ $config = [
         'adminEmail' => env('ADMIN_EMAIL'),
         'robotEmail' => env('ROBOT_EMAIL'),
         'availableLocales' => [
-            'en-US' => 'English (US)',
+            'en' => 'English (US)',
             'de' => 'German',
         ],
     ],
