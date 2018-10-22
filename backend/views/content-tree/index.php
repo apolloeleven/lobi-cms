@@ -87,10 +87,18 @@ echo Tabs::widget([
 
 
 ?>
-<?php echo Html::a('View', $contentTreeItem->getFrontendUrl(), ['class' => 'btn btn-primary margin-5', 'target' => '_blank']); ?>
+<?php echo Html::a('View', $contentTreeItem->getFrontendUrl(), ['class' => 'btn btn-warning  margin-5', 'target' => '_blank']); ?>
 <?php echo Html::a('Update', $model->getUpdateUrl(), ['class' => 'btn btn-primary margin-5']); ?>
+<?php if ($contentTreeItem->table_name !='website'):?>
+    <?php echo Html::a(Yii::t('backend', 'delete'), $model->getDeleteUrl($contentTreeItem->id), [
+        'title' => Yii::t('backend', 'delete'),
+        [' class' => 'btn btn-danger  margin-5'],
+        'data-confirm' => Yii::t('yii', 'Are you sure you want to delete this item?'),
+        'data-method' => 'post',
+    ]);?>
+<?php endif;?>
 <?php echo Html::a('Live Content Editing', Url::to(['/base/user-login', 'id' => Yii::$app->user->id, 'url' => $contentTreeItem->getFrontendEditingPath()]),
-    ['class' => 'btn btn-primary margin-5', 'target' => '_blank']); ?>
+    ['class' => 'btn btn-info margin-5', 'target' => '_blank']); ?>
     <hr>
 
     <div class="well well-sm">
