@@ -89,14 +89,14 @@ echo Tabs::widget([
 ?>
 <?php echo Html::a('View', $contentTreeItem->getFrontendUrl(), ['class' => 'btn btn-warning  margin-5', 'target' => '_blank']); ?>
 <?php echo Html::a('Update', $model->getUpdateUrl(), ['class' => 'btn btn-primary margin-5']); ?>
-<?php if ($contentTreeItem->table_name !='website'):?>
+<?php if ($contentTreeItem->table_name != 'website'): ?>
     <?php echo Html::a(Yii::t('backend', 'delete'), $model->getDeleteUrl($contentTreeItem->id), [
         'title' => Yii::t('backend', 'delete'),
         [' class' => 'btn btn-danger  margin-5'],
         'data-confirm' => Yii::t('yii', 'Are you sure you want to delete this item?'),
         'data-method' => 'post',
-    ]);?>
-<?php endif;?>
+    ]); ?>
+<?php endif; ?>
 <?php echo Html::a('Live Content Editing', Url::to(['/base/user-login', 'id' => Yii::$app->user->id, 'url' => $contentTreeItem->getFrontendEditingPath()]),
     ['class' => 'btn btn-info margin-5', 'target' => '_blank']); ?>
     <hr>
@@ -116,43 +116,41 @@ echo Tabs::widget([
                     ];
                 }, Yii::$app->contentTree->getEditableClasses())
             ],
-        ]);
+        ]); ?>
+        <?php if ($contentTreeItem->id != 1): ?>
+            <?php
+            echo Html::button('Choose From Existing', ['style' => 'margin-left:10px;margin-right:10px; ', 'class' => 'btn btn-default', 'data-toggle' => 'modal', 'data-target' => '#linked', 'data-key' => $contentTreeItem->getTreeId()]);
+            Modal::begin([
+                'id' => 'linked',
+                'header' => '<h2 style="margin-left: 50px" >Choose From Existing Trees</h2>',
+                'bodyOptions' => ['class' => 'modal-body', 'id' => 'tree-modal-body', 'data-key' => $contentTreeItem->getTreeId()],
+                'size' => 'modal-lg',
+                'footer' => Html::button('Link', ['class' => 'btn btn-primary', 'id' => 'linked-button']),
+            ]);
 
-        //        if ($contentTreeItem->getModel()->id != 1) {
-        Modal::begin([
-            'id' => 'linked',
-            'header' => '<h2 style="margin-left: 50px" >Choose From Existing Trees</h2>',
-            'bodyOptions' => ['class' => 'modal-body', 'id' => 'tree-modal-body', 'data-key' => $contentTreeItem->getTreeId()],
-            'size' => 'modal-lg',
-            'toggleButton' => ['label' => 'Choose From Existing', 'style' => 'margin-left:10px;margin-right:10px; ', 'class' => 'btn btn-default'],
-            'footer' => Html::button('Link', ['class' => 'btn btn-primary', 'id' => 'linked-button']),
-        ]);
+            ?>
 
-        ?>
+            <form id="table_names_tree" class="form-inline"
+                  style="display: inline-block">
+                <?php echo Html::checkboxList('table_names', [], $tableNames); ?>
+            </form>
 
-        <form id="table_names_tree" class="form-inline"
-              style="display: inline-block">
-            <?php echo Html::checkboxList('table_names', [], $tableNames); ?>
-        </form>
-
-        <div id="jstree-choose"></div>
+            <div id="jstree-choose"></div>
 
 
+            <?php
+            Modal::end();
+            echo Html::button('Move To', ['style' => 'margin-left:10px;margin-right:10px; ', 'class' => 'btn btn-default', 'data-toggle' => 'modal', 'data-target' => '#move-modal', 'data-key' => $contentTreeItem->getTreeId()]); ?>
+        <?php endif; ?>
         <?php
-        Modal::end();
-
-
         Modal::begin([
             'id' => 'move-modal',
             'header' => '<h2 style="margin-left: 50px" >Move From Tree To Tree</h2>',
             'bodyOptions' => ['class' => 'modal-body', 'id' => 'move-modal-body', 'data-key' => $contentTreeItem->getTreeId()],
             'size' => 'modal-lg',
-            'toggleButton' => ['label' => 'Move To', 'style' => 'margin-left:10px;margin-right:10px; ', 'class' => 'btn btn-default'],
             'footer' => Html::button('Move', ['class' => 'btn btn-primary', 'id' => 'move-button']),
         ]);
-
         ?>
-
         <form id="table_names_for_move" class="form-inline"
               style="display: inline-block">
             <?php echo Html::checkboxList('table_names_move_id', [], $tableNames); ?>
