@@ -142,26 +142,16 @@ class ContentTreeController extends Controller
     {
         $contentTree = null;
         $aliasPath = Yii::$app->getCurrentAlias();
-<<<<<<< HEAD
         if ($aliasPath) {
             $contentTree = ContentTree::find()->byAliasPath($aliasPath)->notHidden()->notDeleted()->one();
         }
         if ($contentTree) {
-=======
-        if ($aliasPath){
-            $contentTree = ContentTree::find()->byAliasPath($aliasPath)->notHidden()->notDeleted()->one();
-        }
-        if ($contentTree){
->>>>>>> afcdb46829962c999b407278f485d8dd1442487d
             return $contentTree;
         }
 
-        if (!($contentTree = ContentTree::find()->byIdAndLanguage(Yii::$app->defaultContentId, Yii::$app->language)->notHidden()->notDeleted()->one())) {
-<<<<<<< HEAD
+        if (!($contentTree = ContentTree::find()->byIdAndLanguage(Yii::$app->defaultContentId,
+            Yii::$app->language)->notHidden()->notDeleted()->one())) {
             throw new NotFoundHttpException("Content does not exist for [ID = 2], [language = " . \Yii::$app->language . "]");
-=======
-            throw new NotFoundHttpException("Content does not exist for [ID = 2], [language = ".\Yii::$app->language."]");
->>>>>>> afcdb46829962c999b407278f485d8dd1442487d
         }
         $this->getView()->contentTreeObject = $contentTree;
         return $contentTree;
