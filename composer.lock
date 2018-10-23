@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b580bcbb53426e23605ddc2514c75755",
+    "content-hash": "e8e868ad86301b9acdce14705b93750c",
     "packages": [
         {
             "name": "2amigos/yii2-ckeditor-widget",
@@ -153,11 +153,11 @@
         },
         {
             "name": "apollo11/lobi-cms-core",
-            "version": "v1.1.5",
+            "version": "v1.1.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apolloeleven/lobi-cms-core.git",
-                "reference": "8aa0fd39c2d3af86c8c85f0a7a33243651f464ef"
+                "reference": "06c190843099e34745a0acbb4159dba0ea54bebb"
             },
             "require": {
                 "yiisoft/yii2": "~2.0.0"
@@ -184,7 +184,7 @@
                 "yii2",
                 "yii2 CMS core"
             ],
-            "time": "2018-10-16T14:52:58+00:00"
+            "time": "2018-10-23T14:33:15+00:00"
         },
         {
             "name": "asofter/yii2-imperavi-redactor",
@@ -3289,12 +3289,12 @@
             "version": "1.3.1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/trntv/yii2-file-kit.git",
+                "url": "https://github.com/yii2-starter-kit/yii2-file-kit.git",
                 "reference": "806f3c25a81199c9d7399c6aed7086c00bd9182a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/trntv/yii2-file-kit/zipball/806f3c25a81199c9d7399c6aed7086c00bd9182a",
+                "url": "https://api.github.com/repos/yii2-starter-kit/yii2-file-kit/zipball/806f3c25a81199c9d7399c6aed7086c00bd9182a",
                 "reference": "806f3c25a81199c9d7399c6aed7086c00bd9182a",
                 "shasum": ""
             },
