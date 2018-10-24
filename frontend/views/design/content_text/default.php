@@ -8,12 +8,12 @@
 /** @var $this \yii\web\View */
 /** @var $contentTreeItem \frontend\models\ContentTree */
 /** @var $index integer */
-/** @var $model \common\models\ContentText */
+/** @var $model \apollo11\lobicms\models\ContentText */
 
 
 ?>
 
-<div class="container">
+<div class="container" <?php echo $contentTreeItem->getEditableAttributesForSection('section'); ?>>
     <div class="xmlblock-wrapper">
         <div class="xmlblock" <?php echo $contentTreeItem->getEditableAttributes('multi_line','rich-text') ?>>
             <?php echo $model->activeTranslation->multi_line; ?>

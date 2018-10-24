@@ -28,6 +28,14 @@ return [
             'route' => 'content-tree/index',
             'encodeParams' => false,
         ],
+        [
+            'pattern' => 'content-tree/get-tree',
+            'route' => 'content-tree/get-tree',
+        ],
+        [
+            'pattern' => 'content-tree/link-tree',
+            'route' => 'content-tree/link-tree',
+        ],
 
 //        // Pages
 //        ['pattern' => 'page/<slug>', 'route' => 'page/view'],

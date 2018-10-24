@@ -33,9 +33,13 @@ use yii\helpers\Url;
 
 <?php echo $form->field($model, 'meta_description')->textarea() ?>
 
-<?php echo $form->field($model, 'image')->widget(FileInput::class, [
+<?php
+if ($model->image && $model->image->name) {
+    echo $form->field($model, 'deletedImages')->hiddenInput();
+}
+echo $form->field($model, 'image')->widget(FileInput::class, [
     'options' => ['accept' => 'image/*', 'multiple' => false],
-]);
+]); ?>
 
 
 

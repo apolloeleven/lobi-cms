@@ -8,7 +8,7 @@
 /** @var $this \yii\web\View */
 /** @var $contentTreeItem  \frontend\models\ContentTree */
 /** @var $index integer */
-/** @var $model \common\models\Section */
+/** @var $model \apollo11\lobicms\models\Section */
 
 $content = $this->render('@frontend/views/content-tree/list', [
     'viewFile' => null,

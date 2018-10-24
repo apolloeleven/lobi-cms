@@ -20,6 +20,14 @@ use yii\helpers\Html;
     'preset' => 'full'
 ]) ?>
 
-<?php echo $form->field($model, 'image')->widget(FileInput::class, [
+<?php echo $form->field($model, 'multi_line2')->widget(\common\widgets\CKEditor::class, [
+    'preset' => 'full'
+]) ?>
+
+<?php
+if ($model->image && $model->image->name) {
+    echo $form->field($model, 'deletedImages')->hiddenInput();
+}
+echo $form->field($model, 'image')->widget(FileInput::class, [
     'options' => ['accept' => 'image/*', 'multiple' => false],
-]);
+]); ?>

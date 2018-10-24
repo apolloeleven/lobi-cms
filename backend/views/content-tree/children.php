@@ -5,17 +5,24 @@
  * Time: 9:25 PM
  */
 
+use yii\bootstrap\Modal;
 use yii\helpers\Html;
 use yii\helpers\Url;
 
 /** @var $contentTreeItem  \apollo11\lobicms\models\ContentTree */
 /** @var $query  \apollo11\lobicms\models\query\ContentTreeQuery */
+
+
+$this->registerJS('')
 ?>
     <br>
 <?php
 echo \yii\grid\GridView::widget([
     'dataProvider' => new \yii\data\ActiveDataProvider([
         'query' => $query,
+        'pagination' => [
+            'pageSize' => 50
+        ]
     ]),
     'tableOptions' => ['class' => 'table table-striped table-bordered', 'id' => 'content_tree_child'],
     'columns' => [
@@ -108,7 +115,7 @@ echo \yii\grid\GridView::widget([
             },
             'contentOptions' => ['class' => 'not-draggable']
         ],
-        ['class' => 'yii\grid\ActionColumn', 'template' => '{view} {update} {edit} {delete}',
+        ['class' => 'yii\grid\ActionColumn', 'template' => '{view} {update} {edit} {move} {link_item} {delete} ',
             'contentOptions' => ['class' => 'not-draggable'],
             'buttons' => [
                 'view' => function ($url, $model) {
@@ -159,7 +166,14 @@ echo \yii\grid\GridView::widget([
                     ]);
 
                 },
+                'move' => function ($url, $contentTreeItem) {
+                    return Html::button('Move To', ['class' => 'btn btn-secondary btn-pretty btn-sm','data-toggle'=>'modal', 'data-target'=>'#move-modal','data-key' => $contentTreeItem->getTreeId()]);
+                },
+                'link_item' => function ($url, $contentTreeItem) {
+                    return Html::button('Link To', ['class' => 'btn btn-secondary btn-pretty btn-sm', 'data-toggle' => 'modal', 'data-target' => '#linked', 'data-key' => $contentTreeItem->getTreeId()]);
+                },
             ]
         ],
     ]
 ]);
+

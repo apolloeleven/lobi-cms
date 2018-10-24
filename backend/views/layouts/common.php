@@ -216,7 +216,7 @@ $bundle = BackendAsset::register($this);
                             'alias',
                             'url' => function ($item, $parentItem) {
                                 $url = $item['alias'];
-                                /** @var $parentItem \common\components\Node */
+                                /** @var $parentItem \apollo11\lobicms\components\Node */
                                 if ($parentItem) {
                                     $processedData = $parentItem->getProcessedData();
                                     $url = $processedData['url']['nodes'] . '/' . $url;

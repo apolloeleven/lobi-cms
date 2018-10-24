@@ -15,6 +15,7 @@ use yii\helpers\Html;
         'activeTranslation.name',
         'activeTranslation.single_line',
         'activeTranslation.multi_line:html',
+        'activeTranslation.multi_line2:html',
         [
             'label' => 'Image',
             'format' => 'html',

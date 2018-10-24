@@ -8,10 +8,10 @@
 /** @var $this \yii\web\View */
 /** @var $contentTreeItem \frontend\models\ContentTree */
 /** @var $index integer */
-/** @var $model \common\models\VideoSection */
+/** @var $model \apollo11\lobicms\models\VideoSection */
 
 ?>
-<div class="video-wrapper">
+<div class="video-wrapper" <?php echo $contentTreeItem->getEditableAttributesForSection('section'); ?>>
     <video autoplay muted loop id="myVideo"
            main-src="<?php echo $model->activeTranslation->fileManagerVideoFile->getUrl() ?>"
            mobile-src="<?php echo $model->activeTranslation->fileManagerMobileVideoFile->getUrl() ?>">

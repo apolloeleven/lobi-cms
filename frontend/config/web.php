@@ -3,6 +3,7 @@ $config = [
     'homeUrl' => Yii::getAlias('@frontendUrl'),
     'controllerNamespace' => 'frontend\controllers',
     'defaultRoute' => 'home',
+    'defaultContentId' => env('DEFAULT_CONTENT_ID'),
     'bootstrap' => ['maintenance'],
     'modules' => [
         'user' => [

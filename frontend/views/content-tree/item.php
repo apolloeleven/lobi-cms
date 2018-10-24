@@ -11,7 +11,7 @@
 /** @var $model  \common\models\BaseModel */
 ?>
 
-<section class="<?php echo $contentTreeItem->getCssClass() ?>">
+<section class="<?php echo $contentTreeItem->getCssClass() ?>" <?php echo $contentTreeItem->getEditableAttributesForSection('section'); ?>>
     <?php echo  $this->render( '@frontend/views/design/'.$contentTreeItem->table_name.'/'.($contentTreeItem->view ?: 'default'), [
         'index' => $index,
         'contentTreeItem' => $contentTreeItem,

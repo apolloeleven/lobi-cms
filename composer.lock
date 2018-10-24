@@ -1,10 +1,10 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "f1912aa9c38e3d404696006693a99611",
+    "content-hash": "081bb8cfd937bf8b901f563aa82375cd",
     "packages": [
         {
             "name": "2amigos/yii2-ckeditor-widget",
@@ -153,11 +153,11 @@
         },
         {
             "name": "apollo11/lobi-cms-core",
-            "version": "v1.1.1",
+            "version": "v1.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apolloeleven/lobi-cms-core.git",
-                "reference": "8b3baa8ceaabd4b45f7c2b815272157d89cecbdf"
+                "reference": "0f0983a52a0c9f642aaac439cf67237bc610b9e2"
             },
             "require": {
                 "yiisoft/yii2": "~2.0.0"
@@ -184,7 +184,7 @@
                 "yii2",
                 "yii2 CMS core"
             ],
-            "time": "2018-10-03T12:03:47+00:00"
+            "time": "2018-10-24T08:33:17+00:00"
         },
         {
             "name": "asofter/yii2-imperavi-redactor",
@@ -3289,12 +3289,12 @@
             "version": "1.3.1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/trntv/yii2-file-kit.git",
+                "url": "https://github.com/yii2-starter-kit/yii2-file-kit.git",
                 "reference": "806f3c25a81199c9d7399c6aed7086c00bd9182a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/trntv/yii2-file-kit/zipball/806f3c25a81199c9d7399c6aed7086c00bd9182a",
+                "url": "https://api.github.com/repos/yii2-starter-kit/yii2-file-kit/zipball/806f3c25a81199c9d7399c6aed7086c00bd9182a",
                 "reference": "806f3c25a81199c9d7399c6aed7086c00bd9182a",
                 "shasum": ""
             },

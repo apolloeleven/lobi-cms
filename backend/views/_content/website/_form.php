@@ -45,6 +45,10 @@ use yii\helpers\Url;
     'options' => ['rows' => 4],
     'preset' => 'full'
 ]) ?><?php echo $form->field($model, 'footer_copyright')->textInput(['maxlength' => true]) ?>
-<?php echo $form->field($model, 'footer_logo')->widget(FileInput::class, [
-    'options' => ['accept' => 'image/*'],
+<?php
+if ($model->image && $model->image->name) {
+    echo $form->field($model, 'deletedImages')->hiddenInput();
+}
+echo $form->field($model, 'image')->widget(FileInput::class, [
+    'options' => ['accept' => 'image/*', 'multiple' => false],
 ]); ?>

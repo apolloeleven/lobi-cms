@@ -19,6 +19,9 @@ use backend\widgets\LanguageSelector;
 ]) ?>
 
 <?php
+if ($model->image && $model->image->name) {
+    echo $form->field($model, 'deletedImages')->hiddenInput();
+}
 echo $form->field($model, 'image')->widget(FileInput::class, [
     'options' => ['accept' => 'image/*', 'multiple' => false],
 ]); ?>
