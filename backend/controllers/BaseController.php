@@ -6,6 +6,7 @@ use apollo11\lobicms\commands\AddToTimelineCommand;
 use apollo11\lobicms\models\BaseModel;
 use apollo11\lobicms\models\BaseTranslateModel;
 use apollo11\lobicms\models\ContentTreeMenu;
+use apollo11\lobicms\models\ContentTreeTranslation;
 use apollo11\lobicms\models\TimelineEvent;
 use apollo11\lobicms\web\BackendController;
 use common\models\User;
@@ -155,48 +156,48 @@ class BaseController extends BackendController
         $ClassName = Yii::$app->contentTree->getClassName($tableName);
         $connection = Yii::$app->db;
         $transaction = $connection->beginTransaction();
-            /** @var BaseModel $baseModel */
-            $baseModel = $ClassName::find()->byId($id)->one();
-            $tree = ContentTree::find()->byId($contentTreeId)->one();
-            $tree->deleted_at = time();
-            $tree->deleted_by = Yii::$app->user->id;
+        /** @var BaseModel $baseModel */
+        $baseModel = $ClassName::find()->byId($id)->one();
+        $tree = ContentTree::find()->byId($contentTreeId)->one();
+        $tree->deleted_at = time();
+        $tree->deleted_by = Yii::$app->user->id;
 
-            if (!$tree->link_id) {
-                $baseModel->deleted_at = time();
-                $baseModel->deleted_by = Yii::$app->user->id;
-                $baseModel->save();
+        if (!$tree->link_id) {
+            $baseModel->deleted_at = time();
+            $baseModel->deleted_by = Yii::$app->user->id;
+            $baseModel->save();
+        }
+
+        $children = $tree->children()->notDeleted()->all();
+
+        $parent = $tree->getParent();
+
+        foreach ($children as $child) {
+            if (!$child->link_id) {
+                /** @var BaseModel $childBaseModel */
+                $ClassName = Yii::$app->contentTree->getClassName($child->table_name);
+                $childBaseModel = $ClassName::find()->byId($child->record_id)->one();
+                $childBaseModel->deleted_at = time();
+                $childBaseModel->deleted_by = Yii::$app->user->id;
+                $childBaseModel->save();
             }
+            $child->deleted_at = time();
+            $child->deleted_by = Yii::$app->user->id;
+            $child->save();
+        }
 
-            $children = $tree->children()->notDeleted()->all();
-
-            $parent = $tree->getParent();
-
-            foreach ($children as $child) {
-                if (!$child->link_id) {
-                    /** @var BaseModel $childBaseModel */
-                    $ClassName = Yii::$app->contentTree->getClassName($child->table_name);
-                    $childBaseModel = $ClassName::find()->byId($child->record_id)->one();
-                    $childBaseModel->deleted_at = time();
-                    $childBaseModel->deleted_by = Yii::$app->user->id;
-                    $childBaseModel->save();
-                }
-                $child->deleted_at = time();
-                $child->deleted_by = Yii::$app->user->id;
-                $child->save();
-            }
-
-            $tree->save();
-            $transaction->commit();
-            $category = $ClassName::getFormattedTableName();
-            Yii::$app->commandBus->handle(new AddToTimelineCommand([
-                'group' => TimelineEvent::GROUP_CONTENT,
-                'category' => $category,
-                'event' => TimelineEvent::EVENT_DELETE,
-                'record_id' => $id,
-                'record_name' => $tree->getActualItemActiveTranslation()->name,
-                'data' => ['old' => $baseModel->activeTranslation->getData()],
-                'createdBy' => Yii::$app->user->id
-            ]));
+        $tree->save();
+        $transaction->commit();
+        $category = $ClassName::getFormattedTableName();
+        Yii::$app->commandBus->handle(new AddToTimelineCommand([
+            'group' => TimelineEvent::GROUP_CONTENT,
+            'category' => $category,
+            'event' => TimelineEvent::EVENT_DELETE,
+            'record_id' => $id,
+            'record_name' => $tree->getActualItemActiveTranslation()->name,
+            'data' => ['old' => $baseModel->activeTranslation->getData()],
+            'createdBy' => Yii::$app->user->id
+        ]));
 
         return $this->redirect($parent->getFullUrl());
     }
@@ -435,7 +436,7 @@ class BaseController extends BackendController
 
     /**
      * @return string
-     * @property ContentTree $parentTree
+     * @throws \yii\db\Exception
      */
     public function actionLinkTree()
     {
@@ -451,8 +452,24 @@ class BaseController extends BackendController
                         $linkedTree->link_id = $linkedParentTree->id;
                         $linkedTree->record_id = $linkedParentTree->record_id;
                         $linkedTree->table_name = $linkedParentTree->table_name;
+                        $transaction = Yii::$app->db->beginTransaction();
                         if (!$linkedTree->appendTo($parentTree)) {
                             return json_encode(['code' => 0, 'message' => 'Could Not Prepend To Parent Node']);
+                        } else {
+                            $data = ArrayHelper::toArray($linkedParentTree->activeTranslation);
+                            unset($data['id']);
+                            $linkedTreeTranslation = new ContentTreeTranslation();
+                            $linkedTreeTranslation->load($data, '');
+                            $linkedTreeTranslation->content_tree_id = $linkedTree->id;
+                            $linkedTreeTranslation->alias_path = $parentTree->activeTranslation->alias_path . '/' . $linkedTreeTranslation->alias;
+                            $linkedTreeTranslation->validAliasPath();
+                            $linkedTreeTranslation->detachBehavior('sluggable');
+                            if ($linkedTreeTranslation->save()) {
+                                $transaction->commit();
+                            } else {
+                                $transaction->rollBack();
+                                return json_encode(['code' => 0, 'message' => 'Could Not Save In Translation']);
+                            }
                         }
                     } else {
                         $res = ['code' => 0, 'message' => 'Tree Not Found'];

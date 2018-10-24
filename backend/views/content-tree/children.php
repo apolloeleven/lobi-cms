@@ -115,8 +115,7 @@ echo \yii\grid\GridView::widget([
             },
             'contentOptions' => ['class' => 'not-draggable']
         ],
-        ['class' => 'yii\grid\ActionColumn',
-            'template' => '{view} {update} {delete} {move} {link_item}',
+        ['class' => 'yii\grid\ActionColumn', 'template' => '{view} {update} {edit} {move} {link_item} {delete} ',
             'contentOptions' => ['class' => 'not-draggable'],
             'buttons' => [
                 'view' => function ($url, $model) {
@@ -128,6 +127,14 @@ echo \yii\grid\GridView::widget([
                     return Html::a(Yii::t('backend', 'view'), $url, [
                         'title' => Yii::t('backend', 'view'),
                         [' class' => 'btn btn-warning btn-pretty btn-sm']
+                    ]);
+                },
+                'edit' => function ($url, $model) {
+                    /** @var \apollo11\lobicms\models\ContentTree $model */
+                    $url = Url::to(['content-tree/update', 'id' => $model->id]);
+                    return Html::a(Yii::t('backend', 'Edit'), $url, [
+                        'title' => Yii::t('backend', 'Edit'),
+                        [' class' => 'btn btn-default btn-pretty btn-sm']
                     ]);
                 },
                 'update' => function ($url, $contentTreeItem) {
