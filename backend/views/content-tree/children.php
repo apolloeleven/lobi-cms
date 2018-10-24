@@ -20,6 +20,9 @@ $this->registerJS('')
 echo \yii\grid\GridView::widget([
     'dataProvider' => new \yii\data\ActiveDataProvider([
         'query' => $query,
+        'pagination' => [
+            'pageSize' => 50
+        ]
     ]),
     'tableOptions' => ['class' => 'table table-striped table-bordered', 'id' => 'content_tree_child'],
     'columns' => [
