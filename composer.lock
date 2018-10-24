@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "081bb8cfd937bf8b901f563aa82375cd",
+    "content-hash": "11f07e51a7f8896f62f64f5dd066998f",
     "packages": [
         {
             "name": "2amigos/yii2-ckeditor-widget",
@@ -153,11 +153,11 @@
         },
         {
             "name": "apollo11/lobi-cms-core",
-            "version": "v1.2.0",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apolloeleven/lobi-cms-core.git",
-                "reference": "0f0983a52a0c9f642aaac439cf67237bc610b9e2"
+                "reference": "3396ba2cd00cc7a63c32f29e711998329aef3007"
             },
             "require": {
                 "yiisoft/yii2": "~2.0.0"
@@ -184,7 +184,7 @@
                 "yii2",
                 "yii2 CMS core"
             ],
-            "time": "2018-10-24T08:33:17+00:00"
+            "time": "2018-10-24T13:38:44+00:00"
         },
         {
             "name": "asofter/yii2-imperavi-redactor",
@@ -6099,7 +6099,8 @@
         "asofter/yii2-imperavi-redactor": 20,
         "trntv/yii2-datetime-widget": 20,
         "trntv/cheatsheet": 20,
-        "kartik-v/yii2-widget-fileinput": 20
+        "kartik-v/yii2-widget-fileinput": 20,
+        "apollo11/lobi-cms-core": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

@@ -4,7 +4,7 @@ namespace backend\modules\system\controllers;
 
 use backend\modules\system\models\search\KeyStorageItemSearch;
 use common\models\KeyStorageItem;
-use common\traits\FormAjaxValidationTrait;
+use apollo11\lobicms\traits\FormAjaxValidationTrait;
 use Yii;
 use yii\filters\VerbFilter;
 use yii\web\Controller;
