@@ -175,10 +175,13 @@ $(document).ready(function () {
         } else {
           deletedArray.push(id)
         }
-        $deleteInput.val(deletedArray.join())
+          deletedArray= deletedArray.join();
+          deletedArray = deletedArray.toString();
+          $deleteInput.val(deletedArray);
+          console.log($deleteInput.value);
       })
     });
-  }, 1000)
+  }, 1000);
 
   $('#linked-button').click(function () {
     var LinkedIds = [];
