@@ -21,5 +21,8 @@ return [
             'migrationTable' => '{{%system_rbac_migration}}',
             'templateFile' => '@common/rbac/views/migration.php'
         ],
+        'sync' => [
+            'class' => \apollo11\lobicms\console\controllers\SyncController::class,
+        ],
     ],
 ];
