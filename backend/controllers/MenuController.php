@@ -2,12 +2,16 @@
 
 namespace backend\controllers;
 
+use apollo11\lobicms\models\ContentTreeMenu;
 use apollo11\lobicms\web\BackendController;
 use Yii;
 use apollo11\lobicms\models\Menu;
 use backend\models\MenuSearch;
+use yii\helpers\ArrayHelper;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\Request;
+use yii\web\Response;
 
 /**
  * MenuController implements the CRUD actions for Menu model.
@@ -92,6 +96,56 @@ class MenuController extends BackendController
                 'model' => $model,
             ]);
         }
+    }
+
+    /**
+     * @param $id
+     * @return string
+     * @throws NotFoundHttpException
+     */
+    public function actionChildren($id)
+    {
+        $model = $this->findModel($id);
+
+        $contentTreeMenu = ContentTreeMenu::find()
+            ->byMenuId($id)
+            ->with(['contentTree', 'menu'])
+            ->orderBy('position');
+
+        return $this->render('sort', [
+            'query' => $contentTreeMenu,
+            'model' => $model,
+        ]);
+    }
+
+    public function actionSort()
+    {
+        Yii::$app->response->format = Response::FORMAT_JSON;
+        $prev = Yii::$app->request->post('prev');
+        $next = Yii::$app->request->post('next');
+        $element = Yii::$app->request->post('element');
+        $transaction = Yii::$app->db->beginTransaction();
+        $menuItems = ArrayHelper::index(ContentTreeMenu::find()->byId([$next, $prev, $element])->all(), 'id');
+
+        if ($prev) {
+            $prevItem = $menuItems[$prev];
+            $newPos = $prevItem->position;
+            Yii::$app->db->createCommand("UPDATE content_tree_menu SET position=position-1 WHERE position <= '$prevItem->position' ")->execute();
+            ContentTreeMenu::updateAll(['position' => $newPos], ['id' => $element]);
+            $transaction->commit();
+            return ['success' => true];
+        }
+
+        if ($next) {
+            $nextItem = $menuItems[$next];
+            $newPos = $nextItem->position;
+            Yii::$app->db->createCommand("UPDATE content_tree_menu SET position=position+1 WHERE position >= '$nextItem->position' ")->execute();
+            ContentTreeMenu::updateAll(['position' => $newPos], ['id' => $element]);
+            $transaction->commit();
+            return ['success' => true];
+        }
+
+        return json_encode(Yii::$app->request->post());
     }
 
     /**

@@ -175,10 +175,10 @@ $(document).ready(function () {
         } else {
           deletedArray.push(id)
         }
-          deletedArray= deletedArray.join();
-          deletedArray = deletedArray.toString();
-          $deleteInput.val(deletedArray);
-          console.log($deleteInput.value);
+        deletedArray = deletedArray.join();
+        deletedArray = deletedArray.toString();
+        $deleteInput.val(deletedArray);
+        console.log($deleteInput.value);
       })
     });
   }, 1000);
@@ -368,7 +368,6 @@ $(document).ready(function () {
 
   //Make diagnosis table sortable
   $("#content_tree_child tbody").sortable({
-    //helper: fixHelperModified,
     handle: '.tree-children-draggable',
     start: function (event, ui) {
       ui.item.data('start_pos', ui.item.index());
@@ -408,6 +407,7 @@ $(document).ready(function () {
       }
     }
   });
+
 
   $('.view-dropdown').change(function () {
     var val = $(this).val();
@@ -468,3 +468,52 @@ $(document).ready(function () {
     });
   })();
 });
+
+(function IFFE() {
+  $("#menu_tree_item tbody").sortable({
+    handle: '.tree-children-draggable',
+    start: function (event, ui) {
+      ui.item.data('start_pos', ui.item.index());
+    },
+    stop: function (event, ui) {
+      var start_pos = ui.item.data('start_pos');
+      if (start_pos != ui.item.index()) {
+        var element = 0, prev = 0, next = 0;
+
+        if (typeof ui.item.prev('tr').attr("data-key") !== 'undefined')
+          prev = ui.item.prev('tr').attr("data-key");
+
+        if (typeof ui.item.next('tr').attr("data-key") !== 'undefined')
+          next = ui.item.next('tr').attr("data-key");
+
+        element = ui.item.attr("data-key");
+        let data = {
+          prev: prev,
+          element: element,
+          next: next
+        }
+
+        $.ajax({
+          url: '/menu/sort',
+          type: 'POST',
+          data: {
+            prev: prev,
+            element: element,
+            next: next
+          },
+          success: function (res) {
+            console.log(res);
+            if (res == false) {
+              //lobiNotify('error', 'Child Hierarchy', 'Changes not Saved')
+            } else {
+              //lobiNotify('success', 'Child Hierarchy', 'Saved');
+            }
+          },
+          error: function (err) {
+            //lobiNotify('error', 'Child Hierarchy', 'Changes not Saved')
+          }
+        });
+      }
+    }
+  });
+})();

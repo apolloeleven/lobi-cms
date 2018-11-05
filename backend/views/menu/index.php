@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use yii\helpers\Url;
 
 /* @var $this yii\web\View */
 /* @var $searchModel backend\models\MenuSearch */
@@ -16,8 +17,8 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <p>
         <?php echo Html::a(Yii::t('backend', 'Create {modelClass}', [
-    'modelClass' => 'Menu',
-]), ['create'], ['class' => 'btn btn-success']) ?>
+            'modelClass' => 'Menu',
+        ]), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php echo GridView::widget([
@@ -30,7 +31,17 @@ $this->params['breadcrumbs'][] = $this->title;
             'name',
             'key',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            ['class' => 'yii\grid\ActionColumn', 'template' => '{view}{update}{delete}{sort}',
+                'buttons' => [
+                    'sort' => function ($url, $model) {
+                        /** @var \apollo11\lobicms\models\ContentTree $model */
+                        $url = Url::to(['/menu/children', 'id' => $model->id]);
+                        return Html::a(Html::tag('span', '', ['class' => 'glyphicon glyphicon-sort']), $url, [
+                            'title' => Yii::t('lobicmscore', 'sort'),
+                        ]);
+                    },
+                ]
+            ],
         ],
     ]); ?>
 
