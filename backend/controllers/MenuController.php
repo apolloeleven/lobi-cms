@@ -157,7 +157,7 @@ class MenuController extends BackendController
             return ['success' => true];
         }
 
-        return json_encode(Yii::$app->request->post());
+        return ['success' => false];
     }
 
     /**
