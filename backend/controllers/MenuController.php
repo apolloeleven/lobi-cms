@@ -126,20 +126,32 @@ class MenuController extends BackendController
         $element = Yii::$app->request->post('element');
         $transaction = Yii::$app->db->beginTransaction();
         $menuItems = ArrayHelper::index(ContentTreeMenu::find()->byId([$next, $prev, $element])->all(), 'id');
-
-        if ($prev) {
+        $elementItem = $menuItems[$element];
+        if ($prev && $elementItem->position < $menuItems[$prev]->position) {
             $prevItem = $menuItems[$prev];
             $newPos = $prevItem->position;
-            Yii::$app->db->createCommand("UPDATE content_tree_menu SET position=position-1 WHERE position <= '$prevItem->position' ")->execute();
+            Yii::$app->db
+                ->createCommand("UPDATE content_tree_menu SET position=position-1 
+                                     WHERE position <= '$prevItem->position' AND 
+                                     position > '$elementItem->position' AND 
+                                     menu_id = '$elementItem->menu_id'
+                                     ")
+                ->execute();
             ContentTreeMenu::updateAll(['position' => $newPos], ['id' => $element]);
             $transaction->commit();
             return ['success' => true];
         }
 
-        if ($next) {
+
+        if ($next && $elementItem->position > $menuItems[$next]->position) {
             $nextItem = $menuItems[$next];
             $newPos = $nextItem->position;
-            Yii::$app->db->createCommand("UPDATE content_tree_menu SET position=position+1 WHERE position >= '$nextItem->position' ")->execute();
+            Yii::$app->db->createCommand("UPDATE content_tree_menu SET position=position+1
+                                              WHERE position >= '$nextItem->position' AND
+                                              position < '$elementItem->position'AND 
+                                              menu_id = '$elementItem->menu_id'
+                                         ")
+                ->execute();
             ContentTreeMenu::updateAll(['position' => $newPos], ['id' => $element]);
             $transaction->commit();
             return ['success' => true];

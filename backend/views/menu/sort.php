@@ -21,6 +21,7 @@ echo \yii\grid\GridView::widget([
     ]),
     'tableOptions' => ['class' => 'table table-striped table-bordered', 'id' => 'menu_tree_item'],
     'columns' => [
+        'id',
         [
             'label' => '',
             'content' => function () {

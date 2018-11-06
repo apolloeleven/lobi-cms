@@ -470,6 +470,18 @@ $(document).ready(function () {
 });
 
 (function IFFE() {
+
+  function lobiNotify(type, title, msg) {
+    Lobibox.notify(type, {
+      sound: false,
+      position: 'top right',
+      delay: 1500,
+      showClass: 'fadeInDown',
+      title: title,
+      msg: msg
+    });
+  }
+
   $("#menu_tree_item tbody").sortable({
     handle: '.tree-children-draggable',
     start: function (event, ui) {
@@ -504,13 +516,13 @@ $(document).ready(function () {
           success: function (res) {
             console.log(res);
             if (res == false) {
-              //lobiNotify('error', 'Child Hierarchy', 'Changes not Saved')
+              lobiNotify('error', 'Child Hierarchy', 'Changes not Saved')
             } else {
-              //lobiNotify('success', 'Child Hierarchy', 'Saved');
+              lobiNotify('success', 'Child Hierarchy', 'Saved');
             }
           },
           error: function (err) {
-            //lobiNotify('error', 'Child Hierarchy', 'Changes not Saved')
+            lobiNotify('error', 'Child Hierarchy', 'Changes not Saved')
           }
         });
       }
