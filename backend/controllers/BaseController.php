@@ -13,6 +13,7 @@ class BaseController extends \apollo11\lobicms\controllers\BaseController
     {
         $this->enableCsrfValidation = false;
 
+
         if (Yii::$app->request->isPost) {
             $showInMenu = array_map('intval', Yii::$app->request->post('menu_ids', []));
 
@@ -48,7 +49,7 @@ class BaseController extends \apollo11\lobicms\controllers\BaseController
                     $menuModel = new ContentTreeMenu();
                     $menuModel->menu_id = intval($menuItem);
                     $menuModel->content_tree_id = $tree->id;
-                    $menuModel->position = $newPosition->position + 1;
+                    $menuModel->position = $newPosition ? $newPosition->position + 1 : 1;
                     if (!$menuModel->save()) {
                         return false;
                     }
@@ -60,7 +61,7 @@ class BaseController extends \apollo11\lobicms\controllers\BaseController
                         $menuModel = new ContentTreeMenu();
                         $menuModel->menu_id = $menuItem;
                         $menuModel->content_tree_id = $tree->id;
-                        $menuModel->position = $newPosition->position + 1;
+                        $menuModel->position = $newPosition ? $newPosition->position + 1 : 1;
                         if (!$menuModel->save()) {
                             return false;
                         }
