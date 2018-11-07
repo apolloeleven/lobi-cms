@@ -96,12 +96,17 @@
   $linkButton.click(function () {
     var prependTo = [];
     var path = '';
-    var text = '';
+    var text = choosenEditor.getSelection().getSelectedText();
     $jsTree.jstree("get_checked", this, true).forEach(function (data) {
       path = data.original.path;
-      text = data.original.text;
+      if (!text.length > 0){
+        text = data.original.text;
+      }
     });
-    pathHtml = '<a href="/' + path + '">' + text + '</a>'
+
+
+
+    pathHtml = '<a href="/' + path + '">' + text + '</a>';
     choosenEditor.execCommand('linkTree');
     $linkModal.modal('hide');
   });
