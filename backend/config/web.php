@@ -13,7 +13,7 @@ $config = [
             'baseUrl' => env('BACKEND_BASE_URL'),
         ],
         'user' => [
-            'class' => yii\web\User::class,
+            'class' => \apollo11\lobicms\web\User::class,
             'identityClass' => common\models\User::class,
             'loginUrl' => ['sign-in/unlock'],
             'enableAutoLogin' => true,
