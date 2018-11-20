@@ -4,7 +4,12 @@ $config = [
         'assetManager' => [
             'class' => yii\web\AssetManager::class,
             'linkAssets' => env('LINK_ASSETS'),
-            'appendTimestamp' => YII_ENV_DEV
+            'appendTimestamp' => YII_ENV_DEV,
+            'bundles' => [
+                \dosamigos\ckeditor\CKEditorAsset::class => [
+                    'sourcePath' => '@common/web/ckeditor/'
+                ]
+            ]
         ],
         'ckEditorStyles' => [
             'class' => \common\components\CKEditorComponent::class,

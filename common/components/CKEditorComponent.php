@@ -7,7 +7,9 @@
 
 namespace common\components;
 
+use apollo11\lobicms\web\View;
 use yii\base\Component;
+use yii\helpers\Json;
 
 
 /**
@@ -25,4 +27,20 @@ class CKEditorComponent extends Component
      * @var array
      */
     public $customStyles = [];
+
+
+    public function init()
+    {
+        parent::init();
+
+        \Yii::$app->view->registerJs("var FRONTEND_HOST = '" . \Yii::getAlias('@frontendUrl') . "';",
+                View::POS_BEGIN);
+        if (\Yii::$app->user->canEditContent()) {
+            \Yii::$app->view->registerJs("
+                if (typeof CKEDITOR !== 'undefined'){
+                    CKEDITOR.stylesSet.add( 'default', " . Json::encode($this->customStyles) . " );
+                }
+            ");
+        }
+    }
 }

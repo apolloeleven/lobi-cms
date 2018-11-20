@@ -24,6 +24,7 @@ class BackendAsset extends AssetBundle
     public $js = [
         'js/lobiplugins/lobibox.js',
         'js/highlight.pack.js',
+        'js/ck-config.js',
         'js/config.js',
         'js/lobiadmin.js',
         'js/lobiadmin-app.js',
@@ -41,6 +42,7 @@ class BackendAsset extends AssetBundle
         'yii\jui\JuiAsset',
         'yii\bootstrap\BootstrapPluginAsset',
         'common\assets\FontAwesome',
-        'common\assets\Html5shiv'
+        'common\assets\Html5shiv',
+        \dosamigos\ckeditor\CKEditorAsset::class
     ];
 }
