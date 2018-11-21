@@ -31,7 +31,7 @@ class BackendAsset extends AssetBundle
         'js/mark.js',
         'js/app.js',
         'js/bootstrap-tour.min.js',
-        'js/jstree.min.js',
+//        'js/jstree.min.js',
         'js/modal.js',
 
     ];

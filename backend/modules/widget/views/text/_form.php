@@ -1,6 +1,6 @@
 <?php
 
-use common\widgets\CKEditor;
+use apollo11\lobicms\widgets\CKEditor;
 use yii\bootstrap\ActiveForm;
 use yii\helpers\Html;
 
