@@ -13,28 +13,6 @@ $config = [
         ],
     ],
     'components' => [
-        'authClientCollection' => [
-            'class' => yii\authclient\Collection::class,
-            'clients' => [
-                'github' => [
-                    'class' => yii\authclient\clients\GitHub::class,
-                    'clientId' => env('GITHUB_CLIENT_ID'),
-                    'clientSecret' => env('GITHUB_CLIENT_SECRET')
-                ],
-                'facebook' => [
-                    'class' => yii\authclient\clients\Facebook::class,
-                    'clientId' => env('FACEBOOK_CLIENT_ID'),
-                    'clientSecret' => env('FACEBOOK_CLIENT_SECRET'),
-                    'scope' => 'email,public_profile',
-                    'attributeNames' => [
-                        'name',
-                        'email',
-                        'first_name',
-                        'last_name',
-                    ]
-                ]
-            ]
-        ],
         'errorHandler' => [
             'errorAction' => 'site/error'
         ],

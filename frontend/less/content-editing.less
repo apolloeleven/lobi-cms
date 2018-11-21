@@ -1,8 +1,22 @@
 @editable-container-border-width: 1px;
 @editable-container-border: @editable-container-border-width solid #cecece;
 
-.content-editable {
+@editable-content-header-height: 50px;
 
+.content-editor {
+  position: fixed;
+  padding: 0 10px;
+  height: @editable-content-header-height;
+  line-height: @editable-content-header-height;
+  width: 100%;
+  z-index: 10000;
+  top: 0;
+}
+
+.content-editable {
+  header {
+    margin-top: @editable-content-header-height;
+  }
   .cke_button_label.cke_button__inlinesave_label {
     display: inline;
   }
