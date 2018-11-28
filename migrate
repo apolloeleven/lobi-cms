@@ -1,2 +1,3 @@
+php console/yii migrate --migrationPath=@vendor/apollo11/lobi-cms-core/migrations
 php console/yii migrate
 php console/yii rbac-migrate
