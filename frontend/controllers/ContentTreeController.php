@@ -11,6 +11,7 @@ use apollo11\lobicms\models\BaseModel;
 use frontend\models\ContentTree;
 use Yii;
 use apollo11\lobicms\web\Controller;
+use yii\helpers\ArrayHelper;
 use yii\web\NotFoundHttpException;
 
 
@@ -22,6 +23,16 @@ use yii\web\NotFoundHttpException;
  */
 class ContentTreeController extends Controller
 {
+
+    public function beforeAction($action)
+    {
+        if ($action->id == 'get-alias-path') {
+            $this->enableCsrfValidation = false;
+        }
+
+        return parent::beforeAction($action);
+    }
+
     /**
      *
      *
@@ -97,6 +108,17 @@ class ContentTreeController extends Controller
         return [
             'success' => false
         ];
+    }
+
+    public function actionGetAliasPath()
+    {
+        \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+
+        $ids = (Yii::$app->request->post('ids'));
+        $ct = ContentTree::find()->byId($ids)->with('activeTranslation')->all();
+        $arr = ArrayHelper::map($ct,'id','activeTranslation.alias_path');
+
+        return $arr;
     }
 
     /**
