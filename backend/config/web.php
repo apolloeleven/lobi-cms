@@ -4,6 +4,7 @@ $config = [
     'controllerNamespace' => 'backend\controllers',
     'defaultRoute' => 'timeline-event/index',
     'defaultAlias' => 'website',
+    'bootstrap' => ['ckEditorStyles'],
     'components' => [
         'errorHandler' => [
             'errorAction' => 'site/error',
@@ -29,6 +30,11 @@ $config = [
                 ],
             ],
         ],
+        'ckEditorStyles' => [
+            'class' => \common\components\CKEditorComponent::class,
+            'customStyles' => [
+            ]
+        ]
     ],
     'modules' => [
         'widget' => [

@@ -4,7 +4,7 @@ $config = [
     'controllerNamespace' => 'frontend\controllers',
     'defaultRoute' => 'home',
     'defaultContentId' => env('DEFAULT_CONTENT_ID'),
-    'bootstrap' => ['maintenance'],
+    'bootstrap' => ['maintenance', 'ckEditorStyles'],
     'modules' => [
         'user' => [
             'class' => frontend\modules\user\Module::class,
@@ -34,6 +34,11 @@ $config = [
             'loginUrl' => ['/user/sign-in/login'],
             'enableAutoLogin' => true,
             'as afterLogin' => common\behaviors\LoginTimestampBehavior::class
+        ],
+        'ckEditorStyles' => [
+            'class' => \common\components\CKEditorComponent::class,
+            'customStyles' => [
+            ]
         ]
     ]
 ];

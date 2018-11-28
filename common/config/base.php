@@ -5,7 +5,7 @@ $config = [
     'extensions' => require(__DIR__ . '/../../vendor/yiisoft/extensions.php'),
     'sourceLanguage' => 'en',
     'language' => env('DEFAULT_LANGUAGE', 'en'),
-    'bootstrap' => ['log', 'contentTree', 'ckEditorStyles'],
+    'bootstrap' => ['log', 'contentTree'],
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
         '@npm' => '@vendor/npm-asset',
@@ -180,10 +180,6 @@ $config = [
             'de' => 'German',
         ],
     ],
-    'on beforeRequest' => function () {
-        Yii::$app->mailer->transport->setUsername(env('SMTP_USERNAME'));
-        Yii::$app->mailer->transport->setPassword(env('SMTP_PASSWORD'));
-    }
 ];
 
 if (YII_ENV_PROD) {

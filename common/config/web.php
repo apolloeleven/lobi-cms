@@ -11,11 +11,6 @@ $config = [
                 ]
             ]
         ],
-        'ckEditorStyles' => [
-            'class' => \common\components\CKEditorComponent::class,
-            'customStyles' => [
-            ]
-        ]
     ],
     'as locale' => [
         'class' => common\behaviors\LocaleBehavior::class,
