@@ -24,6 +24,10 @@ return [
             'route' => 'content-tree/hide-section',
         ],
         [
+            'pattern' => 'content-tree/get-alias-path',
+            'route' => 'content-tree/get-alias-path',
+        ],
+        [
             'pattern' => '<nodes:.*>',
             'route' => 'content-tree/index',
             'encodeParams' => false,

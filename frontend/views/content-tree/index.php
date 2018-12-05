@@ -8,6 +8,7 @@
 /** @var $this \yii\web\View */
 /** @var $contentTreeItem  \frontend\models\ContentTree */
 /** @var $model  \common\models\BaseModel */
+$this->registerAssetBundle(\apollo11\lobicms\bundle\LinkedAsset::class);
 
 $innerContent = $this->render('list', [
     'viewFile' => 'item',
