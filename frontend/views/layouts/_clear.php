@@ -1,11 +1,6 @@
 <?php
 
-use frontend\models\ContentTree;
-use apollo11\lobicms\models\Page;
-use apollo11\lobicms\models\Website;
 use yii\helpers\Html;
-use \yii\helpers\ArrayHelper;
-use yii\helpers\Json;
 
 /* @var $this \apollo11\lobicms\web\View */
 /* @var $content string */
@@ -14,9 +9,6 @@ $bundle = \frontend\assets\FrontendAsset::register($this);
 
 $contentTreePage = $this->contentTreeObject;
 
-if (Yii::$app->user->canEditContent()) {
-    $this->registerJs("CKEDITOR.stylesSet.add( 'default', " . Json::encode(\Yii::$app->ckEditorStyles->customStyles) . " );");
-}
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
