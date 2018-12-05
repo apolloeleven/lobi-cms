@@ -13,15 +13,14 @@
 ?>
 <div class="video-wrapper" <?php echo $contentTreeItem->getEditableAttributesForSection('section'); ?>>
     <video autoplay muted loop id="myVideo"
-           main-src="<?php echo $model->activeTranslation->fileManagerVideoFile->getUrl() ?>"
-           mobile-src="<?php echo $model->activeTranslation->fileManagerMobileVideoFile->getUrl() ?>">
+           main-src="<?php echo $model->activeTranslation->videoFile->getUrl() ?>"
+           mobile-src="<?php echo $model->activeTranslation->mobileVideoFile->getUrl() ?>">
 
     </video>
-    <div class="content-editable-container">
+    <div class="xmlblock-wrapper">
         <div class="xmlblock" <?php echo $contentTreeItem->getEditableAttributes('content_top', 'rich-text') ?>>
             <?php echo $model->activeTranslation->content_top ?>
         </div>
     </div>
-    <img src="/img/icons/scrolldown-arrow.svg" alt="">
 
 </div>
