@@ -11,8 +11,10 @@ use apollo11\lobicms\models\BaseModel;
 use frontend\models\ContentTree;
 use Yii;
 use apollo11\lobicms\web\Controller;
+use yii\filters\ContentNegotiator;
 use yii\helpers\ArrayHelper;
 use yii\web\NotFoundHttpException;
+use yii\web\Response;
 
 
 /**
@@ -23,6 +25,19 @@ use yii\web\NotFoundHttpException;
  */
 class ContentTreeController extends Controller
 {
+
+    public function behaviors()
+    {
+        return array_merge(parent::behaviors(), [
+            [
+                'class' => ContentNegotiator::class,
+                'only' => ['get-tree', 'link-tree'],
+                'formats' => [
+                    'application/json' => Response::FORMAT_JSON,
+                ],
+            ],
+        ]);
+    }
 
     public function beforeAction($action)
     {
@@ -60,6 +75,13 @@ class ContentTreeController extends Controller
         ]);
     }
 
+    /**
+     *
+     *
+     * @author Zura Sekhniashvili <zurasekhniashvili@gmail.com>
+     * @return array
+     * @throws NotFoundHttpException
+     */
     public function actionEditContent()
     {
         $language = \Yii::$app->request->post('language');
@@ -116,10 +138,47 @@ class ContentTreeController extends Controller
 
         $ids = (Yii::$app->request->post('ids'));
         $ct = ContentTree::find()->byId($ids)->with('activeTranslation')->all();
-        $arr = ArrayHelper::map($ct,'id','activeTranslation.alias_path');
+        $arr = ArrayHelper::map($ct, 'id', 'activeTranslation.alias_path');
 
         return $arr;
     }
+
+    /**
+     *
+     * @throws \Exception
+     */
+    public function actionGetTree()
+    {
+        return ContentTree::getItemsAsTreeForLink(null, ['page']);
+    }
+
+//    /**
+//     * @return array
+//     */
+//    public function actionLinkTree()
+//    {
+//        $res = ['success' => false];
+//        $parentId = intval(Yii::$app->request->post('parentId'));
+//        $currentLinkId = intval(Yii::$app->request->post('linkId'));
+//        $parentLinkId = intval(Yii::$app->request->post('parentLinkId'));
+//
+//        $parentContentTree = ContentTree::find()->byId($parentId)->linkedIdIsNull()->one();
+//        $linkedParentTree = ContentTree::find()->byId($parentLinkId)->linkedIdIsNull()->one();
+//
+//        if ($parentContentTree && $linkedParentTree) {
+//            $linkedTree = new ContentTree();
+//            $linkedTree->link_id = $linkedParentTree->id;
+//            $linkedTree->record_id = $linkedParentTree->record_id;
+//            $linkedTree->table_name = $linkedParentTree->table_name;
+//            if ($linkedTree->appendTo($parentContentTree)) {
+//                $currentLinkTree = ContentTree::find()->byId($currentLinkId)->one();
+//                $currentLinkTree->markDeleted();
+//                $res = ['success' => true, 'url' => $linkedParentTree->getUrl()];
+//            }
+//        }
+//
+//        return $res;
+//    }
 
     /**
      *
@@ -166,55 +225,19 @@ class ContentTreeController extends Controller
         $aliasPath = Yii::$app->getCurrentAlias();
         if ($aliasPath) {
             $contentTree = ContentTree::find()->byAliasPath($aliasPath)->notHidden()->notDeleted()->one();
-        }
-        if ($contentTree) {
+            if (!$contentTree) {
+                throw new NotFoundHttpException("Requested page was not found");
+            }
             return $contentTree;
         }
 
         if (!($contentTree = ContentTree::find()->byIdAndLanguage(Yii::$app->defaultContentId,
             Yii::$app->language)->notHidden()->notDeleted()->one())) {
-            throw new NotFoundHttpException("Content does not exist for [ID = 2], [language = " . \Yii::$app->language . "]");
+            throw new NotFoundHttpException("Content does not exist for [ID = " . Yii::$app->defaultContentId . "], [language = " . \Yii::$app->language . "]");
         }
         $this->getView()->contentTreeObject = $contentTree;
         return $contentTree;
     }
 
-    /**
-     *
-     * @throws \Exception
-     */
-    public function actionGetTree()
-    {
-        $tree = ContentTree::getItemsAsTreeForLink(null, ['page']);
-        return json_encode($tree);
-    }
-
-    /**
-     * @return array
-     */
-    public function actionLinkTree()
-    {
-        $res = ['success' => false];
-        $parentId = intval(Yii::$app->request->post('parentId'));
-        $currentLinkId = intval(Yii::$app->request->post('linkId'));
-        $parentLinkId = intval(Yii::$app->request->post('parentLinkId'));
-
-        $parentContentTree = ContentTree::find()->byId($parentId)->linkedIdIsNull()->one();
-        $linkedParentTree = ContentTree::find()->byId($parentLinkId)->linkedIdIsNull()->one();
-
-        if ($parentContentTree && $linkedParentTree) {
-            $linkedTree = new ContentTree();
-            $linkedTree->link_id = $linkedParentTree->id;
-            $linkedTree->record_id = $linkedParentTree->record_id;
-            $linkedTree->table_name = $linkedParentTree->table_name;
-            if ($linkedTree->appendTo($parentContentTree)) {
-                $currentLinkTree = ContentTree::find()->byId($currentLinkId)->one();
-                $currentLinkTree->markDelete();
-                $res = ['success' => true, 'url' => $linkedParentTree->getUrl()];
-            }
-        }
-
-        return json_encode($res);
-    }
 
 }
