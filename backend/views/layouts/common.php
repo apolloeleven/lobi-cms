@@ -18,6 +18,28 @@ use yii\widgets\Breadcrumbs;
 
 $bundle = BackendAsset::register($this);
 
+$rootItems = ContentTree::getItemsAsTree([
+    'name' => 'label',
+    'alias',
+    'url' => function ($item, $parentItem) {
+        $url = $item['alias'];
+        /** @var $parentItem \apollo11\lobicms\components\Node */
+        if ($parentItem) {
+            $processedData = $parentItem->getProcessedData();
+            $url = $processedData['url']['nodes'] . '/' . $url;
+        }
+        return ['/content-tree/index', 'nodes' => $url];
+    },
+    'icon' => function ($item) {
+        return 'fa ' . Yii::$app->contentTree->getIcon($item['table_name'],
+                $item['link_id']);
+    }
+]);
+foreach ($rootItems as &$rootItem) {
+    $rootItem['options'] = ['class' => 'opened'];
+}
+
+
 ?>
 
 <?php $this->beginContent('@backend/views/layouts/base.php'); ?>
@@ -211,23 +233,10 @@ $bundle = BackendAsset::register($this);
                         'icon' => 'fa fa-bar-chart-o',
                         'url' => ['/content-tree/index'],
                         'visible' => Yii::$app->user->can(\common\models\User::ROLE_EDITOR),
-                        'items' => ContentTree::getItemsAsTree([
-                            'name' => 'label',
-                            'alias',
-                            'url' => function ($item, $parentItem) {
-                                $url = $item['alias'];
-                                /** @var $parentItem \apollo11\lobicms\components\Node */
-                                if ($parentItem) {
-                                    $processedData = $parentItem->getProcessedData();
-                                    $url = $processedData['url']['nodes'] . '/' . $url;
-                                }
-                                return ['/content-tree/index', 'nodes' => $url];
-                            },
-                            'icon' => function ($item) {
-                                return 'fa ' . Yii::$app->contentTree->getIcon($item['table_name'],
-                                        $item['link_id']);
-                            }
-                        ])
+                        'items' => $rootItems,
+                        'options' => [
+                            'class' => 'opened'
+                        ]
                     ],
                     [
                         'label' => Yii::t('backend', 'Widgets'),
