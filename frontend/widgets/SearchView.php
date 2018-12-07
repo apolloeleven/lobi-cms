@@ -9,7 +9,8 @@
 namespace frontend\widgets;
 
 
-use frontend\models\ContentTree;
+use apollo11\lobicms\models\ContentTree;
+use apollo11\lobicms\models\Search;
 use yii\data\ArrayDataProvider;
 use yii\helpers\Html;
 use yii\widgets\ListView;
@@ -23,25 +24,46 @@ class SearchView extends ListView
     public $dataProvider;
     public $searchableWord;
 
+    /**
+     * @inheritdoc
+     * @throws \yii\base\InvalidConfigException
+     */
     public function init()
     {
-        $uniquePages = [];
-        $allModels = $this->dataProvider->allModels;
-        $allModels = array_filter($allModels, function ($model) use (&$uniquePages) {
-            /** @var ContentTree $contentTree */
-            $contentTree = $model->contentTree;
-            if (!$contentTree->activeTranslation->name && !$model->content) {
-                return false;
-            }
-            $page = $contentTree->getPage();
-            if (!$page || isset($uniquePages[$page->id])) {
-                return false;
-            }
-            $uniquePages[$page->id] = $page;
-            return true;
-        });
-        $this->dataProvider->allModels = $allModels;
+        $this->dataProvider->allModels = self::processSearchModels($this->dataProvider->allModels);
         parent::init();
+    }
+
+    /**
+     *
+     *
+     * @author Zura Sekhniashvili <zurasekhniashvili@gmail.com>
+     * @param Search[] $models
+     * @return array
+     */
+    private static function processSearchModels($models)
+    {
+        $allModels = [];
+        foreach ($models as $model) {
+            /** @var Search $model */
+            $linkedContentTrees = $model->linkedContentTrees;
+            if ($model->contentTree) {
+                $linkedContentTrees[] = $model->contentTree;
+            }
+
+            foreach ($linkedContentTrees as $contentTree) {
+                $page = $contentTree->getPage();
+                if (!$page) {
+                    continue;
+                }
+
+                if (isset($allModels[$page->id])){
+                    continue;
+                }
+                $allModels[$page->id] = [$page, $model];
+            }
+        }
+        return $allModels;
     }
 
     /**
@@ -55,16 +77,17 @@ class SearchView extends ListView
 
     public function renderSearch()
     {
-        foreach ($this->dataProvider->getModels() as $model) {
-            /** @var ContentTree $contentTree */
-            $contentTree = $model->contentTree;
+        foreach ($this->dataProvider->getModels() as $modelItem) {
 
-            $page = $contentTree->getPage();
-            $titleHeader = Html::tag('h3', Html::a($page->getName(), $page->getUrl()));
+            /** @var ContentTree $contentTreePage */
+            list($contentTreePage, $model) = $modelItem;
+
+            $titleHeader = Html::tag('h3', Html::a($contentTreePage->getName(), $contentTreePage->getUrl()));
 //                $contentDiv = Html::tag('div', $model->content);
             $contentDiv = Html::tag('div', $this->getSearchResult($this->searchableWord, $model->content));
             $searchCont[] = Html::tag('div', $titleHeader . $contentDiv,
                 ['class' => 'search-list-item']);
+
         }
 
         return $searchCont;
