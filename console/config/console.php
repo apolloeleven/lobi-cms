@@ -25,4 +25,11 @@ return [
             'class' => \apollo11\lobicms\console\controllers\SyncController::class,
         ],
     ],
+    'components' => [
+        'user' => [
+            'class' => \yii\web\User::class,
+            'enableSession' => false,
+            'identityClass' => \common\models\User::class
+        ]
+    ]
 ];
