@@ -14,10 +14,11 @@ $itemsQuery = $contentTreeItem->getItemsQuery()->notDeleted();
 
 (Yii::$app->user->canEditContent() && Yii::$app->request->get('hidden')) ?: $itemsQuery->notHidden();
 
+$allItems = $itemsQuery->all();
 
 echo \yii\widgets\ListView::widget([
-    'dataProvider' => new \yii\data\ActiveDataProvider([
-        'query' => $itemsQuery
+    'dataProvider' => new \yii\data\ArrayDataProvider([
+        'allModels' => $allItems
     ]),
     'options' => [
         'tag' => false
@@ -26,17 +27,14 @@ echo \yii\widgets\ListView::widget([
         'tag' => false,
     ],
     'summary' => '',
-    'itemView' => function ($item, $key, $index, $widget) use ($viewFile) {
+    'itemView' => function ($item, $key, $index, $widget) use ($viewFile, $allItems) {
         /** @var \frontend\models\ContentTree $item */
-        $view = $item->view ?: 'default';
-        $content = '<!-- Start of ' . ($view) . ':' . $item->table_name . ':' . $item->id . '-->';
-        $content .= $this->render($viewFile ?: '@frontend/views/design/' . $item->table_name . '/' . ($view),
-            [
-                'index' => $index,
-                'contentTreeItem' => $item->getActualItem(),
-                'model' => $item->getModel(),
-            ]);
-        $content .= '<!-- End of ' . $view . ':' . $item->table_name . ':' . $item->id . '-->';
-        return $content;
+
+        return $this->render('item_view',[
+            'index' => $index,
+            'item' => $item,
+            'viewFile' => $viewFile,
+            'allItems' => $allItems
+        ]);
     }
 ]);
