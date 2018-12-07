@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "bce4e982c0433edca657c8c227dcd818",
+    "content-hash": "9c97c2474aabf358be285d09e93f084f",
     "packages": [
         {
             "name": "2amigos/yii2-ckeditor-widget",
@@ -153,11 +153,11 @@
         },
         {
             "name": "apollo11/lobi-cms-core",
-            "version": "v1.4.1",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apolloeleven/lobi-cms-core.git",
-                "reference": "f880cef1f3f358e9c7491c3c16262f3d21fc6b3f"
+                "reference": "96bd28d84339733a0f6b108f82504ab5df668311"
             },
             "require": {
                 "yiisoft/yii2": "~2.0.0"
@@ -184,7 +184,7 @@
                 "yii2",
                 "yii2 CMS core"
             ],
-            "time": "2018-11-20T11:26:07+00:00"
+            "time": "2018-12-07T09:55:21+00:00"
         },
         {
             "name": "asofter/yii2-imperavi-redactor",
@@ -438,7 +438,7 @@
             "version": "3.2.1",
             "source": {
                 "type": "git",
-                "url": "git@github.com:jquery/jquery-dist.git",
+                "url": "https://github.com/jquery/jquery-dist.git",
                 "reference": "77d2a51d0520d2ee44173afdf4e40a9201f5964e"
             },
             "dist": {
@@ -6207,7 +6207,8 @@
         "asofter/yii2-imperavi-redactor": 20,
         "trntv/yii2-datetime-widget": 20,
         "trntv/cheatsheet": 20,
-        "kartik-v/yii2-widget-fileinput": 20
+        "kartik-v/yii2-widget-fileinput": 20,
+        "apollo11/lobi-cms-core": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
