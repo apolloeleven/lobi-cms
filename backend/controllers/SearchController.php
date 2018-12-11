@@ -2,20 +2,23 @@
 
 namespace backend\controllers;
 
-use apollo11\lobicms\models\Search;
+use apollo11\lobicms\models\SearchBackend;
 use apollo11\lobicms\web\BackendController;
 use Yii;
+use yii\data\ActiveDataProvider;
 
 class SearchController extends BackendController
 {
     public function actionIndex()
     {
-        $searchModel = new Search();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $searchModel = new SearchBackend();
+        $query = $searchModel->search(Yii::$app->request->queryParams, '');
 
         return $this->render('index', [
             'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
+            'dataProvider' => new ActiveDataProvider([
+                'query' => $query
+            ]),
         ]);
     }
 

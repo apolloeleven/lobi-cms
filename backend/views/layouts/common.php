@@ -61,7 +61,7 @@ foreach ($rootItems as &$rootItem) {
         </ul>
         <form class="navbar-search pull-left" action="<?= Url::to(['/search']) ?>">
             <label for="search" class="sr-only">Search...</label>
-            <input type="text" class="font-size-lg" name="Search[content]" id="content" placeholder="Search...">
+            <input type="text" class="font-size-lg" name="content" id="content" placeholder="Search...">
             <a class="btn btn-search">
                 <span class="glyphicon glyphicon-search"></span>
             </a>
