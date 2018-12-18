@@ -157,7 +157,7 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/apolloeleven/lobi-cms-core.git",
-                "reference": "781607cdc9bd6dbff4894420b358ac42917db447"
+                "reference": "630adbdaba8fdbf2542a61b5e4c4098498c0a583"
             },
             "require": {
                 "yiisoft/yii2": "~2.0.0"
@@ -184,7 +184,7 @@
                 "yii2",
                 "yii2 CMS core"
             ],
-            "time": "2018-12-11T13:46:55+00:00"
+            "time": "2018-12-13T08:24:05+00:00"
         },
         {
             "name": "asofter/yii2-imperavi-redactor",
