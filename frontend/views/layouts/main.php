@@ -1,10 +1,7 @@
 <?php
 /* @var $this \yii\web\View */
 
-use yii\bootstrap\Modal;
 use yii\helpers\ArrayHelper;
-use yii\helpers\Html;
-use yii\widgets\ActiveForm;
 use yii\widgets\Breadcrumbs;
 
 /* @var $content string */
