@@ -1,10 +1,10 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "0974debf64f65b5c6e90edaab80bff3b",
+    "content-hash": "00522e0a207c2eca2937ae1b648927f0",
     "packages": [
         {
             "name": "2amigos/yii2-ckeditor-widget",
@@ -291,7 +291,8 @@
             "dist": {
                 "type": "zip",
                 "url": "https://api.github.com/repos/ajaxorg/ace-builds/zipball/5fe4368221f48b114387c2e7d67c9cd904ec30a2",
-                "reference": "5fe4368221f48b114387c2e7d67c9cd904ec30a2"
+                "reference": "5fe4368221f48b114387c2e7d67c9cd904ec30a2",
+                "shasum": null
             },
             "type": "bower-asset",
             "license": [
@@ -309,7 +310,8 @@
             "dist": {
                 "type": "zip",
                 "url": "https://api.github.com/repos/blueimp/JavaScript-Canvas-to-Blob/zipball/9f3deb2e710d39c72a988559609d9dc9a319de0b",
-                "reference": "9f3deb2e710d39c72a988559609d9dc9a319de0b"
+                "reference": "9f3deb2e710d39c72a988559609d9dc9a319de0b",
+                "shasum": null
             },
             "type": "bower-asset"
         },
@@ -324,7 +326,8 @@
             "dist": {
                 "type": "zip",
                 "url": "https://api.github.com/repos/blueimp/jQuery-File-Upload/zipball/b096b1a5544299b59f2e05cf764a123ce3e32dd3",
-                "reference": "b096b1a5544299b59f2e05cf764a123ce3e32dd3"
+                "reference": "b096b1a5544299b59f2e05cf764a123ce3e32dd3",
+                "shasum": null
             },
             "require": {
                 "bower-asset/blueimp-canvas-to-blob": ">=2.1.1",
@@ -348,7 +351,8 @@
             "dist": {
                 "type": "zip",
                 "url": "https://api.github.com/repos/blueimp/JavaScript-Load-Image/zipball/e9a4fc2f0e8019ded69178c5b74d090cc6d8051c",
-                "reference": "e9a4fc2f0e8019ded69178c5b74d090cc6d8051c"
+                "reference": "e9a4fc2f0e8019ded69178c5b74d090cc6d8051c",
+                "shasum": null
             },
             "type": "bower-asset"
         },
@@ -357,13 +361,14 @@
             "version": "v3.11.0",
             "source": {
                 "type": "git",
-                "url": "git@github.com:blueimp/JavaScript-Templates.git",
+                "url": "https://github.com/blueimp/JavaScript-Templates.git",
                 "reference": "da7647cb93fff2030e73a701db22c66de76a9919"
             },
             "dist": {
                 "type": "zip",
                 "url": "https://api.github.com/repos/blueimp/JavaScript-Templates/zipball/da7647cb93fff2030e73a701db22c66de76a9919",
-                "reference": "da7647cb93fff2030e73a701db22c66de76a9919"
+                "reference": "da7647cb93fff2030e73a701db22c66de76a9919",
+                "shasum": null
             },
             "type": "bower-asset"
         },
@@ -378,7 +383,8 @@
             "dist": {
                 "type": "zip",
                 "url": "https://api.github.com/repos/twbs/bootstrap/zipball/68b0d231a13201eb14acd3dc84e51543d16e5f7e",
-                "reference": "68b0d231a13201eb14acd3dc84e51543d16e5f7e"
+                "reference": "68b0d231a13201eb14acd3dc84e51543d16e5f7e",
+                "shasum": null
             },
             "require": {
                 "bower-asset/jquery": ">=1.9.1,<4.0"
@@ -399,7 +405,8 @@
             "dist": {
                 "type": "zip",
                 "url": "https://api.github.com/repos/Eonasdan/bootstrap-datetimepicker/zipball/25c11d79e614bc6463a87c3dd9cbf8280422e006",
-                "reference": "25c11d79e614bc6463a87c3dd9cbf8280422e006"
+                "reference": "25c11d79e614bc6463a87c3dd9cbf8280422e006",
+                "shasum": null
             },
             "require": {
                 "bower-asset/jquery": ">=1.8.3",
@@ -421,7 +428,8 @@
             "dist": {
                 "type": "zip",
                 "url": "https://api.github.com/repos/FortAwesome/Font-Awesome/zipball/a8386aae19e200ddb0f6845b5feeee5eb7013687",
-                "reference": "a8386aae19e200ddb0f6845b5feeee5eb7013687"
+                "reference": "a8386aae19e200ddb0f6845b5feeee5eb7013687",
+                "shasum": null
             },
             "type": "bower-asset",
             "license": [
@@ -441,7 +449,8 @@
             "dist": {
                 "type": "zip",
                 "url": "https://api.github.com/repos/aFarkas/html5shiv/zipball/ed28c56c071bddfe7d635ad88995674957a016be",
-                "reference": "ed28c56c071bddfe7d635ad88995674957a016be"
+                "reference": "ed28c56c071bddfe7d635ad88995674957a016be",
+                "shasum": null
             },
             "type": "bower-asset"
         },
@@ -450,13 +459,14 @@
             "version": "3.3.11",
             "source": {
                 "type": "git",
-                "url": "git@github.com:RobinHerbots/Inputmask.git",
+                "url": "https://github.com/RobinHerbots/Inputmask.git",
                 "reference": "5e670ad62f50c738388d4dcec78d2888505ad77b"
             },
             "dist": {
                 "type": "zip",
                 "url": "https://api.github.com/repos/RobinHerbots/Inputmask/zipball/5e670ad62f50c738388d4dcec78d2888505ad77b",
-                "reference": "5e670ad62f50c738388d4dcec78d2888505ad77b"
+                "reference": "5e670ad62f50c738388d4dcec78d2888505ad77b",
+                "shasum": null
             },
             "require": {
                 "bower-asset/jquery": ">=1.7"
@@ -471,13 +481,14 @@
             "version": "3.4.1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/jquery/jquery-dist.git",
+                "url": "git@github.com:jquery/jquery-dist.git",
                 "reference": "15bc73803f76bc53b654b9fdbbbc096f56d7c03d"
             },
             "dist": {
                 "type": "zip",
                 "url": "https://api.github.com/repos/jquery/jquery-dist/zipball/15bc73803f76bc53b654b9fdbbbc096f56d7c03d",
-                "reference": "15bc73803f76bc53b654b9fdbbbc096f56d7c03d"
+                "reference": "15bc73803f76bc53b654b9fdbbbc096f56d7c03d",
+                "shasum": null
             },
             "type": "bower-asset",
             "license": [
@@ -495,7 +506,8 @@
             "dist": {
                 "type": "zip",
                 "url": "https://api.github.com/repos/components/jqueryui/zipball/44ecf3794cc56b65954cc19737234a3119d036cc",
-                "reference": "44ecf3794cc56b65954cc19737234a3119d036cc"
+                "reference": "44ecf3794cc56b65954cc19737234a3119d036cc",
+                "shasum": null
             },
             "require": {
                 "bower-asset/jquery": ">=1.6"
@@ -510,13 +522,14 @@
             "version": "2.24.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/moment/moment.git",
+                "url": "git@github.com:moment/moment.git",
                 "reference": "96d0d6791ab495859d09a868803d31a55c917de1"
             },
             "dist": {
                 "type": "zip",
                 "url": "https://api.github.com/repos/moment/moment/zipball/96d0d6791ab495859d09a868803d31a55c917de1",
-                "reference": "96d0d6791ab495859d09a868803d31a55c917de1"
+                "reference": "96d0d6791ab495859d09a868803d31a55c917de1",
+                "shasum": null
             },
             "type": "bower-asset",
             "license": [
@@ -534,7 +547,8 @@
             "dist": {
                 "type": "zip",
                 "url": "https://api.github.com/repos/bestiejs/punycode.js/zipball/38c8d3131a82567bfef18da09f7f4db68c84f8a3",
-                "reference": "38c8d3131a82567bfef18da09f7f4db68c84f8a3"
+                "reference": "38c8d3131a82567bfef18da09f7f4db68c84f8a3",
+                "shasum": null
             },
             "type": "bower-asset"
         },
@@ -549,7 +563,8 @@
             "dist": {
                 "type": "zip",
                 "url": "https://api.github.com/repos/yiisoft/jquery-pjax/zipball/aef7b953107264f00234902a3880eb50dafc48be",
-                "reference": "aef7b953107264f00234902a3880eb50dafc48be"
+                "reference": "aef7b953107264f00234902a3880eb50dafc48be",
+                "shasum": null
             },
             "require": {
                 "bower-asset/jquery": ">=1.8"
@@ -1351,16 +1366,16 @@
         },
         {
             "name": "intermundia/yiicms",
-            "version": "v1.0.8",
+            "version": "v1.0.16",
             "source": {
                 "type": "git",
                 "url": "https://github.com/intermundia-de/yiicms.git",
-                "reference": "d3e75c2ccd43e7b44e04fdf8450d83b4befc1c9e"
+                "reference": "6d3fb9d3957a57133658785326ce6d8e4b32f39c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/intermundia-de/yiicms/zipball/d3e75c2ccd43e7b44e04fdf8450d83b4befc1c9e",
-                "reference": "d3e75c2ccd43e7b44e04fdf8450d83b4befc1c9e",
+                "url": "https://api.github.com/repos/intermundia-de/yiicms/zipball/6d3fb9d3957a57133658785326ce6d8e4b32f39c",
+                "reference": "6d3fb9d3957a57133658785326ce6d8e4b32f39c",
                 "shasum": ""
             },
             "require": {
@@ -1389,7 +1404,7 @@
                 "yii2",
                 "yii2 CMS core"
             ],
-            "time": "2019-06-20T16:02:43+00:00"
+            "time": "2019-07-15T11:49:11+00:00"
         },
         {
             "name": "intervention/image",
@@ -2360,6 +2375,7 @@
             "dist": {
                 "type": "tar",
                 "url": "https://registry.npmjs.org/gaoptout/-/gaoptout-1.0.0.tgz",
+                "reference": null,
                 "shasum": "4dfb709a0e0801a5f6a8bffebfb99f255a2bd418"
             },
             "type": "npm-asset-library",

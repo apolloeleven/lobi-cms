@@ -51,7 +51,7 @@
     "kartik-v/yii2-widget-fileinput": "@dev",
     "apollo11/yii2-logger": "~1.0",
     "apollo11/yii2-gaoptout": "dev-master",
-    "intermundia/yiicms": "^v1.0.8"
+    "intermundia/yiicms": "^v1.0.16"
   },
   "require-dev": {
     "yiisoft/yii2-debug": "^2.0.0",
