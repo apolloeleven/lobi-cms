@@ -2,8 +2,8 @@
 
 /**
  * @var $this  yii\web\View
- * @var $model apollo11\lobicms\models\WidgetText
- * @var $modelTranslation apollo11\lobicms\models\WidgetTextTranslation
+ * @var $model intermundia\yiicms\models\WidgetText
+ * @var $modelTranslation intermundia\yiicms\models\WidgetTextTranslation
  */
 
 $this->title = Yii::t('backend', 'Update {modelClass}: ', [

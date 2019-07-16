@@ -19,4 +19,4 @@ $config = \yii\helpers\ArrayHelper::merge(
     require(__DIR__ . '/../config/web.php')
 );
 
-(new \apollo11\lobicms\web\Application($config))->run();
+(new \intermundia\yiicms\web\Application($config))->run();

@@ -2,7 +2,7 @@
 /**
  * Eugine Terentev <eugine@terentev.net>
  * @var $this \yii\web\View
- * @var $model \apollo11\lobicms\models\TimelineEvent
+ * @var $model \intermundia\yiicms\models\TimelineEvent
  * @var $dataProvider \yii\data\ActiveDataProvider
  */
 $this->title = Yii::t('backend', 'Application timeline');

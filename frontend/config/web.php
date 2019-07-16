@@ -3,14 +3,16 @@ $config = [
     'homeUrl' => Yii::getAlias('@frontendUrl'),
     'controllerNamespace' => 'frontend\controllers',
     'defaultRoute' => 'home',
-    'defaultContentId' => env('DEFAULT_CONTENT_ID'),
-    'bootstrap' => ['maintenance', 'ckEditorStyles'],
+    'bootstrap' => ['maintenance'],
     'modules' => [
         'user' => [
             'class' => frontend\modules\user\Module::class,
             'shouldBeActivated' => false,
             'enableLoginByPass' => true,
         ],
+        'core' => [
+            'class' => \intermundia\yiicms\modules\frontend\Module::class
+        ]
     ],
     'components' => [
         'errorHandler' => [
@@ -29,17 +31,17 @@ $config = [
             'cookieValidationKey' => env('FRONTEND_COOKIE_VALIDATION_KEY')
         ],
         'user' => [
-            'class' => apollo11\lobicms\web\User::class,
+            'class' => intermundia\yiicms\web\User::class,
             'identityClass' => common\models\User::class,
             'loginUrl' => ['/user/sign-in/login'],
             'enableAutoLogin' => true,
             'as afterLogin' => common\behaviors\LoginTimestampBehavior::class
         ],
         'ckEditorStyles' => [
-            'class' => \common\components\CKEditorComponent::class,
+            'class' => \intermundia\yiicms\components\CKEditorComponent::class,
             'customStyles' => [
             ]
-        ]
+        ],
     ]
 ];
 

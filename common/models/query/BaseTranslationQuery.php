@@ -9,7 +9,7 @@
 namespace common\models\query;
 
 
-class BaseTranslationQuery extends \apollo11\lobicms\models\query\BaseTranslationQuery
+class BaseTranslationQuery extends \intermundia\yiicms\models\query\BaseTranslationQuery
 {
 
 }

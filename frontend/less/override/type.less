@@ -1,0 +1,88 @@
+body {
+  font-weight: 300;
+}
+
+h1, .h1 {
+  font-weight: 900;
+  line-height: 64px;
+  color: @primary-color;
+}
+
+h2, .h2 {
+  font-weight: bold;
+  color: @primary-color-light;
+  line-height: 40px;
+}
+
+h3, .h3 {
+  color: @primary-color;
+  font-weight: bold;
+  line-height: 24px;
+}
+
+blockquote {
+  padding: 0 0 0 32px;
+  color: #009EE3;
+  font-weight: 300;
+  font-style: italic;
+  border-left: 5px solid #009EE3;
+
+}
+
+@media (max-width: @screen-md-max) {
+  blockquote {
+    padding-left: 24px;
+  }
+}
+
+@media (max-width: @screen-sm-max) {
+  .h1, h1 {
+    line-height: 56px;
+    font-size: 44px;
+  }
+
+  .h2, h2 {
+    font-size: 22px;
+    line-height: 24px;
+  }
+
+  .h3, h3 {
+    font-size: 17px;
+    line-height: 24px;
+  }
+
+  .xmlblock p {
+    font-size: 17px;
+    line-height: 24px;
+    font-weight: 300;
+  }
+
+  blockquote {
+    padding-left: 24px;
+  }
+
+}
+
+@media (max-width: @screen-xs-max) {
+
+  h1, .h1 {
+    font-size: 33px;
+    line-height: 40px;
+  }
+
+  h2, .h2 {
+    font-size: 22px;
+    line-height: 24px;
+  }
+
+  h3, .h3 {
+    font-size: 17px;
+    line-height: 24px;
+  }
+
+  blockquote {
+    font-size: 24px;
+    line-height: 32px;
+    padding-left: 16px;
+  }
+}

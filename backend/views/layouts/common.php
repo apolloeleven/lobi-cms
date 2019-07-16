@@ -7,8 +7,8 @@
 use backend\assets\BackendAsset;
 use backend\modules\system\models\SystemLog;
 use backend\widgets\Menu;
-use apollo11\lobicms\models\ContentTree;
-use apollo11\lobicms\models\TimelineEvent;
+use backend\models\ContentTree;
+use intermundia\yiicms\models\TimelineEvent;
 use yii\bootstrap\Alert;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
@@ -23,7 +23,7 @@ $rootItems = ContentTree::getItemsAsTree([
     'alias',
     'url' => function ($item, $parentItem) {
         $url = $item['alias'];
-        /** @var $parentItem \apollo11\lobicms\components\Node */
+        /** @var $parentItem \intermundia\yiicms\components\Node */
         if ($parentItem) {
             $processedData = $parentItem->getProcessedData();
             $url = $processedData['url']['nodes'] . '/' . $url;
@@ -38,7 +38,6 @@ $rootItems = ContentTree::getItemsAsTree([
 foreach ($rootItems as &$rootItem) {
     $rootItem['options'] = ['class' => 'opened'];
 }
-
 
 ?>
 
@@ -214,6 +213,7 @@ foreach ($rootItems as &$rootItem) {
                 'options' => ['class' => 'sidebar-menu'],
                 'linkTemplate' => '<a href="{url}"><i class="{icon} menu-item-icon"></i><span class="inner-text">{label}</span>{badge}</a>',
                 'activateParents' => true,
+                'encodeLabels' => false,
                 'activeCssClass' => 'opened',
                 'items' => [
                     [
@@ -239,32 +239,11 @@ foreach ($rootItems as &$rootItem) {
                         ]
                     ],
                     [
-                        'label' => Yii::t('backend', 'Widgets'),
-                        'url' => '#',
-                        'icon' => 'fa fa-code',
-                        'options' => ['class' => 'treeview'],
-                        'active' => (Yii::$app->controller->module->id == 'widget'),
+                        'label' => Yii::t('backend', 'Text Widgets'),
+                        'url' => ['/widget/text/index'],
+                        'icon' => 'fa fa-circle-o',
+                        'active' => (Yii::$app->controller->id == 'text'),
                         'visible' => Yii::$app->user->can(\common\models\User::ROLE_EDITOR),
-                        'items' => [
-                            [
-                                'label' => Yii::t('backend', 'Text Blocks'),
-                                'url' => ['/widget/text/index'],
-                                'icon' => 'fa fa-circle-o',
-                                'active' => (Yii::$app->controller->id == 'text'),
-                            ],
-//                                [
-//                                    'label' => Yii::t('backend', 'Menu'),
-//                                    'url' => ['/widget/menu/index'],
-//                                    'icon' => 'fa fa-circle-o',
-//                                    'active' => (Yii::$app->controller->id == 'menu'),
-//                                ],
-//                                [
-//                                    'label' => Yii::t('backend', 'Carousel'),
-//                                    'url' => ['/widget/carousel/index'],
-//                                    'icon' => 'fa fa-circle-o',
-//                                    'active' => in_array(Yii::$app->controller->id, ['carousel', 'carousel-item']),
-//                                ],
-                        ],
                     ],
                     [
                         'label' => Yii::t('backend', 'Menu'),
@@ -276,6 +255,12 @@ foreach ($rootItems as &$rootItem) {
                         'label' => Yii::t('backend', 'Translation'),
                         'visible' => Yii::$app->user->can(\common\models\User::ROLE_EDITOR),
                         'options' => ['class' => 'menu-items-header'],
+                    ],
+                    [
+                        'label' => Yii::t('backend', 'Languages'),
+                        'url' => ['/language/index'],
+                        'icon' => 'fa fa-language',
+                        'visible' => Yii::$app->user->can(\common\models\User::ROLE_EDITOR),
                     ],
                     [
                         'label' => Yii::t('backend', 'Translation'),
@@ -411,6 +396,7 @@ foreach ($rootItems as &$rootItem) {
             <?php echo Breadcrumbs::widget([
                 'homeLink' => false,
                 'tag' => 'ol',
+                'encodeLabels' => false,
                 'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
             ]) ?>
         </div>

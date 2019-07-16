@@ -1,2 +1,55 @@
 @import "parts/header";
 @import "parts/footer";
+
+
+body {
+  @media (max-width: @screen-sm-max) {
+    padding-top: 2*@navbar-sm-padding-vertical+ @navbar-sm-logo-height;
+  }
+  @media (max-width: @screen-xs-max) {
+    padding-top: 2*@navbar-xs-padding-vertical+ @navbar-xs-logo-height;
+  }
+}
+
+#educationalVideoModal {
+  z-index: 3100;
+
+  .modal-header {
+    position: absolute;
+    color: #fff;
+    width: 100%;
+    top: 0;
+    left: 0;
+    border: none;
+    z-index: 2;
+    .close{
+      color:#fff;
+      font-size: 50px;
+      opacity: 0.6;
+      &:hover{
+        opacity: 1;
+      }
+    }
+  }
+  .modal-dialog{
+    margin-top: 130px;
+  }
+
+  @media (max-width: @screen-xs-max) {
+    .modal-dialog {
+      margin-top: 100px;
+    }
+  }
+
+  @media (max-width: @screen-sm-max) {
+    .modal-dialog {
+      margin-top: 100px;
+    }
+  }
+
+  @media (max-width: @screen-md-max) {
+    .modal-dialog {
+      margin-top: 100px;
+    }
+  }
+}

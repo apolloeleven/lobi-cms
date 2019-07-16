@@ -21,8 +21,14 @@ return [
             'migrationTable' => '{{%system_rbac_migration}}',
             'templateFile' => '@common/rbac/views/migration.php'
         ],
+        'async' => [
+            'class' => \apollo11\logger\AsyncController::class,
+        ],
         'sync' => [
-            'class' => \apollo11\lobicms\console\controllers\SyncController::class,
+            'class' => \intermundia\yiicms\console\controllers\SyncController::class,
+        ],
+        'utils' => [
+            'class' => \intermundia\yiicms\console\controllers\UtilsController::class,
         ],
     ],
     'components' => [

@@ -9,7 +9,7 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
-/** @var \apollo11\lobicms\models\ContentTreeTranslation $model */
+/** @var \intermundia\yiicms\models\ContentTreeTranslation $model */
 ?>
 <div class="menu-form">
 

@@ -14,9 +14,9 @@ trait ModuleTrait
     public function getLanguages()
     {
         $languages = [];
-        foreach (Yii::$app->params['availableLocales'] as $locale => $name) {
+        foreach (Yii::$app->websiteLanguages as $locale => $name) {
             if ($locale !== Yii::$app->sourceLanguage)
-                $languages[substr($locale, 0, 2)] = $name;
+                $languages[str_replace('-', '_', $locale)] = $name;
         }
 
         return $languages;

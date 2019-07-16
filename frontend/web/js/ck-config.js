@@ -3,7 +3,10 @@
  * For licensing, see LICENSE.md or http://ckeditor.com/license
  */
 
-CKEDITOR.editorConfig = function (config) {
+(function () {
+  const config = CKEDITOR.config;
+  config.extraAllowedContent = 'div(*);picture';
+
   // Define changes to default configuration here.
   // For complete reference see:
   // http://docs.ckeditor.com/#!/api/CKEDITOR.config
@@ -23,7 +26,8 @@ CKEDITOR.editorConfig = function (config) {
     {name: 'paragraph', groups: ['list', 'indent', 'blocks', 'align', 'bidi']},
     {name: 'styles'},
     {name: 'colors'},
-    {name: 'about'}
+    {name: 'about'},
+    {name: 'insert', items: ['BootstrapBuilder', 'Source']}
   ];
 
   config.inlainsave = {
@@ -46,12 +50,12 @@ CKEDITOR.editorConfig = function (config) {
   };
   // Remove some buttons provided by the standard plugins, which are
   // not needed in the Standard(s) toolbar.
-  config.removeButtons = 'Subscript,Superscript';
-
+  // config.removeButtons = 'Subscript,Superscript';
+  config.extraPlugins = 'justify,bootstrapBuilder,youtube,lobiUploader,blockquote';
   // Set the most common block elements.
   config.format_tags = 'p;h1;h2;h3;pre';
 
   // Simplify the dialog windows.
   config.removeDialogTabs = 'image:advanced;link:advanced';
 
-};
+})();

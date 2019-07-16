@@ -10,14 +10,12 @@ $config = [
                     'sourcePath' => '@common/web/ckeditor/'
                 ]
             ]
-        ],
+        ]
     ],
     'as locale' => [
         'class' => common\behaviors\LocaleBehavior::class,
         'enablePreferredLanguage' => false,
         'domainLanguageMapping' => [
-            'lobicms.test' => 'en',
-            'lobicms.local' => 'de'
         ]
     ]
 ];
@@ -26,7 +24,7 @@ if (YII_DEBUG) {
     $config['bootstrap'][] = 'debug';
     $config['modules']['debug'] = [
         'class' => yii\debug\Module::class,
-        'allowedIPs' => ['127.0.0.1', '::1', '10.142.168.*'],
+        'allowedIPs' => ['127.0.0.1', '::1', '10.142.168.*', '178.134.84.118'],
     ];
 }
 

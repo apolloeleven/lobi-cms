@@ -8,7 +8,7 @@
 
 namespace backend\controllers;
 
-use apollo11\lobicms\web\BackendController;
+use intermundia\yiicms\web\BackendController;
 use backend\models\AccountForm;
 use backend\models\LoginForm;
 use Intervention\Image\ImageManagerStatic;

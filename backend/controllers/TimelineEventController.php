@@ -2,7 +2,7 @@
 
 namespace backend\controllers;
 
-use apollo11\lobicms\web\BackendController;
+use intermundia\yiicms\web\BackendController;
 use backend\models\search\TimelineEventSearch;
 use Yii;
 

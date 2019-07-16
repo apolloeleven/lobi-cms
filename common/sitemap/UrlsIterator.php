@@ -3,7 +3,7 @@
 namespace common\sitemap;
 
 use common\models\Article;
-use apollo11\lobicms\models\Page;
+use intermundia\yiicms\models\Page;
 use Sitemaped\Element\Urlset\Url;
 
 class UrlsIterator extends \AppendIterator

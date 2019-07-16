@@ -5,7 +5,7 @@
 
 (function () {
   const config = CKEDITOR.config;
-  config.extraAllowedContent = 'div(*) picture';
+  config.extraAllowedContent = 'div(*);picture';
   // Define changes to default configuration here.
   // For complete reference see:
   // http://docs.ckeditor.com/#!/api/CKEDITOR.config
@@ -34,14 +34,17 @@
   // config.removeButtons = 'Subscript,Superscript';
 
   // Set the most common block elements.
-  config.format_tags = 'p;h1;h2;h3;pre';
+  config.format_tags = 'p;h1;h2;h3;pre;picture';
 
   // Simplify the dialog windows.
   config.removeDialogTabs = 'image:advanced;link:advanced';
+  config.removeFormatTags = 'picture';
 
   config.bodyClass = 'xmlblock';
   config.removeButtons = 'Underline';
-  config.pictureTagImageCount = 8;
+  // setTimeout(function () {
+  //   $('.cke_contents').css('height', '300px');
+  // }, 1000);
 
   // If contentsCss is not an array, we make it array
   if (typeof config.contentsCss !== 'object') {
@@ -50,19 +53,30 @@
     }
   }
 
-  config.contentsCss.push(FRONTEND_HOST+'/bundle/style.css');
+  config.contentsCss.push(FRONTEND_HOST+'/bundle/ckeditor.css');
   // If customConfig is not an array, we make it array
   if (typeof config.customConfig !== 'object') {
     if (config.customConfig){
-      config.customConfig = [config.customConfig]
+      config.customConfig = [config.customConfig];
     }
   }
 
   // bootstrapBuilder config
-  config.extraPlugins = 'justify,youtube,lobiUploader';
+  config.extraPlugins = 'justify,bootstrapBuilder,youtube,lobiUploader,blockquote';
   config.removePlugins = 'image,imageresponsive';
 
+  config.contentsCss.push('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css');
+  config.mj_variables_bootstrap_css_path = 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css';
+  config.mj_variables_bootstrap_js_path = 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js';
+  config.allowedContent = true;
+  config.bootstrapBuilder_container_large_desktop = 1170;
+  config.bootstrapBuilder_container_desktop = 970;
+  config.bootstrapBuilder_container_tablet = 750;
+  config.bootstrapBuilder_grid_columns = 12;
+  config.bootstrapBuilder_ckfinder_version = 3;
+  config.bootstrapBuilder_ckfinder_path = '/ckeditor/ckfinder3/ckfinder.js';
   config.filebrowserBrowseUrl = '/file/manager/ckeditor';
   config.filebrowserBrowseImageUrl = '/file/manager/ckeditor?filter=image';
-
+  config.pictureTagImageCount = 8;
+  config.image_prefillDimensions = false;
 })();

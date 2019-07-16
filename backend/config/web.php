@@ -4,7 +4,6 @@ $config = [
     'controllerNamespace' => 'backend\controllers',
     'defaultRoute' => 'timeline-event/index',
     'defaultAlias' => 'website',
-    'bootstrap' => ['ckEditorStyles'],
     'components' => [
         'errorHandler' => [
             'errorAction' => 'site/error',
@@ -14,7 +13,7 @@ $config = [
             'baseUrl' => env('BACKEND_BASE_URL'),
         ],
         'user' => [
-            'class' => \apollo11\lobicms\web\User::class,
+            'class' => \intermundia\yiicms\web\User::class,
             'identityClass' => common\models\User::class,
             'loginUrl' => ['sign-in/unlock'],
             'enableAutoLogin' => true,
@@ -31,10 +30,10 @@ $config = [
             ],
         ],
         'ckEditorStyles' => [
-            'class' => \common\components\CKEditorComponent::class,
+            'class' => \intermundia\yiicms\components\CKEditorComponent::class,
             'customStyles' => [
             ]
-        ]
+        ],
     ],
     'modules' => [
         'widget' => [
@@ -54,7 +53,7 @@ $config = [
             'defaultRoute' => 'rbac-auth-item/index',
         ],
         'core' => [
-            'class' => \apollo11\lobicms\Module::class,
+            'class' => \intermundia\yiicms\Module::class,
         ],
     ],
     'as globalAccess' => [
@@ -94,7 +93,11 @@ $config = [
             ],
             [
                 'allow' => true,
-                'roles' => [\common\models\User::ROLE_EDITOR, \common\models\User::ROLE_MANAGER, \common\models\User::ROLE_ADMINISTRATOR],
+                'roles' => [
+                    \common\models\User::ROLE_EDITOR,
+                    \common\models\User::ROLE_MANAGER,
+                    \common\models\User::ROLE_ADMINISTRATOR
+                ],
             ],
         ],
     ],

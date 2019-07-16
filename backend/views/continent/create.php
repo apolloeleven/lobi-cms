@@ -1,7 +1,7 @@
 <?php
 
 /* @var $this yii\web\View */
-/* @var $model apollo11\lobicms\models\Continent */
+/* @var $model intermundia\yiicms\models\Continent */
 /* @var $languages [] */
 
 $this->title = Yii::t('backend', 'Create {modelClass}', [

@@ -5,9 +5,9 @@ use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $model apollo11\lobicms\models\Continent */
+/* @var $model intermundia\yiicms\models\Continent */
 /* @var $form yii\bootstrap\ActiveForm */
-/* @var $translations \apollo11\lobicms\models\ContinentTranslation[] */
+/* @var $translations \intermundia\yiicms\models\ContinentTranslation[] */
 /* @var $languages [] */
 ?>
 
@@ -30,12 +30,12 @@ use yii\bootstrap\ActiveForm;
             $ind = 0;
 
             foreach($languages as $code => $name){
-                $className = \yii\helpers\StringHelper::basename(\apollo11\lobicms\models\ContinentTranslation::className());
+                $className = \yii\helpers\StringHelper::basename(\intermundia\yiicms\models\ContinentTranslation::className());
 
                 if(isset($translations[$code])) {
                     $translationModel = $translations[$code];
                 } else {
-                    $translationModel = new \apollo11\lobicms\models\ContinentTranslation();
+                    $translationModel = new \intermundia\yiicms\models\ContinentTranslation();
                 }
 
 

@@ -12,6 +12,18 @@ return [
 //            'route' => 'file/<action>',
 //        ],
         [
+            'pattern' => 'sitemap.xml',
+            'route' => 'site/sitemap-xml'
+        ],
+        [
+            'pattern' => 'core/<controller>/<action>',
+            'route' => 'core/<controller>/<action>'
+        ],
+        [
+            'pattern' => '<action:(contact-submit|contact-success|search)>',
+            'route' => 'site/<action>'
+        ],
+        [
             'pattern' => 'user/<controller:(sign-in)>/<action:[\w\-]+>',
             'route' => 'user/<controller>/<action>',
         ],
@@ -24,34 +36,9 @@ return [
             'route' => 'content-tree/hide-section',
         ],
         [
-            'pattern' => 'content-tree/get-alias-path',
-            'route' => 'content-tree/get-alias-path',
-        ],
-        [
             'pattern' => '<nodes:.*>',
             'route' => 'content-tree/index',
             'encodeParams' => false,
         ],
-        [
-            'pattern' => 'content-tree/get-tree',
-            'route' => 'content-tree/get-tree',
-        ],
-        [
-            'pattern' => 'content-tree/link-tree',
-            'route' => 'content-tree/link-tree',
-        ],
-
-//        // Pages
-//        ['pattern' => 'page/<slug>', 'route' => 'page/view'],
-//
-//        // Articles
-//        ['pattern' => 'article/index', 'route' => 'article/index'],
-//        ['pattern' => 'article/attachment-download', 'route' => 'article/attachment-download'],
-//        ['pattern' => 'article/<slug>', 'route' => 'article/view'],
-
-        // Sitemap
-//        ['pattern' => 'sitemap.xml', 'route' => 'site/sitemap', 'defaults' => ['format' => Sitemap::FORMAT_XML]],
-//        ['pattern' => 'sitemap.txt', 'route' => 'site/sitemap', 'defaults' => ['format' => Sitemap::FORMAT_TXT]],
-//        ['pattern' => 'sitemap.xml.gz', 'route' => 'site/sitemap', 'defaults' => ['format' => Sitemap::FORMAT_XML, 'gzip' => true]],
     ]
 ];

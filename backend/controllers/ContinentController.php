@@ -2,10 +2,10 @@
 
 namespace backend\controllers;
 
-use apollo11\lobicms\models\Language;
-use apollo11\lobicms\web\BackendController;
+use intermundia\yiicms\models\Language;
+use intermundia\yiicms\web\BackendController;
 use Yii;
-use apollo11\lobicms\models\Continent;
+use intermundia\yiicms\models\Continent;
 use backend\models\search\ContinentSearch;
 use yii\helpers\ArrayHelper;
 use yii\web\NotFoundHttpException;

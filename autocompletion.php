@@ -24,6 +24,8 @@ class Yii extends \yii\BaseYii
  * @property yii\web\UrlManager $urlManagerStorage UrlManager for storage application.
  * @property trntv\glide\components\Glide $glide
  * @property trntv\bus\CommandBus $commandBus
+ * @property \intermundia\yiicms\components\MultiSiteCore $multiSiteCore
+ * @property \intermundia\yiicms\components\ContentTree $contentTree
  */
 abstract class BaseApplication extends yii\base\Application
 {
@@ -35,13 +37,15 @@ abstract class BaseApplication extends yii\base\Application
  *
  * @property User $user User component.
  */
-class WebApplication extends \apollo11\lobicms\web\Application
+class WebApplication extends \intermundia\yiicms\web\Application
 {
 }
 
 /**
  * Class ConsoleApplication
  * Include only Console application related components here
+ *
+ * @property \intermundia\yiicms\components\MultiSiteCore $multiSiteCore
  */
 class ConsoleApplication extends yii\console\Application
 {
@@ -51,8 +55,8 @@ class ConsoleApplication extends yii\console\Application
  * User component
  * Include only Web application related components here
  *
- * @property \apollo11\lobicms\models\User $identity User model.
- * @method \apollo11\lobicms\models\User getIdentity() returns User model.
+ * @property \intermundia\yiicms\models\User $identity User model.
+ * @method \intermundia\yiicms\models\User getIdentity() returns User model.
  */
 class User extends \yii\web\User
 {

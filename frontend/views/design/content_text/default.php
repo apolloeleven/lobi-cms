@@ -5,18 +5,23 @@
  * Time: 7:18 PM
  */
 
-/** @var $this \yii\web\View */
+/** @var $this \intermundia\yiicms\web\View */
 /** @var $contentTreeItem \frontend\models\ContentTree */
 /** @var $index integer */
-/** @var $model \apollo11\lobicms\models\ContentText */
+/** @var $model \intermundia\yiicms\models\ContentText */
 
-
+$page = $this->contentTreeObject;
 ?>
 
-<div class="container" <?php echo $contentTreeItem->getEditableAttributesForSection('section'); ?>>
+<div id="id_<?php echo $contentTreeItem->id ?>" <?php echo $contentTreeItem->getEditableAttributesForSection('section'); ?>>
+    <h2><?php echo $model->activeTranslation->name; ?></h2>
     <div class="xmlblock-wrapper">
-        <div class="xmlblock" <?php echo $contentTreeItem->getEditableAttributes('multi_line','rich-text') ?>>
+        <div class="xmlblock" <?php echo $contentTreeItem->getEditableAttributes('multi_line', 'rich-text') ?>>
             <?php echo $model->activeTranslation->multi_line; ?>
         </div>
     </div>
+    <?php echo $this->render('@frontend/views/content-tree/list', [
+        'viewFile' => null,
+        'contentTreeItem' => $contentTreeItem
+    ]); ?>
 </div>

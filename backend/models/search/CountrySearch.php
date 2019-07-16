@@ -2,13 +2,13 @@
 
 namespace backend\models\search;
 
-use apollo11\lobicms\models\CountryTranslation;
+use intermundia\yiicms\models\CountryTranslation;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use apollo11\lobicms\models\Country;
+use intermundia\yiicms\models\Country;
 
 /**
- * CountrySearch represents the model behind the search form about `apollo11\lobicms\models\Country`.
+ * CountrySearch represents the model behind the search form about `intermundia\yiicms\models\Country`.
  */
 class CountrySearch extends Country
 {

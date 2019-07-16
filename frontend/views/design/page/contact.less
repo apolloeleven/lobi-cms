@@ -1,0 +1,142 @@
+.site-contact {
+  p {
+    margin: 0;
+  }
+
+  .form-control {
+    height: auto;
+    padding: 12px 16px;
+  }
+
+  .control-label-wrapper {
+    //background-color: #F9F9F9;
+    color: #003D60;
+    position: relative;
+    display: block;
+    font-size: 14px;
+    height: 24px;
+    margin-bottom: -24px;
+    padding: 5px 0;
+
+    .control-label {
+      //display: none;
+      position: relative;
+      margin-left: 10px;
+      top: 2px;
+      //padding-top: 5px;
+      //width: 10%;
+    }
+
+  }
+
+  .contact-heading {
+    margin-top: 90px;
+    margin-bottom: 70px;
+  }
+
+  .form-group-confirm {
+    button {
+      padding-left: 48px;
+      padding-right: 48px;
+    }
+  }
+
+  //.contact-info {
+  //  margin-bottom: 40px;
+  //}
+
+  .field-contactform-verifycheckbox {
+    margin-bottom: 50px;
+
+
+    //margin-top: 20px;
+    width: 100%;
+    display: inline-block;
+    position: relative;
+    font-size: 17px;
+
+    .checkbox {
+      margin: 0;
+      label{
+        padding-left: 0;
+      }
+    }
+
+    .checkbox-message {
+      vertical-align: middle;
+      font-weight: 300;
+    }
+  }
+
+
+  #contactform-verifycheckbox {
+    position: absolute;
+    opacity: 0;
+    width: 25px;
+    height: 25px;
+
+    & + label {
+      position: relative;
+      cursor: pointer;
+      padding: 0;
+    }
+
+    & + label:before {
+      content: '';
+      margin-right: 10px;
+      display: inline-block;
+      vertical-align: text-top;
+      width: 25px;
+      height: 25px;
+      color: white;
+      font-family: FontAwesome;
+      font-style: normal;
+      text-align: center;
+      border: 1px solid #009EE3;
+    }
+
+    &:checked + label:before {
+      content: '\f00c';
+      background: #009EE3;
+    }
+
+
+    &:checked + label:after {
+      content: '';
+      position: absolute;
+      left: 5px;
+      top: 9px;
+      width: 2px;
+      height: 2px;
+    }
+  }
+
+  @media (max-width: @screen-md-max) {
+    .contact-disclaimer, .contact-body {
+      //padding-right: 26%;
+    }
+  }
+  @media (max-width: @screen-sm-max) {
+    .contact-disclaimer,
+    .contact-body {
+      //padding-right: 0;
+    }
+
+    .contact-disclaimer {
+      font-size: 17px;
+    }
+  }
+  @media (max-width: @screen-xs-max) {
+    .checkbox-message {
+      display: inline-block;
+      margin-top: -28px;
+      padding-left: 40px;
+      //padding-right: 80px;
+    }
+
+    .contact-disclaimer, .contact-body {
+      padding-right: 15px;
+    }
+  }
+}
+

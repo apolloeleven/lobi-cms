@@ -69,7 +69,7 @@ class Source extends ActiveRecord
     public function getTranslation($language)
     {
         foreach ($this->translations as $translation) {
-            if ($translation->language == $language) return $translation;
+            if (str_replace('-', '_', $translation->language) == $language) return $translation;
         }
 
         return null;

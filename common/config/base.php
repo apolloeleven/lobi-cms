@@ -1,6 +1,6 @@
 <?php
 $config = [
-    'name' => 'LobiCMS',
+    'name' => 'lobi-cms.en',
     'vendorPath' => __DIR__ . '/../../vendor',
     'extensions' => require(__DIR__ . '/../../vendor/yiisoft/extensions.php'),
     'sourceLanguage' => 'en',
@@ -18,9 +18,39 @@ $config = [
             'assignmentTable' => '{{%rbac_auth_assignment}}',
             'ruleTable' => '{{%rbac_auth_rule}}'
         ],
+        'ckEditorStyles' => [
+            'class' => \intermundia\yiicms\components\CKEditorComponent::class,
+            'customStyles' => [
+
+            ]
+        ],
         'contentTree' => [
-            'class' => \apollo11\lobicms\components\ContentTree::class,
-            'customViews' => []
+            'class' => \intermundia\yiicms\components\ContentTree::class,
+            'editableContent' => [
+                \common\models\ContentTree::TABLE_NAME_PAGE => [
+                    'class' => \common\models\Page::class,
+                ],
+                \common\models\ContentTree::TABLE_NAME_CONTENT_TEXT => [
+                    'class' => \common\models\ContentText::class,
+                ],
+                \common\models\ContentTree::TABLE_NAME_VIDEO_SECTION => [
+                    'class' => \common\models\VideoSection::class,
+                ],
+                \common\models\ContentTree::TABLE_NAME_WEBSITE => [
+                    'class' => \common\models\Website::class,
+                ],
+            ],
+            'customViews' => [
+                \common\models\ContentTree::TABLE_NAME_PAGE => [
+                    'home' => Yii::t('common', 'Home'),
+                    'contact' => Yii::t('common', 'Contact'),
+                    'sitemap' => Yii::t('common', 'Sitemap'),
+                ],
+                \common\models\ContentTree::TABLE_NAME_SECTION => [
+                ],
+                \common\models\ContentTree::TABLE_NAME_CONTENT_TEXT => [
+                ]
+            ]
         ],
         'cache' => [
             'class' => yii\caching\FileCache::class,
@@ -39,7 +69,7 @@ $config = [
         ],
 
         'formatter' => [
-            'class' => \apollo11\lobicms\i18n\Formatter::class,
+            'class' => \intermundia\yiicms\i18n\Formatter::class,
             'sizeFormatBase' => 1000
         ],
 
@@ -56,7 +86,7 @@ $config = [
             'class' => yii\swiftmailer\Mailer::class,
             'messageConfig' => [
                 'charset' => 'UTF-8',
-                'from' => env('ADMIN_EMAIL')
+                'from' => env('ROBOT_EMAIL')
             ],
             'transport' => [
                 'class' => 'Swift_SmtpTransport',
@@ -83,7 +113,7 @@ $config = [
             'traceLevel' => YII_DEBUG ? 15 : 0,
             'targets' => [
                 'db' => [
-                    'class' => 'yii\log\DbTarget',
+                    'class' => \yii\log\DbTarget::class,
                     'levels' => ['error', 'warning'],
                     'except' => ['yii\web\HttpException:*', 'yii\i18n\I18N\*'],
                     'prefix' => function () {
@@ -102,6 +132,10 @@ $config = [
                     'class' => yii\i18n\PhpMessageSource::class,
                     'basePath' => '@common/messages',
                 ],
+                'yii' => [
+                    'class' => yii\i18n\PhpMessageSource::class,
+                    'basePath' => '@common/messages',
+                ],
 //                '*' => [
 //                    'class' => yii\i18n\PhpMessageSource::class,
 //                    'basePath' => '@common/messages',
@@ -114,7 +148,7 @@ $config = [
 //                ],
                 //Uncomment this code to use DbMessageSource
                 '*' => [
-                    'class' => 'yii\i18n\DbMessageSource',
+                    'class' => 'intermundia\yiicms\i18n\DbMessageSource',
                     'sourceMessageTable' => '{{%i18n_source_message}}',
                     'messageTable' => '{{%i18n_message}}',
                     'enableCaching' => YII_ENV_DEV,
@@ -169,25 +203,46 @@ $config = [
         ],
 
         'view' => [
-            'class' => \apollo11\lobicms\web\View::class,
+            'class' => \intermundia\yiicms\web\View::class,
+        ],
+        'multiSiteCore' => [
+            'class' => \intermundia\yiicms\components\MultiSiteCore::class,
+            'websites' => require(__DIR__ . '/multisite_websites.php')
         ],
     ],
     'params' => [
         'adminEmail' => env('ADMIN_EMAIL'),
         'robotEmail' => env('ROBOT_EMAIL'),
+        'ccEmail' => env('CC_EMAIL'),
+        'bccEmail' => env('BCC_EMAIL'),
         'availableLocales' => [
             'en' => 'English (US)',
             'de' => 'German',
         ],
     ],
+    'on beforeRequest' => function () {
+        Yii::$app->mailer->transport->setUsername(env('SMTP_USERNAME'));
+        Yii::$app->mailer->transport->setPassword(env('SMTP_PASSWORD'));
+    }
 ];
 
 if (YII_ENV_PROD) {
-    $config['components']['log']['targets']['email'] = [
-        'class' => yii\log\EmailTarget::class,
+    $config['components']['log']['targets']['slack'] = [
+        'class' => \apollo11\logger\SlackTarget::class,
         'except' => ['yii\web\HttpException:*'],
-        'levels' => ['error', 'warning'],
-        'message' => ['from' => env('ROBOT_EMAIL'), 'to' => env('ADMIN_EMAIL')]
+        'webhookUrl' => env("SLACK_WEBHOOK_URL"),
+        'levels' => ['error'],
+        'title_link' => Yii::getAlias('@backendUrl'),
+        'async' => false,
+        'consoleAppPath' => Yii::getAlias('@console/yii'),
+        'username' => 'Error Logs',
+        'excludeKeys' => [
+            '*DB*',
+            '*PASSWORD*',
+            'SMTP_*',
+            '*KEY*',
+            'SLACK_WEBHOOK_URL'
+        ]
     ];
 }
 
