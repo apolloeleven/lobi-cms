@@ -11,5 +11,6 @@
 /** @var $model \intermundia\yiicms\models\Page */
 
 ?>
-
-{{content}}
+<div class="container">
+    {{content}}
+</div>

@@ -40,8 +40,7 @@ $contentTreePage = $this->contentTreeObject;
 
 </head>
 
-<body data-spy="scroll" data-target="#sidebar"
-      class="<?php echo $contentTreePage ? $contentTreePage->getCssClass() : '' ?> <?php echo Yii::$app->user->canEditContent() ? 'content-editable' : '' ?>">
+<body class="<?php echo $contentTreePage ? $contentTreePage->getCssClass() . ' ' . $contentTreePage->getCustomCssClass() : '' ?> <?php echo Yii::$app->user->canEditContent() ? 'content-editable' : '' ?>">
 <?php $this->beginBody() ?>
 <?php echo $content ?>
 <?php $this->endBody() ?>

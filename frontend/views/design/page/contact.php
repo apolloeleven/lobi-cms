@@ -20,11 +20,6 @@ $contactFormModel = new ContactForm();
     </div>
     <div class="row">
         <div class="col-xs-12 col-md-8">
-            <!--            <p class="">If you have any questions or suggestions feel free to contact us by submitting-->
-            <!--                the-->
-            <!--                contact form below.</p>-->
-            <!--            <p>* = Required input.</p>-->
-
             <?php echo $this->render('@frontend/views/site/contact', [
                 'contactFormModel' => $contactFormModel,
                 'model' => $model
