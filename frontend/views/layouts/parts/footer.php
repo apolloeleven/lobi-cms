@@ -13,7 +13,7 @@ $logoImages = Yii::$app->websiteContentTree->getModel()->activeTranslation->logo
         <div class="container">
             <div class="row">
                 <div class="col-sm-12 col-md-6 col-md-push-3 footer-navigation">
-                    <ul class="">
+                    <ul>
                         <?php foreach ($items as $item): ?>
                             <li>
                                 <a href="<?php echo $item->getPageUrl(true); ?>"><?php echo $item->activeTranslation->name; ?></a>

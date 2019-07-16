@@ -103,12 +103,17 @@ header {
     border: none;
 
     .navbar-nav {
-      background-color: @brand-primary;
 
       > li {
+        background-color: @brand-primary;
         //display: table-cell;
         //width: 1%;
         //float: none;
+        &.active {
+          a {
+            background-color: @secondary-color;
+          }
+        }
 
         > a {
           font-weight: 400;
