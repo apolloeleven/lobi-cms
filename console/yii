@@ -23,5 +23,5 @@ $config = \yii\helpers\ArrayHelper::merge(
     require(__DIR__ . '/config/console.php')
 );
 
-$exitCode = (new yii\console\Application($config))->run();
+$exitCode = (new intermundia\yiicms\console\Application($config))->run();
 exit($exitCode);

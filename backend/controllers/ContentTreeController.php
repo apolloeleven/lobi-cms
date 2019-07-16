@@ -14,7 +14,7 @@ namespace backend\controllers;
  * @author Zura Sekhniashvili <zurasekhniashvili@gmail.com>
  * @package backend\controllers
  */
-class ContentTreeController extends \apollo11\lobicms\controllers\ContentTreeController
+class ContentTreeController extends \intermundia\yiicms\controllers\ContentTreeController
 {
 
 }

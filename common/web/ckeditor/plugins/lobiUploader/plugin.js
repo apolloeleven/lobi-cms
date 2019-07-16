@@ -1,5 +1,3 @@
-//TODO change icon image path. Now it comes from backend web/img/ck-editor
-
 CKEDITOR.plugins.add('lobiUploader', {
     icons: 'lobiUploader',
     init: function (editor) {
@@ -8,120 +6,58 @@ CKEDITOR.plugins.add('lobiUploader', {
             label: 'Choose images',
             command: 'lobiUploader',
             toolbar: 'insert',
-            icon : this.path + 'images/icon.png'
+            icon: this.path + 'images/icon.png'
         });
     }
 });
 
 CKEDITOR.dialog.add('lobiUploaderDialog', function (editor) {
-
-    var pictureTagImageCount = editor.config.pictureTagImageCount;
-    var lobiUploaderDialogElements = [];
-
-    function processMediaText(maxWidth, minWidth) {
-        var mediaText = "";
-        if (maxWidth && minWidth) {
-            mediaText = "(min-width: " + minWidth + "px) and (max-width: " + maxWidth + "px)";
-        } else if (minWidth) {
-            mediaText = "(min-width: " + minWidth + "px)";
-        } else if (maxWidth) {
-            mediaText = "(max-width: " + maxWidth + "px)";
-        }
-
-        return mediaText;
-    }
-
-    lobiUploaderDialogElements.push({
-        type: 'hbox',
-        widths: ['100%'],
-        children: [
-            {
-                type: 'text',
-                id: 'id-alt-text',
-                label: 'Alt Text'
-            }
-        ]
-    });
-
-    for (let i = 1; i <= pictureTagImageCount; i++) {
-        var topRow = {
-            type: 'hbox',
-            widths: ['100%'],
-            children: [
-                {
-                    type: 'checkbox',
-                    id: 'id-is-default-' + i,
-                    label: 'Default',
-                    onClick: function () {
-                        for (var i = 1; i <= pictureTagImageCount; i++) {
-                            var checkbox = CKEDITOR.dialog.getCurrent().getContentElement('main-tab', 'id-is-default-' + i);
-                            if (checkbox.id !== this.id) {
-                                checkbox.setValue(false);
-                            }
-                        }
-                    }
-                }
-            ]
-        };
-        var bottomRow = {
-            type: 'hbox',
-            widths: ['55', '15%', '15%', '15%'],
-            children: [
-                {
-                    type: 'text',
-                    id: 'id-url-' + i,
-                    label: "Url"
-                },
-                {
-                    type: 'text',
-                    id: 'id-max-width-' + i,
-                    label: "Max width"
-                },
-                {
-                    type: 'text',
-                    id: 'id-min-width-' + i,
-                    label: "Min width"
-                },
-                {
-                    type: 'button',
-                    hidden: true,
-                    id: 'id-filebrowser' + i,
-                    style: 'margin-top: 20px',
-                    label: "Browse",
-                    filebrowser: {
-                        action: 'Browse',
-                        onSelect: function (fileUrl, data) {
-                            var urlInputElement = CKEDITOR.dialog.getCurrent().getContentElement('main-tab', 'id-url-' + i);
-                            urlInputElement.setValue(fileUrl);
-                        }
-                    }
-                },
-            ]
-        };
-
-        lobiUploaderDialogElements.push(topRow);
-        lobiUploaderDialogElements.push(bottomRow);
-    }
-
-    lobiUploaderDialogElements.push({
-        id: 'picture',
-        type: 'text',
-        html: '',
-        style: 'visibility: hidden',
-        setup: function (element) {
-            console.log(element);
-        }
-    });
-
     return {
         title: 'Lobi Uploader',
-        minWidth: 600,
-        minHeight: 300,
+        minWidth: 450,
+        minHeight: 150,
         contents: [
             {
                 id: 'main-tab',
                 label: 'Basic Settings',
-                elements: lobiUploaderDialogElements
+                elements: [
+                    {
+                        type: 'text',
+                        id: 'id-alt-text',
+                        label: 'Alt text'
+                    },
+                    {
+                        type: 'hbox',
+                        widths: ['80%', '20%'],
+                        children: [
+                            {
+                                type: 'text',
+                                id: 'id-url',
+                                label: "Url"
+                            },
+                            {
+                                type: 'button',
+                                hidden: true,
+                                id: 'id-filebrowser',
+                                style: 'margin-top: 20px',
+                                label: "Browse",
+                                filebrowser: {
+                                    action: 'Browse',
+                                    onSelect: function (fileUrl, data) {
+                                        var urlInputElement = CKEDITOR.dialog.getCurrent().getContentElement('main-tab', 'id-url');
+                                        urlInputElement.setValue(fileUrl);
+                                    }
+                                }
+                            },
+                        ]
+                    },
+                    {
+                        id: 'picture',
+                        type: 'text',
+                        html: '',
+                        style: 'visibility: hidden',
+                    }
+                ]
             }
         ],
         onShow: function () {
@@ -129,131 +65,75 @@ CKEDITOR.dialog.add('lobiUploaderDialog', function (editor) {
             var element = selection.getStartElement();
             var pictureTag = element.$;
 
-            var imgArray = [];
-            var defaultImage = null;
-
             for (var i = 0; i < pictureTag.childNodes.length; i++) {
                 var child = pictureTag.childNodes[i];
-
-                if (child.localName === 'source') {
-                    imgArray.push({
-                        url: child.srcset,
-                        default: false,
-                        media: child.media,
-                        position: child.getAttribute('position')
-                    });
-                } else if (child.localName === 'img') {
-                    defaultImage = {
-                        url: child.src,
-                        default: true,
-                        media: null,
-                        position: child.getAttribute('position'),
-                        altText: child.getAttribute('alt')
-                    };
+                if (child.localName === 'img') {
+                    var urlInputElement = CKEDITOR.dialog.getCurrent().getContentElement('main-tab', 'id-url');
+                    var altTextInputElement = CKEDITOR.dialog.getCurrent().getContentElement('main-tab', 'id-alt-text');
+                    urlInputElement.setValue(child.src);
+                    altTextInputElement.setValue(child.getAttribute('alt'));
                 }
             }
-
-            if (defaultImage) {
-                var urlInputElement = CKEDITOR.dialog.getCurrent().getContentElement('main-tab', 'id-url-' + defaultImage.position);
-                var checkbox = CKEDITOR.dialog.getCurrent().getContentElement('main-tab', 'id-is-default-' + defaultImage.position);
-                var altTextInput = CKEDITOR.dialog.getCurrent().getContentElement('main-tab', 'id-alt-text');
-                altTextInput.setValue(defaultImage.altText);
-                urlInputElement.setValue(defaultImage.url);
-                checkbox.setValue(true);
-            }
-
-            if (imgArray.length) {
-
-                for (var i = 0; i < imgArray.length; i++) {
-
-                    urlInputElement = CKEDITOR.dialog.getCurrent().getContentElement('main-tab', 'id-url-' + imgArray[i].position);
-                    checkbox = CKEDITOR.dialog.getCurrent().getContentElement('main-tab', 'id-is-default-' + imgArray[i].position);
-                    var maxWidthInput = CKEDITOR.dialog.getCurrent().getContentElement('main-tab', 'id-max-width-' + imgArray[i].position);
-                    var minWidthInput = CKEDITOR.dialog.getCurrent().getContentElement('main-tab', 'id-min-width-' + imgArray[i].position);
-
-                    urlInputElement.setValue(imgArray[i].url);
-                    checkbox.setValue(false);
-
-                    var maxWidthRegex = /max\-width:\s*(\d+)px/;
-                    var minWidthRegex = /min\-width:\s*(\d+)px/;
-
-                    var minWidthResult = imgArray[i].media.match(minWidthRegex);
-                    var maxWidthResult = imgArray[i].media.match(maxWidthRegex);
-
-                    if (minWidthResult) {
-                        minWidthInput.setValue(minWidthResult[1]);
-                    }
-
-                    if (maxWidthResult) {
-                        maxWidthInput.setValue(maxWidthResult[1]);
-                    }
-
-                }
-            }
-
-            console.log(imgArray);
-            console.log(defaultImage);
         },
         onOk: function () {
             var dialog = this;
 
-            var imgArray = [];
-            var defaultImage = false;
+            var urlInputElement = dialog.getContentElement('main-tab', 'id-url');
+            var altTextInput = dialog.getContentElement('main-tab', 'id-alt-text');
 
-            for (var i = 1; i <= pictureTagImageCount; i++) {
+            var imgUrl = urlInputElement.getValue();
+            var altText = altTextInput.getValue();
 
-                var urlInputElement = dialog.getContentElement('main-tab', 'id-url-' + i);
-                var checkbox = dialog.getContentElement('main-tab', 'id-is-default-' + i);
-                var maxWidth = dialog.getContentElement('main-tab', 'id-max-width-' + i);
-                var minWidth = dialog.getContentElement('main-tab', 'id-min-width-' + i);
+            if (imgUrl) {
 
-                var urlInputElementValue = urlInputElement.getValue();
-                var isDefault = checkbox.getValue();
-                var maxWidthValue = maxWidth.getValue();
-                var minWidthValue = minWidth.getValue();
+                var result = imgUrl.match(/(.+)(extra\-small|small|large|medium)(%402x)?(\.\w{2,5})$/);
 
-                if (!urlInputElementValue || (!isDefault && !maxWidthValue && !minWidthValue)) {
-                    continue;
+                if (!result || !result[0]) {
+                    return;
                 }
 
-                if (isDefault) {
-                    defaultImage = {
-                        url: urlInputElementValue,
-                        default: isDefault,
-                        maxWidth: maxWidthValue,
-                        minWidth: minWidthValue,
-                        position: i
-                    };
-                    continue;
-                }
+                var url = imgUrl.replace(/(.+)(extra-small)(%402x)?(\.\w{2,5})$/, '$1small$4');
 
-                imgArray.push({
-                    url: urlInputElementValue,
-                    default: isDefault,
-                    maxWidth: maxWidthValue,
-                    minWidth: minWidthValue,
-                    position: i
-                });
-            }
+                var regex = /(.+)(small|large|medium)(%402x)?(\.\w{2,5})$/;
 
+                var extraSmallImg = url.replace(regex, '$1extra-small$4');
+                var mediumImg = url.replace(regex, '$1medium$4');
+                var largeImg = url.replace(regex, '$1large$4');
+                var smallImg = url.replace(regex, '$1small$4');
 
-            if (imgArray.length) {
-                if (!defaultImage) {
-                    defaultImage = imgArray.shift();
-                }
+                var extraSmallImgRetina = url.replace(regex, '$1extra-small@2x$4');
+                var mediumImgRetina = url.replace(regex, '$1medium@2x$4');
+                var largeImgRetina = url.replace(regex, '$1large@2x$4');
+                var smallImgRetina = url.replace(regex, '$1small@2x$4');
 
-                var pictureTag = "";
-                var altTextValue = dialog.getContentElement('main-tab', 'id-alt-text').getValue();
+                var content = [];
 
-                for (var i = 0; i < imgArray.length; i++) {
-                    var mediaText = processMediaText(imgArray[i].maxWidth, imgArray[i].minWidth);
-                    pictureTag += "\n\t <source media='" + mediaText + "' srcset='" + imgArray[i].url + "' position='" + imgArray[i].position + "'/>";
-                }
-                pictureTag += "\n\t <img src='" + defaultImage.url + "' position='" + defaultImage.position + "' alt='" + altTextValue + "'>";
+                var mediaInnerText = "only screen and (-webkit-min-device-pixel-ratio: 2)," +
+                    "only screen and (   min--moz-device-pixel-ratio: 2)," +
+                    "only screen and (     -o-min-device-pixel-ratio: 2/1)," +
+                    "only screen and (        min-device-pixel-ratio: 2)," +
+                    "only screen and (                min-resolution: 192dpi)," +
+                    "only screen and (                min-resolution: 2dppx)";
 
-                var customHtmlElement = CKEDITOR.document.createElement('picture');
-                customHtmlElement.setHtml(pictureTag);
-                editor.insertElement(customHtmlElement);
+                content.push(`\n\t <source media='${mediaInnerText}' srcset='${largeImgRetina}'/>`);
+
+                content.push(`\n\t <source media='(max-width: 768px) and ${mediaInnerText}' srcset='${extraSmallImgRetina}'/>`);
+                content.push(`\n\t <source media='(max-width: 768px)' srcset='${extraSmallImg}'/>`);
+
+                content.push(`\n\t <source media='(max-width: 992px) and ${mediaInnerText}' srcset='${smallImgRetina}'/>`);
+                content.push(`\n\t <source media='(max-width: 992px)' srcset='${smallImg}'/>`);
+
+                content.push(`\n\t <source media='(max-width: 1200px) and ${mediaInnerText}' srcset='${mediumImgRetina}'/>`);
+                content.push(`\n\t <source media='(max-width: 1200px)' srcset='${mediumImg}'/>`);
+
+                content.push(`\n\t <img alt="${altText}" src="${largeImg}"/>`);
+
+                var pictureElement = CKEDITOR.document.createElement('picture');
+
+                console.log(content);
+
+                pictureElement.setHtml(content.join(''));
+                editor.insertElement(pictureElement);
             }
         }
     }

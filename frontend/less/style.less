@@ -1,22 +1,28 @@
+
+
 @view-path: "../views";
 @bootstrap-path: "../../vendor/bower-asset/bootstrap";
 
 @import "@{bootstrap-path}/less/variables";
 @import "@{bootstrap-path}/less/mixins";
 @import "bootstrap-variables";
+@import "override/index";
+
+@import "fonts";
+@import "global";
+@import "variables";
+@import "helpers";
+@import "xmlblock";
+@import "content-editing";
+@import "ckeditor";
 
 @import "@{view-path}/layouts/index";
-
 @import "@{view-path}/design/carousel/index";
+@import "@{view-path}/design/carousel_item/index";
 @import "@{view-path}/design/content_text/index";
 @import "@{view-path}/design/page/index";
 @import "@{view-path}/design/section/index";
+@import "@{view-path}/design/teaser/index";
 @import "@{view-path}/design/video_section/index";
 
-@import "variables";
-//@import "mixins";
-@import "helpers";
-@import "xmlblock";
-//@import "main";
-@import "content-editing";
-
+@import "@{view-path}/site/index";

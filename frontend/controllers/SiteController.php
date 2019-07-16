@@ -2,16 +2,14 @@
 
 namespace frontend\controllers;
 
-use cheatsheet\Time;
-use common\sitemap\ArticleUrlGenerator;
-use common\sitemap\PageUrlGenerator;
-use common\sitemap\UrlsIterator;
+use intermundia\yiicms\models\Search;
+use common\models\Page;
+use common\models\Website;
 use frontend\models\ContactForm;
-use Sitemaped\Element\Urlset\Urlset;
-use Sitemaped\Sitemap;
+use frontend\models\ContentTree;
 use Yii;
-use yii\filters\PageCache;
-use yii\web\BadRequestHttpException;
+use yii\data\ArrayDataProvider;
+use yii\helpers\Url;
 use yii\web\Controller;
 use yii\web\Response;
 
@@ -20,20 +18,6 @@ use yii\web\Response;
  */
 class SiteController extends Controller
 {
-    /**
-     * @return array
-     */
-    public function behaviors()
-    {
-        return [
-            [
-                'class' => PageCache::class,
-                'only' => ['sitemap'],
-                'duration' => Time::SECONDS_IN_AN_HOUR,
-            ]
-        ];
-    }
-
     /**
      * @inheritdoc
      */
@@ -55,70 +39,89 @@ class SiteController extends Controller
     }
 
     /**
-     * @return string
+     * @return string|Response
      */
-    public function actionIndex()
+    public function actionContactSubmit()
     {
-        return $this->render('index');
+        $websiteContentTree = Yii::$app->websiteContentTree->getModel();
+        $adminEmail = $websiteContentTree->activeTranslation->admin_email ?: Yii::$app->params['adminEmail'];
+        $model = new ContactForm();
+        if ($model->load(Yii::$app->request->post())) {
+            if ($model->contact($adminEmail)) {
+//                Yii::$app->getSession()->setFlash('alert', [
+//                    'body' => Yii::t('frontend', 'Thank you for contacting us. We will respond to you as soon as possible.'),
+//                    'options' => ['class' => 'alert-success']
+//                ]);
+                return $this->render('contact_success');
+            }
+        }
+
+        $page = Page::find()
+            ->byId(Yii::$app->request->post('page_id'))
+            ->notDeleted()
+            ->one();
+        return $this->render('contact', [
+            'contactFormModel' => $model,
+            'model' => $page
+        ]);
     }
 
     /**
      * @return string|Response
      */
-    public function actionContact()
+    public function actionContactSuccess()
     {
-        $model = new ContactForm();
-        if ($model->load(Yii::$app->request->post())) {
-            if ($model->contact(Yii::$app->params['adminEmail'])) {
-                Yii::$app->getSession()->setFlash('alert', [
-                    'body' => Yii::t('frontend', 'Thank you for contacting us. We will respond to you as soon as possible.'),
-                    'options' => ['class' => 'alert-success']
-                ]);
-                return $this->refresh();
-            } else {
-                Yii::$app->getSession()->setFlash('alert', [
-                    'body' => \Yii::t('frontend', 'There was an error sending email.'),
-                    'options' => ['class' => 'alert-danger']
-                ]);
-            }
+        return $this->render('contact_success');
+    }
+
+    public function actionSitemapXml()
+    {
+        Yii::$app->response->format = Response::FORMAT_XML;
+
+        $items = ContentTree::find()
+            ->notHidden()
+            ->notDeleted()
+            ->andWhere(['<=', 'depth', 3])
+            ->andWhere('table_name = :page')
+            ->params([
+                'page' => ContentTree::TABLE_NAME_PAGE,
+            ])
+            ->orderBy('lft')
+            ->all();
+
+        $sitemapItems = [];
+        foreach ($items as $item) {
+            $sitemapItems[] = [
+                'changefreq' => 'daily',
+                'url' => $item->getUrl(false, true),
+                'priority' => 1 - ($item->depth - 1) / 10
+            ];
         }
 
-        return $this->render('contact', [
-            'model' => $model
-        ]);
+        return $sitemapItems;
     }
 
     /**
-     * @param string $format
-     * @param bool $gzip
+     *
+     *
      * @return string
+     * @author Zura Sekhniashvili <zurasekhniashvili@gmail.com>
      */
-    public function actionSitemap($format = Sitemap::FORMAT_XML, $gzip = false)
+    public function actionSearch()
     {
-        $links = new UrlsIterator();
-        $sitemap = new Sitemap(new Urlset($links));
+        $searchModel = new Search();
+        $query = $searchModel->search(Yii::$app->request->queryParams);
 
-        Yii::$app->response->format = Response::FORMAT_RAW;
+        $dataProvider = new ArrayDataProvider([
+            'allModels' => $query->all(),
+            'pagination' => [
+                'pageSize' => 5
+            ]
+        ]);
 
-        if ($gzip === true) {
-            Yii::$app->response->headers->add('Content-Encoding', 'gzip');
-        }
-
-        if ($format === Sitemap::FORMAT_XML) {
-            Yii::$app->response->headers->add('Content-Type', 'application/xml');
-            $content = $sitemap->toXmlString($gzip);
-        } else if ($format === Sitemap::FORMAT_TXT) {
-            Yii::$app->response->headers->add('Content-Type', 'text/plain');
-            $content = $sitemap->toTxtString($gzip);
-        } else {
-            throw new BadRequestHttpException('Unknown format');
-        }
-
-        $linksCount = $sitemap->getCount();
-        if ($linksCount > 50000) {
-            Yii::warning(\sprintf('Sitemap links count is %d'), $linksCount);
-        }
-
-        return $content;
+        return $this->render('search', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
     }
 }

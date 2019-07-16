@@ -9,10 +9,11 @@
 namespace frontend\widgets;
 
 
-use apollo11\lobicms\models\ContentTree;
-use apollo11\lobicms\models\Search;
+use intermundia\yiicms\models\Search;
+use frontend\models\ContentTree;
 use yii\data\ArrayDataProvider;
 use yii\helpers\Html;
+use yii\helpers\StringHelper;
 use yii\widgets\ListView;
 
 class SearchView extends ListView
@@ -24,23 +25,12 @@ class SearchView extends ListView
     public $dataProvider;
     public $searchableWord;
 
-    /**
-     * @inheritdoc
-     * @throws \yii\base\InvalidConfigException
-     */
     public function init()
     {
         $this->dataProvider->allModels = self::processSearchModels($this->dataProvider->allModels);
         parent::init();
     }
 
-    /**
-     *
-     *
-     * @author Zura Sekhniashvili <zurasekhniashvili@gmail.com>
-     * @param Search[] $models
-     * @return array
-     */
     private static function processSearchModels($models)
     {
         $allModels = [];
@@ -57,7 +47,7 @@ class SearchView extends ListView
                     continue;
                 }
 
-                if (isset($allModels[$page->id])){
+                if (isset($allModels[$page->id])) {
                     continue;
                 }
                 $allModels[$page->id] = [$page, $model];
@@ -79,12 +69,11 @@ class SearchView extends ListView
     {
         foreach ($this->dataProvider->getModels() as $modelItem) {
 
-            /** @var ContentTree $contentTreePage */
             list($contentTreePage, $model) = $modelItem;
 
             $titleHeader = Html::tag('h3', Html::a($contentTreePage->getName(), $contentTreePage->getUrl()));
 //                $contentDiv = Html::tag('div', $model->content);
-            $contentDiv = Html::tag('div', $this->getSearchResult($this->searchableWord, $model->content));
+            $contentDiv = Html::tag('div', $this->myDetect($this->searchableWord, $model->content));
             $searchCont[] = Html::tag('div', $titleHeader . $contentDiv,
                 ['class' => 'search-list-item']);
 
@@ -93,6 +82,106 @@ class SearchView extends ListView
         return $searchCont;
     }
 
+    /**
+     *
+     *
+     * @param $originalKeyword
+     * @param $originalText
+     * @return string|string[]|null
+     * @author Zura Sekhniashvili <zurasekhniashvili@gmail.com>
+     */
+    public function myDetect($originalKeyword, $originalText)
+    {
+
+        $text = strip_tags(strtolower($originalText));
+        $keyword = strtolower($originalKeyword);
+        $firstMatchPosition = strpos($text, $keyword);
+
+        $startPos = $firstMatchPosition;
+        $endPos = $firstMatchPosition + strlen($keyword);
+        while (is_numeric($startPos) && $startPos >= 0 && !in_array($text[$startPos], ['.', '?', '!', ';'])) {
+            $startPos--;
+        }
+        while ($endPos < strlen($text) && !in_array($text[$endPos], ['.', '?', '!', ';'])) {
+            $endPos++;
+        }
+
+//        echo '<pre>';
+//        var_dump($originalText);
+//        echo '</pre>';
+
+        $text = StringHelper::truncateWords(substr($originalText, $startPos + 1), 30);
+
+        return preg_replace("/($originalKeyword)/i", '<span class="search-highlighted">$1</span>',
+            $text);
+
+    }
+
+    /**
+     *
+     *
+     * @param $keyword
+     * @param $text
+     * @return string
+     * @author Dato Apkhazashvili
+     */
+    public function detecttext($keyword, $text)
+    {
+        $finalText = '';
+        $i = 0;
+        $m = [];
+        while (stripos($text, $keyword, $i) !== false) {
+            $i = stripos($text, $keyword, $i);
+            $text = substr_replace($text, "<b>", $i, 0) . "<br>";
+            $text = substr_replace($text, "</b>", $i + strlen($keyword) + 3, 0) . "<br>";
+            $i += 4;
+        }
+        $k = 0;
+        $n = 0;
+        $j = 0;
+        for ($i = 0; $i < strlen($text); $i++) {
+            if ($text[$i] === " ") {
+                $k++;
+            }
+            if ($text[$i] === "." || $text[$i] === "?" || $text[$i] == "!") {
+                if (stripos($text, $keyword, $j) < $i) {
+                    $h = $j;
+                    if ($k >= 50) {
+                        while ($h <= $i) {
+                            $finalText .= $text[$h];
+                            $h++;
+                        }
+                        $finalText .= "<br>";
+                    } else {
+                        $k = 0;
+                        while ($h < strlen($text)) {
+                            $finalText .= $text[$h];
+                            $h++;
+                            if ($text[$h] === " ") {
+                                $k++;
+                            }
+                            if ($k === 50) {
+                                break;
+                            }
+                        }
+                        $finalText .= "<br>";
+                    }
+                }
+                $j = $i + 1;
+                $k = 0;
+            }
+        }
+        return $finalText;
+    }
+
+    /**
+     *
+     *
+     * @param $keyword
+     * @param $text
+     * @return bool|mixed|string
+     * @author Zura Kupatadze
+     */
     public function getSearchResult($keyword, $text)
     {
         // Find search keyword's position

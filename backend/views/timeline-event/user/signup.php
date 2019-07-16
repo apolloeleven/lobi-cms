@@ -1,7 +1,7 @@
 <?php
 /**
  * @author Eugene Terentev <eugene@terentev.net>
- * @var $model apollo11\lobicms\models\TimelineEvent
+ * @var $model intermundia\yiicms\models\TimelineEvent
  */
 ?>
 <div class="timeline-badge bg-success"><i class="fa fa-user"></i></div>

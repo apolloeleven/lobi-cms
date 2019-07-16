@@ -4,11 +4,15 @@ const ExtractTextPlugin = require("extract-text-webpack-plugin");
 module.exports = {
   entry: {
     app: [
-      path.resolve(__dirname, './frontend/web/src/js/app.js'),
+      path.resolve(__dirname, './frontend/web/js/app.js'),
       path.resolve(__dirname, './frontend/web/js/content-editable/app.js'),
     ],
     style: path.resolve(__dirname, './frontend/less/style.less'),
-    bootstrap: path.resolve(__dirname, './frontend/less/bootstrap.less')
+    bootstrap: path.resolve(__dirname, './frontend/less/bootstrap.less'),
+    ckeditor: [
+      path.resolve(__dirname, './frontend/less/ckeditor.less'),
+      path.resolve(__dirname, './frontend/less/xmlblock.less'),
+    ],
   },
   output: {
     filename: '[name].js',

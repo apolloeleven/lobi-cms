@@ -9,29 +9,13 @@
 /** @var $this \yii\web\View */
 /** @var $contentTreeItem \frontend\models\ContentTree */
 /** @var $index integer */
-/** @var $model \apollo11\lobicms\models\Carousel */
+/** @var $model \intermundia\yiicms\models\Carousel */
 
-$itemsQuery = $contentTreeItem->getItemsQuery()->notDeleted();
-(Yii::$app->user->canEditContent() && Yii::$app->request->get('hidden')) ?: $itemsQuery->notHidden();
-$items = $itemsQuery->all();
 ?>
 
-<div class="">
-    <div class="xmlblock">
-        <?php echo \common\widgets\Carousel::widget([
-            'options' => [
-                'class' => 'carousel slide'
-            ],
-            'items' => array_map(function ($item) {
-                /** @var \frontend\models\ContentTree $item */
-                /** @var \apollo11\lobicms\models\CarouselItem $model */
-                $model = $item->getModel();
-                return [
-                    'content' => \yii\helpers\Html::img($model->activeTranslation->image->getUrl(), ['class' => 'img-responsive']),
-                    'caption' => $model->activeTranslation->caption,
-                    'showIndicators' => true,
-                ];
-            }, $items)
-        ]) ?>
-    </div>
+<div class="carousel slide" data-ride="carousel">
+    <?php echo $this->render('@frontend/views/content-tree/list', [
+        'viewFile' => null,
+        'contentTreeItem' => $contentTreeItem
+    ]); ?>
 </div>

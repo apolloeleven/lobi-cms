@@ -55,7 +55,7 @@ class AppController extends Controller
         $this->runAction('set-keys', ['interactive' => $this->interactive]);
         \Yii::$app->runAction('migrate/up', [
             'interactive' => $this->interactive,
-            'migrationPath' => '@vendor/apollo11/lobi-cms-core/migrations'
+            'migrationPath' => '@cmsCore/migrations'
         ]);
         \Yii::$app->runAction('migrate/up', ['interactive' => $this->interactive]);
         \Yii::$app->runAction('rbac-migrate/up', ['interactive' => $this->interactive]);

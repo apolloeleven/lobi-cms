@@ -4,7 +4,7 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
-/* @var $model apollo11\lobicms\models\Country */
+/* @var $model intermundia\yiicms\models\Country */
 /* @var $languages [] */
 
 $this->title = $model->activeTranslation->name;

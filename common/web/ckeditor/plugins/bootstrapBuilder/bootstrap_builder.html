@@ -1,0 +1,1128 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Bootstrap Builder</title>
+	<link rel="stylesheet" type="text/css" href="css/jquery-ui.min.css" class="jquery-ui" />
+	<link rel="stylesheet" type="text/css" href="css/bootstrap_builder.css" />
+</head>
+<body>
+
+<div class="bootstrapBuilder_loader"></div>
+
+<div id="bootstrapBuilder_sidebar">
+
+	<ul>
+		<li>
+			<a href="#"><span class="glyphicon glyphicon-cog"></span> CSS</a>
+			<ul>
+				<li class="bootstrapBuilder_draggable bootstrapBuilder_column bootstrapBuilder_r">
+					<a href="#">Grid System</a>
+					<div class="bootstrapBuilder_preview"><div class="row"><div class="col-xs-12"></div></div></div>
+				</li>
+				<li class="bootstrapBuilder_draggable bootstrapBuilder_column bootstrapBuilder_c">
+					<a href="#">Tables</a>
+					<div class="bootstrapBuilder_preview"><div class="bootstrapBuilder_wrapper" data-widget="tables"><div class="table-responsive"><table class="table"><thead><tr><th>#</th><th>First Name</th><th>Last Name</th><th>Username</th></tr></thead><tbody><tr><td>1</td><td>Mark</td><td>Otto</td><td>@mdo</td></tr><tr><td>2</td><td>Jacob</td><td>Thornton</td><td>@fat</td></tr><tr><td>3</td><td>Larry</td><td>the Bird</td><td>@twitter</td></tr></tbody></table></div></div></div>
+				</li>
+				<li class="bootstrapBuilder_draggable bootstrapBuilder_column bootstrapBuilder_c">
+					<a href="#">Buttons</a>
+					<div class="bootstrapBuilder_preview"><div class="bootstrapBuilder_wrapper" data-widget="buttons"><button class="btn btn-default" type="button">Button</button></div></div>
+				</li>
+			</ul>
+		</li>
+		<li>
+			<a href="#"><span class="glyphicon glyphicon-cog"></span> Components</a>
+			<ul>
+				<li class="bootstrapBuilder_draggable bootstrapBuilder_column bootstrapBuilder_c">
+					<a href="#">Button Groups</a>
+					<div class="bootstrapBuilder_preview"><div class="bootstrapBuilder_wrapper" data-widget="buttonGroups"><div class="btn-group" role="group"><button type="button" class="btn btn-default">Left</button><button type="button" class="btn btn-default">Middle</button><button type="button" class="btn btn-default">Right</button></div></div></div>
+				</li>
+				<li class="bootstrapBuilder_draggable bootstrapBuilder_column bootstrapBuilder_c">
+					<a href="#">Button Dropdowns</a>
+					<div class="bootstrapBuilder_preview"><div class="bootstrapBuilder_wrapper" data-widget="buttonDropdowns"><div class="dropdown"><button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Action <span class="caret"></span></button><ul class="dropdown-menu"><li><a href="#">Action</a></li><li><a href="#">Another action</a></li><li><a href="#">Something else here</a></li><li><a href="#">Separated link</a></li></ul></div></div></div>
+				</li>
+				<li class="bootstrapBuilder_draggable bootstrapBuilder_column bootstrapBuilder_c">
+					<a href="#">Navs</a>
+					<div class="bootstrapBuilder_preview"><div class="bootstrapBuilder_wrapper" data-widget="navs"><ul class="nav nav-tabs"><li role="presentation" class="active"><a href="#">Home</a></li><li role="presentation"><a href="#">Profile</a></li><li role="presentation"><a href="#">Messages</a></li></ul></div></div>
+				</li>
+				<li class="bootstrapBuilder_draggable bootstrapBuilder_column bootstrapBuilder_c">
+					<a href="#">Navbar</a>
+					<div class="bootstrapBuilder_preview"><div class="bootstrapBuilder_wrapper" data-widget="navbar"><nav class="navbar navbar-default"><div class="navbar-header"><button type="button" class="collapsed navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse" aria-expanded="false"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a href="#" class="navbar-brand">Brand</a></div><div class="collapse navbar-collapse" id="bs-example-navbar-collapse"><ul class="nav navbar-nav"><li class="active"><a href="#">Home</a></li><li><a href="#">Link</a></li><li><a href="#">Link</a></li></ul></div></nav></div></div>
+				</li>
+				<li class="bootstrapBuilder_draggable bootstrapBuilder_column bootstrapBuilder_c">
+					<a href="#">Breadcrumbs</a>
+					<div class="bootstrapBuilder_preview"><div class="bootstrapBuilder_wrapper" data-widget="breadcrumbs"><ol class="breadcrumb"><li><a href="#">Home</a></li><li><a href="#">Library</a></li><li class="active">Data</li></ol></div></div>
+				</li>
+				<li class="bootstrapBuilder_draggable bootstrapBuilder_column bootstrapBuilder_c">
+					<a href="#">Jumbotron</a>
+					<div class="bootstrapBuilder_preview"><div class="bootstrapBuilder_wrapper" data-widget="jumbotron"><div class="jumbotron"><h1>Hello, world!</h1><div class="description"><p>This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p></div><p class="link"><a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a></p></div></div></div>
+				</li>
+				<li class="bootstrapBuilder_draggable bootstrapBuilder_column bootstrapBuilder_c">
+					<a href="#">Page Header</a>
+					<div class="bootstrapBuilder_preview"><div class="bootstrapBuilder_wrapper" data-widget="pageHeader"><div class="page-header"><h1>Example page header <small>Subtext for header</small></h1></div></div></div>
+				</li>
+				<li class="bootstrapBuilder_draggable bootstrapBuilder_column bootstrapBuilder_c">
+					<a href="#">Alerts</a>
+					<div class="bootstrapBuilder_preview"><div class="bootstrapBuilder_wrapper" data-widget="alerts"><div class="alert alert-success" role="alert"> <strong>Well done!</strong> You successfully read this important alert message. </div></div></div>
+				</li>
+				<li class="bootstrapBuilder_draggable bootstrapBuilder_column bootstrapBuilder_c">
+					<a href="#">List Group</a>
+					<div class="bootstrapBuilder_preview"><div class="bootstrapBuilder_wrapper" data-widget="listGroup"><ul class="list-group"><li class="list-group-item"><span class="badge">14</span><h4 class="list-group-item-heading">Cras justo odio</h4><div class="list-group-item-text"><p>Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p></div></li><li class="list-group-item"><span class="badge">2</span><h4 class="list-group-item-heading">Dapibus ac facilisis in</h4><div class="list-group-item-text"><p>Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p></div></li><li class="list-group-item"><span class="badge">1</span><h4 class="list-group-item-heading">Morbi leo risus</h4><div class="list-group-item-text"><p>Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p></div></li></ul></div></div>
+				</li>
+				<li class="bootstrapBuilder_draggable bootstrapBuilder_column bootstrapBuilder_c">
+					<a href="#">Panels</a>
+					<div class="bootstrapBuilder_preview"><div class="bootstrapBuilder_wrapper" data-widget="panels"><div class="panel panel-default"><div class="panel-heading"><h3 class="panel-title">Panel title</h3></div><div class="panel-body">Panel content</div></div></div></div>
+				</li>
+				<li class="bootstrapBuilder_draggable bootstrapBuilder_column bootstrapBuilder_c">
+					<a href="#">Well</a>
+					<div class="bootstrapBuilder_preview"><div class="bootstrapBuilder_wrapper" data-widget="well"><div class="well">Look, I'm in a well!</div></div></div>
+				</li>
+			</ul>
+		</li>
+		<li>
+			<a href="#"><span class="glyphicon glyphicon-cog"></span> JavaScript</a>
+			<ul>
+				<li class="bootstrapBuilder_draggable bootstrapBuilder_column bootstrapBuilder_c">
+					<a href="#">Tab</a>
+					<div class="bootstrapBuilder_preview"><div class="bootstrapBuilder_wrapper" data-widget="tab"><div id="collapse1490693002142" role="tabpanel"><div role="tabpanel"><ul class="nav nav-tabs" role="tablist"><li class="active" role="presentation"><a aria-controls="tab1490693002142_1" data-toggle="tab" href="#tab1490693002142_1" role="tab">Home </a></li><li role="presentation"><a aria-controls="tab1490693002142_2" data-toggle="tab" href="#tab1490693002142_2" role="tab">Profile </a></li></ul><div class="tab-content"><div class="tab-pane active" id="tab1490693002142_1" role="tabpanel"><p>Raw denim you probably haven&#39;t heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.</p></div><div class="tab-pane" id="tab1490693002142_2" role="tabpanel"><p>Food truck fixie locavore, accusamus mcsweeney&#39;s marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit. Keytar helvetica VHS salvia yr, vero magna velit sapiente labore stumptown. Vegan fanny pack odio cillum wes anderson 8-bit, sustainable jean shorts beard ut DIY ethical culpa terry richardson biodiesel. Art party scenester stumptown, tumblr butcher vero sint qui sapiente accusamus tattooed echo park.</p></div></div></div></div></div></div>
+				</li>
+				<li class="bootstrapBuilder_draggable bootstrapBuilder_column bootstrapBuilder_c">
+					<a href="#">Checkbox</a>
+					<div class="bootstrapBuilder_preview"><div class="bootstrapBuilder_wrapper" data-widget="checkbox"><div class="btn-group" data-toggle="buttons"><label class="btn btn-primary active"><input type="checkbox" value="Checkbox 1" checked />Checkbox 1</label><label class="btn btn-primary"><input type="checkbox" value="Checkbox 2" />Checkbox 2</label><label class="btn btn-primary"><input type="checkbox" value="Checkbox 3" />Checkbox 3</label></div></div></div>
+				</li>
+				<li class="bootstrapBuilder_draggable bootstrapBuilder_column bootstrapBuilder_c">
+					<a href="#">Radio Buttons</a>
+					<div class="bootstrapBuilder_preview"><div class="bootstrapBuilder_wrapper" data-widget="radioButtons"><div class="btn-group" data-toggle="buttons"><label class="btn btn-primary active"><input type="radio" name="option" value="Radio 1" checked />Radio 1</label><label class="btn btn-primary"><input type="radio" name="option" value="Radio 2" />Radio 2</label><label class="btn btn-primary"><input type="radio" name="option" value="Radio 3" />Radio 3</label></div></div></div>
+				</li>
+				<li class="bootstrapBuilder_draggable bootstrapBuilder_column bootstrapBuilder_c">
+					<a href="#">Collapse</a>
+					<div class="bootstrapBuilder_preview"><div class="bootstrapBuilder_wrapper" data-widget="collapse"><div aria-multiselectable="true" class="panel-group" id="collapse1490684002853" role="tablist"><div class="panel panel-default"><div class="panel-heading" id="heading1490684002853_0" role="tab"><div class="panel-title"><a aria-controls="collapse1490684002853_0" aria-expanded="false" class="collapsed" data-parent="#collapse1490684002853" data-target="#collapse1490684002853_0" data-toggle="collapse" href="javascript:void(0)">Collapsible Group Item #1 </a></div></div><div aria-labelledby="heading1490684002853_0" class="panel-collapse collapse in" id="collapse1490684002853_0" role="tabpanel"><div class="panel-body"><p>Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven&#39;t heard of them accusamus labore sustainable VHS.</p></div></div></div><div class="panel panel-default"><div class="panel-heading" id="heading1490684002853_1" role="tab"><div class="panel-title"><a aria-controls="collapse1490684002853_1" aria-expanded="false" class="collapsed" data-parent="#collapse1490684002853" data-target="#collapse1490684002853_1" data-toggle="collapse" href="javascript:void(0)">Collapsible Group Item #2 </a></div></div><div aria-labelledby="heading1490684002853_1" class="panel-collapse collapse" id="collapse1490684002853_1" role="tabpanel"><div class="panel-body"><p>Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven&#39;t heard of them accusamus labore sustainable VHS.</p></div></div></div><div class="panel panel-default"><div class="panel-heading" id="heading1490684002853_2" role="tab"><div class="panel-title"><a aria-controls="collapse1490684002853_2" aria-expanded="false" class="collapsed" data-parent="#collapse1490684002853" data-target="#collapse1490684002853_2" data-toggle="collapse" href="javascript:void(0)">Collapsible Group Item #3 </a></div></div><div aria-labelledby="heading1490684002853_2" class="panel-collapse collapse" id="collapse1490684002853_2" role="tabpanel"><div class="panel-body"><p>Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven&#39;t heard of them accusamus labore sustainable VHS.</p></div></div></div></div></div></div>
+				</li>
+				<li class="bootstrapBuilder_draggable bootstrapBuilder_column bootstrapBuilder_c">
+					<a href="#">Carousel</a>
+					<div class="bootstrapBuilder_preview"><div class="bootstrapBuilder_wrapper" data-widget="carousel"><div class="carousel slide" data-ride="carousel" id="carousel1492414319142"><ol class="carousel-indicators"><li class="active" data-slide-to="0" data-target="#carousel1492414319142">&nbsp;</li><li data-slide-to="1" data-target="#carousel1492414319142">&nbsp;</li><li data-slide-to="2" data-target="#carousel1492414319142">&nbsp;</li></ol><div class="carousel-inner" role="listbox"><div class="item active"><img src="sample_images/1.jpg" /><div class="carousel-caption"><div class="carousel_title">First Slide</div><div class="carousel_caption">Caption 1</div></div></div><div class="item"><img src="sample_images/2.jpg" /><div class="carousel-caption"><div class="carousel_title">Second Slide</div><div class="carousel_caption">Caption 2</div></div></div><div class="item"><img src="sample_images/3.jpg" /><div class="carousel-caption"><div class="carousel_title">Third Slider</div><div class="carousel_caption">Caption 3</div></div></div></div><a class="left carousel-control" data-slide="prev" href="#carousel1492414319142" role="button"><span aria-hidden="true" class="glyphicon glyphicon-chevron-left"></span><span class="sr-only">Previous</span></a><a class="right carousel-control" data-slide="next" href="#carousel1492414319142" role="button"><span aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span> <span class="sr-only">Next</span></a></div></div></div>
+				</li>
+			</ul>
+		</li>
+	</ul>
+
+</div>
+
+<div id="bootstrapBuilder_content">
+
+	<div class="text-center">
+		<div class="debugger"></div>
+		<div class="bootstrapBuilder_button bootstrapBuilder_desktop" data-size="lg">Large Desktop</div>
+		<div class="bootstrapBuilder_button bootstrapBuilder_desktop active" data-size="md">Desktop</div>
+		<div class="bootstrapBuilder_button bootstrapBuilder_tablet" data-size="sm">Tablet</div>
+		<div class="bootstrapBuilder_button bootstrapBuilder_phone" data-size="xs">Phone</div>
+		<div class="bootstrapBuilder_button bootstrapBuilder_close">Save</div>
+	</div>
+	<p>&nbsp;</p>
+
+	<div class="bootstrapBuilder_drag-here">
+		<div class="container sortable"></div>
+	</div>
+
+</div>
+
+<div class="modal fade" id="buttons" tabindex="-1" role="dialog">
+  	<div class="modal-dialog" role="document">
+	    <div class="modal-content">
+      		<div class="modal-header">
+        		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        		<h4 class="modal-title">Buttons</h4>
+      		</div>
+    		<div class="modal-body">
+    			<form class="form-horizontal" id="bootstrapButtons">
+	    			<div class="form-group">
+	    				<label class="control-label col-sm-3">Style</label>
+	    				<div class="col-sm-3">
+	    					<select class="form-control style">
+	    						<option value="btn-default">Default</option>
+	    						<option value="btn-danger">Danger</option>
+	    						<option value="btn-info">Info</option>
+	    						<option value="btn-primary">Primary</option>
+	    						<option value="btn-success">Success</option>
+	    						<option value="btn-warning">Warning</option>
+	    					</select>
+	    				</div>
+	    			</div>
+	    			<div class="form-group">
+	    				<label class="control-label col-sm-3">Size</label>
+	    				<div class="col-sm-3">
+	    					<select class="form-control size">
+	    						<option value="">Default</option>
+	    						<option value="btn-xs">Extra Small</option>
+	    						<option value="btn-sm">Small</option>
+	    						<option value="btn-lg">Large</option>
+	    					</select>
+	    				</div>
+	    			</div>
+	    			<div class="form-group">
+	    				<label class="control-label col-sm-3">Block Level</label>
+	    				<div class="col-sm-3">
+	    					<select class="form-control block">
+	    						<option value="">No</option>
+	    						<option value="btn-block">Yes</option>
+	    					</select>
+	    				</div>
+	    			</div>
+	    			<div class="form-group">
+	    				<label class="control-label col-sm-3">Active</label>
+	    				<div class="col-sm-3">
+	    					<select class="form-control active">
+	    						<option value="">No</option>
+	    						<option value="active">Yes</option>
+	    					</select>
+	    				</div>
+	    			</div>
+	    			<div class="form-group">
+	    				<label class="control-label col-sm-3">Enabled</label>
+	    				<div class="col-sm-3">
+	    					<select class="form-control enabled">
+	    						<option value="">Yes</option>
+	    						<option value="disabled">No</option>
+	    					</select>
+	    				</div>
+	    			</div>
+	    			<div class="form-group">
+	    				<label class="control-label col-sm-3">Text</label>
+	    				<div class="col-sm-9">
+	    					<input type="text" class="form-control text" />
+	    				</div>
+	    			</div>
+	    			<div class="form-group">
+	    				<label class="control-label col-sm-3">Link</label>
+	    				<div class="col-sm-9">
+	    					<input type="text" class="form-control link" value="http://" />
+	    				</div>
+	    			</div>
+	    		</form>
+    		</div>
+      		<div class="modal-footer">
+        		<button type="button" class="btn btn-primary saveButton">Save changes</button>
+        		<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      		</div>
+    	</div>
+  	</div>
+</div>
+
+<div class="modal fade" id="buttonDropdowns" tabindex="-1" role="dialog">
+  	<div class="modal-dialog" role="document">
+	    <div class="modal-content">
+      		<div class="modal-header">
+        		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        		<h4 class="modal-title">Button Dropdowns</h4>
+      		</div>
+			<form class="form-horizontal" id="bootstrapButtonDropdowns">
+    			<ul class="nav nav-tabs" role="tablist">
+			    	<li role="presentation" class="active"><a href="#bootstrapButtonsMenus" aria-controls="bootstrapButtonsMenus" role="tab" data-toggle="tab">Dropdown Menus</a></li>
+			    	<li role="presentation"><a href="#bootstrapButtonsSettings" aria-controls="bootstrapButtonsSettings" role="tab" data-toggle="tab">Settings</a></li>
+			  	</ul>
+			  	<div class="tab-content">
+				    <div role="tabpanel" class="tab-pane active" id="bootstrapButtonsMenus">
+				    	<div class="table-responsive">
+			    			<table class="table table-bordered table-condensed">
+			    				<thead>
+			    					<tr>
+			    						<th width="1%"></th>
+			    						<th>Label</th>
+			    						<th>Link</th>
+			    						<th width="1%"></th>
+			    					</tr>
+			    				</thead>
+			    				<tbody class="sortableTable"></tbody>
+			    			</table>
+			    		</div>
+				    </div>
+
+				    <div role="tabpanel" class="tab-pane" id="bootstrapButtonsSettings">
+				    	<div class="paddingAll">
+					    	<div class="form-group">
+			    				<label class="control-label col-sm-3">Style</label>
+			    				<div class="col-sm-3">
+			    					<select class="form-control style">
+			    						<option value="btn-default">Default</option>
+			    						<option value="btn-danger">Danger</option>
+			    						<option value="btn-info">Info</option>
+			    						<option value="btn-primary">Primary</option>
+			    						<option value="btn-success">Success</option>
+			    						<option value="btn-warning">Warning</option>
+			    					</select>
+			    				</div>
+			    			</div>
+			    			<div class="form-group">
+			    				<label class="control-label col-sm-3">Size</label>
+			    				<div class="col-sm-3">
+			    					<select class="form-control size">
+			    						<option value="">Default</option>
+			    						<option value="btn-xs">Extra Small</option>
+			    						<option value="btn-sm">Small</option>
+			    						<option value="btn-lg">Large</option>
+			    					</select>
+			    				</div>
+			    			</div>
+			    			<div class="form-group">
+			    				<label class="control-label col-sm-3">Block Level</label>
+			    				<div class="col-sm-3">
+			    					<select class="form-control block">
+			    						<option value="">No</option>
+			    						<option value="btn-block">Yes</option>
+			    					</select>
+			    				</div>
+			    			</div>
+			    			<div class="form-group">
+			    				<label class="control-label col-sm-3">Active</label>
+			    				<div class="col-sm-3">
+			    					<select class="form-control active">
+			    						<option value="">No</option>
+			    						<option value="active">Yes</option>
+			    					</select>
+			    				</div>
+			    			</div>
+			    			<div class="form-group">
+			    				<label class="control-label col-sm-3">Enabled</label>
+			    				<div class="col-sm-3">
+			    					<select class="form-control enabled">
+			    						<option value="">Yes</option>
+			    						<option value="disabled">No</option>
+			    					</select>
+			    				</div>
+			    			</div>
+			    			<div class="form-group">
+			    				<label class="control-label col-sm-3">Direction</label>
+			    				<div class="col-sm-3">
+			    					<select class="form-control direction">
+			    						<option value="dropdown">Downward</option>
+			    						<option value="dropup">Upward</option>
+			    					</select>
+			    				</div>
+			    			</div>
+			    			<div class="form-group">
+			    				<label class="control-label col-sm-3">Text</label>
+			    				<div class="col-sm-9">
+			    					<input type="text" class="form-control text" />
+			    				</div>
+			    			</div>
+			    		</div>
+				    </div>
+				</div>
+    		</form>
+      		<div class="modal-footer">
+        		<button type="button" class="btn btn-default addNewButtonDropdown">Add New Item</button>
+        		<button type="button" class="btn btn-primary saveButtonDropdown">Save changes</button>
+        		<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      		</div>
+    	</div>
+  	</div>
+</div>
+
+<div class="modal fade" id="buttonGroups" tabindex="-1" role="dialog">
+  	<div class="modal-dialog" role="document">
+	    <div class="modal-content">
+      		<div class="modal-header">
+        		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        		<h4 class="modal-title">Button Groups</h4>
+      		</div>
+			<form class="form-horizontal" id="bootstrapGroups">
+    			<ul class="nav nav-tabs" role="tablist">
+			    	<li role="presentation" class="active"><a href="#bootstrapButtonGroupMenus" aria-controls="bootstrapButtonGroupMenus" role="tab" data-toggle="tab">Buttons</a></li>
+			    	<li role="presentation"><a href="#bootstrapButtonGroupSettings" aria-controls="bootstrapButtonGroupSettings" role="tab" data-toggle="tab">Settings</a></li>
+			  	</ul>
+			  	<div class="tab-content">
+				    <div role="tabpanel" class="tab-pane active" id="bootstrapButtonGroupMenus">
+				    	<div class="table-responsive">
+			    			<table class="table table-bordered table-condensed">
+			    				<thead>
+			    					<tr>
+			    						<th width="1%"></th>
+			    						<th>Label</th>
+			    						<th>Link</th>
+			    						<th width="1%"></th>
+			    					</tr>
+			    				</thead>
+			    				<tbody class="sortableTable"></tbody>
+			    			</table>
+			    		</div>
+				    </div>
+
+				    <div role="tabpanel" class="tab-pane" id="bootstrapButtonGroupSettings">
+				    	<div class="paddingAll">
+					    	<div class="form-group">
+			    				<label class="control-label col-sm-3">Style</label>
+			    				<div class="col-sm-3">
+			    					<select class="form-control style">
+			    						<option value="btn-default">Default</option>
+			    						<option value="btn-danger">Danger</option>
+			    						<option value="btn-info">Info</option>
+			    						<option value="btn-primary">Primary</option>
+			    						<option value="btn-success">Success</option>
+			    						<option value="btn-warning">Warning</option>
+			    					</select>
+			    				</div>
+			    			</div>
+			    			<div class="form-group">
+			    				<label class="control-label col-sm-3">Size</label>
+			    				<div class="col-sm-3">
+			    					<select class="form-control size">
+			    						<option value="">Default</option>
+			    						<option value="btn-group-xs">Extra Small</option>
+			    						<option value="btn-group-sm">Small</option>
+			    						<option value="btn-group-lg">Large</option>
+			    					</select>
+			    				</div>
+			    			</div>
+			    			<div class="form-group">
+			    				<label class="control-label col-sm-3">Variation</label>
+			    				<div class="col-sm-3">
+			    					<select class="form-control variation">
+			    						<option value="btn-group">Horizontal</option>
+			    						<option value="btn-group-vertical">Vertical</option>
+			    					</select>
+			    				</div>
+			    			</div>
+			    		</div>
+				    </div>
+				</div>
+    		</form>
+      		<div class="modal-footer">
+        		<button type="button" class="btn btn-default addNewGroup">Add New Item</button>
+        		<button type="button" class="btn btn-primary saveButtonGroup">Save changes</button>
+        		<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      		</div>
+    	</div>
+  	</div>
+</div>
+
+<div class="modal fade" id="breadcrumbs" tabindex="-1" role="dialog">
+  	<div class="modal-dialog" role="document">
+	    <div class="modal-content">
+      		<div class="modal-header">
+        		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        		<h4 class="modal-title">Breadcrumbs</h4>
+      		</div>
+    		<div class="table-responsive" id="bootstrapBreadcrumbs">
+    			<table class="table table-bordered table-condensed">
+    				<thead>
+    					<tr>
+    						<th width="1%"></th>
+    						<th>Label</th>
+    						<th>Link</th>
+    						<th width="1%"></th>
+    					</tr>
+    				</thead>
+    				<tbody class="sortableTable"></tbody>
+    			</table>
+    		</div>
+      		<div class="modal-footer">
+        		<button type="button" class="btn btn-default addNewItemBreadcrumb">Add New Item</button>
+        		<button type="button" class="btn btn-primary saveBreadcrumb">Save changes</button>
+        		<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      		</div>
+    	</div>
+  	</div>
+</div>
+
+<div class="modal fade" id="jumbotron" tabindex="-1" role="dialog">
+  	<div class="modal-dialog" role="document">
+	    <div class="modal-content">
+      		<div class="modal-header">
+        		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        		<h4 class="modal-title">Jumbotron</h4>
+      		</div>
+      		<div class="modal-body">
+	    		<form class="form-horizontal" id="bootstrapJumbotron">
+	    			<div class="form-group">
+	    				<label class="control-label col-sm-3">Label</label>
+	    				<div class="col-sm-9">
+	    					<input type="text" class="form-control title" />
+	    				</div>
+	    			</div>
+	    			<div class="form-group">
+	    				<label class="control-label col-sm-3">Description</label>
+	    				<div class="col-sm-9">
+	    					<textarea class="form-control description" onclick="open_ckeditor(this)"></textarea>
+	    				</div>
+	    			</div>
+	    			<div class="form-group">
+	    				<label class="control-label col-sm-3">Link</label>
+	    				<div class="col-sm-9">
+	    					<input type="text" class="form-control link" />
+	    				</div>
+	    			</div>
+	    		</form>
+    		</div>
+      		<div class="modal-footer">
+        		<button type="button" class="btn btn-primary saveJumbotron">Save changes</button>
+        		<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      		</div>
+    	</div>
+  	</div>
+</div>
+
+<div class="modal fade" id="alerts" tabindex="-1" role="dialog">
+  	<div class="modal-dialog" role="document">
+	    <div class="modal-content">
+      		<div class="modal-header">
+        		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        		<h4 class="modal-title">Alerts</h4>
+      		</div>
+      		<div class="modal-body">
+	    		<form class="form-horizontal" id="bootstrapAlert">
+	    			<div class="form-group">
+	    				<label class="control-label col-sm-3">Style</label>
+	    				<div class="col-sm-3">
+	    					<select class="form-control style">
+	    						<option value="alert-success">Success</option>
+	    						<option value="alert-info">Info</option>
+	    						<option value="alert-warning">Warning</option>
+	    						<option value="alert-danger">Danger</option>
+	    					</select>
+	    				</div>
+	    			</div>
+	    			<div class="form-group">
+	    				<label class="control-label col-sm-3">Text</label>
+	    				<div class="col-sm-9">
+	    					<textarea class="form-control text" onclick="open_ckeditor(this)"></textarea>
+	    				</div>
+	    			</div>
+	    		</form>
+    		</div>
+      		<div class="modal-footer">
+        		<button type="button" class="btn btn-primary saveAlert">Save changes</button>
+        		<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      		</div>
+    	</div>
+  	</div>
+</div>
+
+<div class="modal fade" id="listGroup" tabindex="-1" role="dialog">
+  	<div class="modal-dialog modal-lg" role="document">
+	    <div class="modal-content">
+      		<div class="modal-header">
+        		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        		<h4 class="modal-title">List Group</h4>
+      		</div>
+			<div class="table-responsive" id="bootstrapListGroup">
+	      		<table class="table table-bordered table-condensed">
+					<thead>
+						<tr>
+							<th width="1%"></th>
+							<th>Label</th>
+							<th>Content</th>
+							<th width="5%">Badge</th>
+							<th>Style</th>
+							<th>Active</th>
+							<th width="1%"></th>
+						</tr>
+					</thead>
+					<tbody class="sortableTable"></tbody>
+				</table>
+			</div>
+      		<div class="modal-footer">
+      			<button type="button" class="btn btn-default addNewListGroup">Add New Item</button>
+        		<button type="button" class="btn btn-primary saveListGroup">Save changes</button>
+        		<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      		</div>
+    	</div>
+  	</div>
+</div>
+
+<div class="modal fade" id="panels" tabindex="-1" role="dialog">
+  	<div class="modal-dialog" role="document">
+	    <div class="modal-content">
+      		<div class="modal-header">
+        		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        		<h4 class="modal-title">Panels</h4>
+      		</div>
+    		<div class="modal-body">
+    			<form class="form-horizontal" id="bootstrapPanels">
+    				<div class="form-group">
+    					<label class="control-label col-sm-3">Label</label>
+    					<div class="col-sm-9">
+    						<input type="text" class="form-control title" />
+    					</div>
+    				</div>
+    				<div class="form-group">
+    					<label class="control-label col-sm-3">Style</label>
+    					<div class="col-sm-3">
+    						<select class="form-control style">
+	    						<option value="panel-default">Default</option>
+	    						<option value="panel-danger">Danger</option>
+	    						<option value="panel-info">Info</option>
+	    						<option value="panel-primary">Primary</option>
+	    						<option value="panel-success">Success</option>
+	    						<option value="panel-warning">Warning</option>
+	    					</select>
+    					</div>
+    				</div>
+    				<div class="form-group">
+    					<label class="control-label col-sm-3">Content</label>
+    					<div class="col-sm-9">
+    						<textarea class="form-control content" onclick="open_ckeditor(this)"></textarea>
+    					</div>
+    				</div>
+    			</form>
+    		</div>
+      		<div class="modal-footer">
+        		<button type="button" class="btn btn-primary savePanel">Save changes</button>
+        		<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      		</div>
+    	</div>
+  	</div>
+</div>
+
+<div class="modal fade" id="tab" tabindex="-1" role="dialog">
+  	<div class="modal-dialog modal-lg" role="document">
+	    <div class="modal-content">
+      		<div class="modal-header">
+        		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        		<h4 class="modal-title">Tab</h4>
+      		</div>
+			<div class="table-responsive" id="bootstrapTab">
+	      		<table class="table table-bordered table-condensed vAlignTop">
+					<thead>
+						<tr>
+							<th width="1%"></th>
+							<th>Label</th>
+							<th>Content</th>
+							<th width="1%"></th>
+						</tr>
+					</thead>
+					<tbody class="sortableTable"></tbody>
+				</table>
+			</div>
+	    	<div class="modal-footer">
+        		<button type="button" class="btn btn-default addNewTab">Add New Item</button>
+        		<button type="button" class="btn btn-primary saveTab">Save changes</button>
+        		<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      		</div>
+    	</div>
+  	</div>
+</div>
+
+<div class="modal fade" id="collapse" tabindex="-1" role="dialog">
+  	<div class="modal-dialog modal-lg" role="document">
+	    <div class="modal-content">
+      		<div class="modal-header">
+        		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        		<h4 class="modal-title">Collapse</h4>
+      		</div>
+		  	<div id="bootstrapCollapse">
+	      		<ul class="nav nav-tabs" role="tablist">
+			    	<li role="presentation" class="active"><a href="#bootstrapCollapseItems" aria-controls="bootstrapCollapseItems" role="tab" data-toggle="tab">Dropdown Menus</a></li>
+			    	<li role="presentation"><a href="#bootstrapCollapseSettings" aria-controls="bootstrapCollapseSettings" role="tab" data-toggle="tab">Settings</a></li>
+			  	</ul>
+			  	<div class="tab-content">
+				    <div role="tabpanel" class="tab-pane active" id="bootstrapCollapseItems">
+						<div class="table-responsive">
+				      		<table class="table table-bordered table-condensed vAlignTop">
+								<thead>
+									<tr>
+										<th width="1%"></th>
+										<th>Label</th>
+										<th>Content</th>
+										<th width="1%"></th>
+									</tr>
+								</thead>
+								<tbody class="sortableTable"></tbody>
+							</table>
+						</div>
+			      	</div>
+
+				    <div role="tabpanel" class="tab-pane" id="bootstrapCollapseSettings">
+				    	<div class="paddingAll">
+					    	<form class="form-horizontal">
+					    		<div class="form-group">
+					    			<label class="control-label col-sm-3">Expand First Item</label>
+					    			<div class="col-sm-3">
+					    				<select class="form-control expandFirstItem">
+					    					<option value="">No</option>
+					    					<option value="in">Yes</option>
+					    				</select>
+					    			</div>
+					    		</div>
+					    		<div class="form-group">
+					    			<label class="control-label col-sm-3">Style</label>
+					    			<div class="col-sm-3">
+					    				<select class="form-control style">
+				    						<option value="panel-default">Default</option>
+				    						<option value="panel-danger">Danger</option>
+				    						<option value="panel-info">Info</option>
+				    						<option value="panel-primary">Primary</option>
+				    						<option value="panel-success">Success</option>
+				    						<option value="panel-warning">Warning</option>
+				    					</select>
+					    			</div>
+					    		</div>
+					    	</form>
+					    </div>
+			      	</div>
+			    </div>
+		    </div>
+	    	<div class="modal-footer">
+        		<button type="button" class="btn btn-default addNewCollapse">Add New Item</button>
+        		<button type="button" class="btn btn-primary saveCollapse">Save changes</button>
+        		<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      		</div>
+    	</div>
+  	</div>
+</div>
+
+<div class="modal fade" id="carousel" tabindex="-1" role="dialog">
+  	<div class="modal-dialog modal-lg" role="document">
+	    <div class="modal-content">
+      		<div class="modal-header">
+        		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        		<h4 class="modal-title">Carousel</h4>
+      		</div>
+      		<form class="form-horizontal" id="bootstrapCarousel">
+	    		<div class="table-responsive">
+		      		<table class="table table-bordered table-condensed vAlignTop">
+						<thead>
+							<tr>
+								<th width="1%"></th>
+								<th>Title</th>
+								<th>Caption</th>
+								<th>Image</th>
+								<th width="1%"></th>
+							</tr>
+						</thead>
+						<tbody class="sortableTable"></tbody>
+					</table>
+				</div>
+	    	</form>
+	    	<div class="modal-footer">
+        		<button type="button" class="btn btn-default addNewCarousel">Add New Item</button>
+        		<button type="button" class="btn btn-primary saveCarousel">Save changes</button>
+        		<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      		</div>
+    	</div>
+  	</div>
+</div>
+
+<div class="modal fade" id="well" tabindex="-1" role="dialog">
+  	<div class="modal-dialog" role="document">
+	    <div class="modal-content">
+      		<div class="modal-header">
+        		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        		<h4 class="modal-title">Well</h4>
+      		</div>
+			<div class="panel-body">
+				<form class="form-horizontal" id="bootstrapWell">
+		      		<div class="form-group">
+		      			<label class="control-label col-sm-3">Size</label>
+		      			<div class="col-sm-3">
+		      				<select class="form-control size">
+		      					<option value="well">Default</option>
+		      					<option value="well well-sm">Small</option>
+		      					<option value="well well-lg">Large</option>
+		      				</select>
+		      			</div>
+		      		</div>
+		      		<div class="form-group">
+		      			<label class="control-label col-sm-3">Content</label>
+		      			<div class="col-sm-9">
+		      				<textarea class="form-control content" onclick="open_ckeditor(this)"></textarea>
+		      			</div>
+		      		</div>
+		      	</form>
+			</div>
+	    	<div class="modal-footer">
+        		<button type="button" class="btn btn-primary saveWell">Save changes</button>
+        		<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      		</div>
+    	</div>
+  	</div>
+</div>
+
+<div class="modal fade" id="pageHeader" tabindex="-1" role="dialog">
+  	<div class="modal-dialog" role="document">
+	    <div class="modal-content">
+      		<div class="modal-header">
+        		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        		<h4 class="modal-title">Page Header</h4>
+      		</div>
+			<div class="panel-body">
+				<form class="form-horizontal" id="bootstrapPageHeader">
+		      		<div class="form-group">
+		      			<label class="control-label col-sm-3">Header</label>
+		      			<div class="col-sm-9">
+		      				<input type="text" class="form-control header" />
+		      			</div>
+		      		</div>
+		      		<div class="form-group">
+		      			<label class="control-label col-sm-3">Subtext</label>
+		      			<div class="col-sm-9">
+		      				<input type="text" class="form-control subtext" />
+		      			</div>
+		      		</div>
+		      	</form>
+			</div>
+	    	<div class="modal-footer">
+        		<button type="button" class="btn btn-primary savePageHeader">Save changes</button>
+        		<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      		</div>
+    	</div>
+  	</div>
+</div>
+
+<div class="modal fade" id="navs" tabindex="-1" role="dialog">
+  	<div class="modal-dialog" role="document">
+	    <div class="modal-content">
+      		<div class="modal-header">
+        		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        		<h4 class="modal-title">Navs</h4>
+      		</div>
+			<form class="form-horizontal" id="bootstrapNavs">
+    			<ul class="nav nav-tabs" role="tablist">
+			    	<li role="presentation" class="active"><a href="#bootstrapNavsMenus" aria-controls="bootstrapNavsMenus" role="tab" data-toggle="tab">Menus</a></li>
+			    	<li role="presentation"><a href="#bootstrapNavsSettings" aria-controls="bootstrapNavsSettings" role="tab" data-toggle="tab">Settings</a></li>
+			  	</ul>
+			  	<div class="tab-content">
+				    <div role="tabpanel" class="tab-pane active" id="bootstrapNavsMenus">
+				    	<div class="table-responsive">
+			    			<table class="table table-bordered table-condensed">
+			    				<thead>
+			    					<tr>
+			    						<th width="1%"></th>
+			    						<th>Label</th>
+			    						<th>Link</th>
+			    						<th>Active</th>
+			    						<th width="1%"></th>
+			    					</tr>
+			    				</thead>
+			    				<tbody class="sortableTable"></tbody>
+			    			</table>
+			    		</div>
+				    </div>
+
+				    <div role="tabpanel" class="tab-pane" id="bootstrapNavsSettings">
+				    	<div class="paddingAll">
+				    		<div class="form-group">
+				      			<label class="control-label col-sm-3">Style</label>
+				      			<div class="col-sm-3">
+				      				<select class="form-control style">
+				      					<option value="nav-tabs">Tabs</option>
+				      					<option value="nav-pills">Pills</option>
+				      				</select>
+				      			</div>
+				      		</div>
+				      		<div class="form-group hidden">
+				      			<label class="control-label col-sm-3">Stacked</label>
+				      			<div class="col-sm-3">
+				      				<select class="form-control stacked">
+				      					<option value="">No</option>
+				      					<option value="nav-stacked">Yes</option>
+				      				</select>
+				      			</div>
+				      		</div>
+				      		<div class="form-group">
+				      			<label class="control-label col-sm-3">Justified</label>
+				      			<div class="col-sm-3">
+				      				<select class="form-control justified">
+				      					<option value="">No</option>
+				      					<option value="nav-justified">Yes</option>
+				      				</select>
+				      			</div>
+				      		</div>
+				    	</div>
+				    </div>
+				</div>
+	      	</form>
+	    	<div class="modal-footer">
+	    		<button type="button" class="btn btn-default addNewNav">Add New Item</button>
+        		<button type="button" class="btn btn-primary saveNav">Save changes</button>
+        		<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      		</div>
+    	</div>
+  	</div>
+</div>
+
+<div class="modal fade" id="navbar" tabindex="-1" role="dialog">
+  	<div class="modal-dialog" role="document">
+	    <div class="modal-content">
+      		<div class="modal-header">
+        		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        		<h4 class="modal-title">Navbar</h4>
+      		</div>
+			<form class="form-horizontal" id="bootstrapNavbar">
+    			<ul class="nav nav-tabs" role="tablist">
+			    	<li role="presentation" class="active"><a href="#bootstrapNavbarMenus" aria-controls="bootstrapNavbarMenus" role="tab" data-toggle="tab">Menus</a></li>
+			    	<li role="presentation"><a href="#bootstrapNavbarSettings" aria-controls="bootstrapNavbarSettings" role="tab" data-toggle="tab">Settings</a></li>
+			  	</ul>
+			  	<div class="tab-content">
+				    <div role="tabpanel" class="tab-pane active" id="bootstrapNavbarMenus">
+				    	<div class="table-responsive">
+			    			<table class="table table-bordered table-condensed">
+			    				<thead>
+			    					<tr>
+			    						<th width="1%"></th>
+			    						<th>Label</th>
+			    						<th>Link</th>
+			    						<th>Active</th>
+			    						<th width="1%"></th>
+			    					</tr>
+			    				</thead>
+			    				<tbody class="sortableTable"></tbody>
+			    			</table>
+			    		</div>
+				    </div>
+
+				    <div role="tabpanel" class="tab-pane" id="bootstrapNavbarSettings">
+				    	<div class="paddingAll">
+				    		<div class="form-group">
+				      			<label class="control-label col-sm-3">Brand</label>
+				      			<div class="col-sm-4">
+				      				<input type="text" class="form-control brand" />
+				      			</div>
+				      		</div>
+				    		<div class="form-group">
+				      			<label class="control-label col-sm-3">Position</label>
+				      			<div class="col-sm-4">
+				      				<select class="form-control position">
+				      					<option value="">Default</option>
+				      					<option value="navbar-fixed-top">Fixed To Top</option>
+				      					<option value="navbar-fixed-bottom">Fixed To Bottom</option>
+				      					<option value="navbar-static-top">Static Top</option>
+				      				</select>
+				      			</div>
+				      		</div>
+				      		<div class="form-group">
+				      			<label class="control-label col-sm-3">Inverted</label>
+				      			<div class="col-sm-4">
+				      				<select class="form-control inverted">
+				      					<option value="navbar-default">No</option>
+				      					<option value="navbar-inverse">Yes</option>
+				      				</select>
+				      			</div>
+				      		</div>
+				    	</div>
+				    </div>
+				</div>
+	      	</form>
+	    	<div class="modal-footer">
+	    		<button type="button" class="btn btn-default addNewNavbar">Add New Item</button>
+        		<button type="button" class="btn btn-primary saveNavbar">Save changes</button>
+        		<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      		</div>
+    	</div>
+  	</div>
+</div>
+
+<div class="modal fade" id="checkbox" tabindex="-1" role="dialog">
+  	<div class="modal-dialog" role="document">
+	    <div class="modal-content">
+      		<div class="modal-header">
+        		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        		<h4 class="modal-title">Checkbox</h4>
+      		</div>
+      		<form class="form-horizontal" id="bootstrapCheckbox">
+    			<ul class="nav nav-tabs" role="tablist">
+			    	<li role="presentation" class="active"><a href="#bootstrapCheckboxMenus" aria-controls="bootstrapCheckboxMenus" role="tab" data-toggle="tab">Buttons</a></li>
+			    	<li role="presentation"><a href="#bootstrapCheckboxSettings" aria-controls="bootstrapCheckboxSettings" role="tab" data-toggle="tab">Settings</a></li>
+			  	</ul>
+			  	<div class="tab-content">
+				    <div role="tabpanel" class="tab-pane active" id="bootstrapCheckboxMenus">
+				    	<div class="table-responsive">
+			    			<table class="table table-bordered table-condensed">
+			    				<thead>
+			    					<tr>
+			    						<th width="1%"></th>
+			    						<th>Label</th>
+			    						<th>Checked</th>
+			    						<th width="1%"></th>
+			    					</tr>
+			    				</thead>
+			    				<tbody class="sortableTable"></tbody>
+			    			</table>
+			    		</div>
+				    </div>
+
+				    <div role="tabpanel" class="tab-pane" id="bootstrapCheckboxSettings">
+				    	<div class="paddingAll">
+					    	<div class="form-group">
+			    				<label class="control-label col-sm-3">Style</label>
+			    				<div class="col-sm-3">
+			    					<select class="form-control style">
+			    						<option value="btn-default">Default</option>
+			    						<option value="btn-danger">Danger</option>
+			    						<option value="btn-info">Info</option>
+			    						<option value="btn-primary">Primary</option>
+			    						<option value="btn-success">Success</option>
+			    						<option value="btn-warning">Warning</option>
+			    					</select>
+			    				</div>
+			    			</div>
+			    			<div class="form-group">
+			    				<label class="control-label col-sm-3">Size</label>
+			    				<div class="col-sm-3">
+			    					<select class="form-control size">
+			    						<option value="">Default</option>
+			    						<option value="btn-group-xs">Extra Small</option>
+			    						<option value="btn-group-sm">Small</option>
+			    						<option value="btn-group-lg">Large</option>
+			    					</select>
+			    				</div>
+			    			</div>
+			    		</div>
+				    </div>
+				</div>
+    		</form>
+	    	<div class="modal-footer">
+        		<button type="button" class="btn btn-primary saveCheckbox">Save changes</button>
+        		<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      		</div>
+    	</div>
+  	</div>
+</div>
+
+<div class="modal fade" id="radioButtons" tabindex="-1" role="dialog">
+  	<div class="modal-dialog" role="document">
+	    <div class="modal-content">
+      		<div class="modal-header">
+        		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        		<h4 class="modal-title">Radio Buttons</h4>
+      		</div>
+      		<form class="form-horizontal" id="bootstrapRadioButtons">
+    			<ul class="nav nav-tabs" role="tablist">
+			    	<li role="presentation" class="active"><a href="#bootstrapRadioButtonGroupMenus" aria-controls="bootstrapRadioButtonGroupMenus" role="tab" data-toggle="tab">Buttons</a></li>
+			    	<li role="presentation"><a href="#bootstrapRadioButtonGroupSettings" aria-controls="bootstrapRadioButtonGroupSettings" role="tab" data-toggle="tab">Settings</a></li>
+			  	</ul>
+			  	<div class="tab-content">
+				    <div role="tabpanel" class="tab-pane active" id="bootstrapRadioButtonGroupMenus">
+				    	<div class="table-responsive">
+			    			<table class="table table-bordered table-condensed">
+			    				<thead>
+			    					<tr>
+			    						<th width="1%"></th>
+			    						<th>Label</th>
+			    						<th>Checked</th>
+			    						<th width="1%"></th>
+			    					</tr>
+			    				</thead>
+			    				<tbody class="sortableTable"></tbody>
+			    			</table>
+			    		</div>
+				    </div>
+
+				    <div role="tabpanel" class="tab-pane" id="bootstrapRadioButtonGroupSettings">
+				    	<div class="paddingAll">
+					    	<div class="form-group">
+			    				<label class="control-label col-sm-3">Style</label>
+			    				<div class="col-sm-3">
+			    					<select class="form-control style">
+			    						<option value="btn-default">Default</option>
+			    						<option value="btn-danger">Danger</option>
+			    						<option value="btn-info">Info</option>
+			    						<option value="btn-primary">Primary</option>
+			    						<option value="btn-success">Success</option>
+			    						<option value="btn-warning">Warning</option>
+			    					</select>
+			    				</div>
+			    			</div>
+			    			<div class="form-group">
+			    				<label class="control-label col-sm-3">Size</label>
+			    				<div class="col-sm-3">
+			    					<select class="form-control size">
+			    						<option value="">Default</option>
+			    						<option value="btn-group-xs">Extra Small</option>
+			    						<option value="btn-group-sm">Small</option>
+			    						<option value="btn-group-lg">Large</option>
+			    					</select>
+			    				</div>
+			    			</div>
+			    		</div>
+				    </div>
+				</div>
+    		</form>
+	    	<div class="modal-footer">
+        		<button type="button" class="btn btn-primary saveRadioButton">Save changes</button>
+        		<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      		</div>
+    	</div>
+  	</div>
+</div>
+
+<div class="modal fade" id="tables" tabindex="-1" role="dialog">
+  	<div class="modal-dialog modal-sm" role="document">
+	    <div class="modal-content">
+      		<div class="modal-header">
+        		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        		<h4 class="modal-title">Tables</h4>
+      		</div>
+      		<div class="modal-body">
+      			<form class="form-horizontal" id="bootstrapTables">
+      				<div class="form-group">
+      					<label class="control-label col-sm-6">Striped Rows</label>
+      					<div class="col-sm-6">
+      						<select class="form-control striped">
+      							<option value="">No</option>
+      							<option value="table-striped">Yes</option>
+      						</select>
+      					</div>
+      				</div>
+      				<div class="form-group">
+      					<label class="control-label col-sm-6">Bordered Table</label>
+      					<div class="col-sm-6">
+      						<select class="form-control bordered">
+      							<option value="">No</option>
+      							<option value="table-bordered">Yes</option>
+      						</select>
+      					</div>
+      				</div>
+      				<div class="form-group">
+      					<label class="control-label col-sm-6">Hover Rows</label>
+      					<div class="col-sm-6">
+      						<select class="form-control hover">
+      							<option value="">No</option>
+      							<option value="table-hover">Yes</option>
+      						</select>
+      					</div>
+      				</div>
+      				<div class="form-group">
+      					<label class="control-label col-sm-6">Condensed Table</label>
+      					<div class="col-sm-6">
+      						<select class="form-control condensed">
+      							<option value="">No</option>
+      							<option value="table-condensed">Yes</option>
+      						</select>
+      					</div>
+      				</div>
+      			</form>
+      		</div>
+	    	<div class="modal-footer">
+        		<button type="button" class="btn btn-primary saveTable">Save changes</button>
+        		<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      		</div>
+    	</div>
+  	</div>
+</div>
+
+<script type="text/javascript">
+var current_element;
+</script>
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/jquery-ui.min.js" class="jquery-ui-script"></script>
+<script type="text/javascript" src="js/tables.js"></script>
+<script type="text/javascript" src="js/buttons.js"></script>
+<script type="text/javascript" src="js/buttonDropdowns.js"></script>
+<script type="text/javascript" src="js/buttonGroups.js"></script>
+<script type="text/javascript" src="js/navs.js"></script>
+<script type="text/javascript" src="js/navbar.js"></script>
+<script type="text/javascript" src="js/breadcrumbs.js"></script>
+<script type="text/javascript" src="js/jumbotron.js"></script>
+<script type="text/javascript" src="js/pageHeader.js"></script>
+<script type="text/javascript" src="js/alerts.js"></script>
+<script type="text/javascript" src="js/listGroup.js"></script>
+<script type="text/javascript" src="js/panels.js"></script>
+<script type="text/javascript" src="js/tab.js"></script>
+<script type="text/javascript" src="js/checkbox.js"></script>
+<script type="text/javascript" src="js/radioButtons.js"></script>
+<script type="text/javascript" src="js/collapse.js"></script>
+<script type="text/javascript" src="js/carousel.js"></script>
+<script type="text/javascript" src="js/well.js"></script>
+<script type="text/javascript" src="js/bootstrap_builder.js"></script>
+
+</body>
+</html>

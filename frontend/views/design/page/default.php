@@ -8,9 +8,11 @@
 /** @var $this \yii\web\View */
 /** @var $contentTreeItem  \frontend\models\ContentTree */
 /** @var $index integer */
-/** @var $model \apollo11\lobicms\models\Page */
+/** @var $model \intermundia\yiicms\models\Page */
 
-$this->title = $model->activeTranslation->meta_title;
 ?>
+<div class="container">
+    {{content}}
+</div>
 
-{{content}}
+

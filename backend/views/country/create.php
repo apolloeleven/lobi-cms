@@ -1,7 +1,7 @@
 <?php
 
 /* @var $this yii\web\View */
-/* @var $model apollo11\lobicms\models\Country */
+/* @var $model intermundia\yiicms\models\Country */
 /* @var $statuses [] */
 /* @var $languages [] */
 /* @var $continents [] */

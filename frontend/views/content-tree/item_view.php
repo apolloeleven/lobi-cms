@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @var $this \apollo11\lobicms\web\View
+ * @var $this \intermundia\yiicms\web\View
  * @var $index integer
  * @var $globalViewPath string
  * @var $allItems \frontend\models\ContentTree[]

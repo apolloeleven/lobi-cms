@@ -32,3 +32,11 @@ phpunit.phar
 
 # Tests
 tests/codeception/*/_support/_generated/*
+frontend/web/storage/web/.tmb
+
+# MultiSite domains config.
+/common/config/multisite_websites.php
+
+from-strato1-to-apollo.sh
+strato1-download-db-storage.sh
+upload-storage-and-db-to-apollo.sh

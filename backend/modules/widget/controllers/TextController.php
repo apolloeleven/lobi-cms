@@ -3,9 +3,9 @@
 namespace backend\modules\widget\controllers;
 
 use backend\modules\widget\models\search\TextSearch;
-use apollo11\lobicms\models\WidgetText;
-use apollo11\lobicms\models\WidgetTextTranslation;
-use apollo11\lobicms\traits\FormAjaxValidationTrait;
+use intermundia\yiicms\models\WidgetText;
+use intermundia\yiicms\models\WidgetTextTranslation;
+use intermundia\yiicms\traits\FormAjaxValidationTrait;
 use Yii;
 use yii\filters\VerbFilter;
 use yii\web\Controller;

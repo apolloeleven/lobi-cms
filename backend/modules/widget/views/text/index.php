@@ -1,7 +1,7 @@
 <?php
 
 use common\grid\EnumColumn;
-use apollo11\lobicms\models\WidgetText;
+use intermundia\yiicms\models\WidgetText;
 use yii\grid\GridView;
 use yii\helpers\Html;
 

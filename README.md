@@ -32,3 +32,57 @@ For most of them you can leave them default, but make sure you have correct para
     ```bash
     php console/yii message common/config/messages/frontend.php 
     ```      
+    
+
+### Storage and Database synchronization
+
+To download the storage and database from production or test server run the following command.
+ 
+**Important**:
+In order synchronization of database to work you need to create `.my.cnf` file to access
+the database by just typing `mysql`. 
+
+```shell
+php console/yii test/sync $username $host $port = [22]
+```
+
+This will:
+ 
+  - authenticate to the server by ssh
+  - make the database dump
+  - make the `*.tar.gz` archive file of the `storage/web/source`
+  - download the dump and storage archive file by scp command 
+  - extract the storage into `storage/web/source` folder
+  - restore the dump into current database
+  
+## MultiSite
+ 
+ 1.  Run migration
+     ```bash 
+     ./migrate
+     ```    
+ 1.  For switch language from 'en' to 'en-US' 
+     ```bash 
+     php console/yii utils/switch-language en en-US
+     ```    
+     <b>Run output SQL String from DB console than continue!!!!</b>
+     
+ 1.  Read languages from multiSiteCore websites and insert it in language table
+      ```bash 
+      php console/yii sync/languages 
+      ```   
+ 1.  Add website in contentTree
+       ```bash 
+       php console/yii sync/websites 
+       ```       
+ 1.  For copy content
+     ```bash 
+     php console/yii utils/copy-language $fromWebsiteKey $toWebsiteKey $from $to
+     ```                  
+     <b>Run output SQL String from DB console than continue!!!!</b>
+     
+ 1.  For add language content content
+     ```bash 
+     php console/yii utils/add-language $websiteKey $from $to
+     ```                  
+     <b>Run output SQL String from DB console than continue!!!!</b>

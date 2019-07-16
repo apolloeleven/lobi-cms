@@ -1,9 +1,9 @@
 <?php
 
 /* @var $this yii\web\View */
-/* @var $model apollo11\lobicms\models\Continent */
+/* @var $model intermundia\yiicms\models\Continent */
 /* @var $languages [] */
-/* @var $translations \apollo11\lobicms\models\ContinentTranslation[] */
+/* @var $translations \intermundia\yiicms\models\ContinentTranslation[] */
 
 $this->title = Yii::t('backend', 'Update {modelClass}: ', [
     'modelClass' => 'Continent',

@@ -71,12 +71,14 @@ class DefaultController extends Controller
         foreach ($this->getLanguages() as $language => $name) {
             $translationModels[$language] = ($translation = $source->getTranslation($language)) != null
                 ? $translation
-                : new Translation(['id' => $source->id, 'language' => $language]);
+                : new Translation(['id' => $source->id, 'language' => str_replace('_', '-', $language)]);
         }
 
-        $model = new MultiModel(['models' => ArrayHelper::merge([
-            'source' => $source,
-        ], $translationModels)]);
+        $model = new MultiModel([
+            'models' => ArrayHelper::merge([
+                'source' => $source,
+            ], $translationModels)
+        ]);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(Url::previous('translation-filter') ?: ['index']);

@@ -2,12 +2,12 @@
 
 namespace backend\models\search;
 
-use apollo11\lobicms\models\Page;
+use intermundia\yiicms\models\Page;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 
 /**
- * PageSearch represents the model behind the search form about `apollo11\lobicms\models\Page`.
+ * PageSearch represents the model behind the search form about `intermundia\yiicms\models\Page`.
  */
 class PageSearch extends Page
 {

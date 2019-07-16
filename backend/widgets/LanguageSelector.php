@@ -9,7 +9,7 @@
 namespace backend\widgets;
 
 
-use apollo11\lobicms\models\Language;
+use intermundia\yiicms\models\Language;
 use Yii;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;

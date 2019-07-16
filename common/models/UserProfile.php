@@ -4,7 +4,7 @@ namespace common\models;
 
 /**
  */
-class UserProfile extends \apollo11\lobicms\models\UserProfile
+class UserProfile extends \intermundia\yiicms\models\UserProfile
 {
 
 }

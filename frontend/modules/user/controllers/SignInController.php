@@ -2,7 +2,7 @@
 
 namespace frontend\modules\user\controllers;
 
-use apollo11\lobicms\models\UserToken;
+use intermundia\yiicms\models\UserToken;
 use common\models\User;
 use frontend\modules\user\models\LoginForm;
 use frontend\modules\user\models\PasswordResetRequestForm;

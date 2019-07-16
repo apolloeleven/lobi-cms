@@ -14,7 +14,7 @@ namespace frontend\models;
  * @author Zura Sekhniashvili <zurasekhniashvili@gmail.com>
  * @package frontend\models
  */
-class ContentTree extends \apollo11\lobicms\models\ContentTree
+class ContentTree extends \common\models\ContentTree
 {
 
 }

@@ -5,12 +5,12 @@ use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $model apollo11\lobicms\models\Country */
+/* @var $model intermundia\yiicms\models\Country */
 /* @var $form yii\bootstrap\ActiveForm */
 /* @var $statuses [] */
 /* @var $languages [] */
 /* @var $continents [] */
-/* @var $translations \apollo11\lobicms\models\CountryTranslation[] */
+/* @var $translations \intermundia\yiicms\models\CountryTranslation[] */
 
 ?>
 
@@ -45,12 +45,12 @@ use yii\bootstrap\ActiveForm;
             $ind = 0;
 
             foreach ($languages as $code => $name) {
-                $className = \yii\helpers\StringHelper::basename(\apollo11\lobicms\models\CountryTranslation::className());
+                $className = \yii\helpers\StringHelper::basename(\intermundia\yiicms\models\CountryTranslation::className());
 
                 if (isset($translations[$code])) {
                     $translationModel = $translations[$code];
                 } else {
-                    $translationModel = new \apollo11\lobicms\models\CountryTranslation();
+                    $translationModel = new \intermundia\yiicms\models\CountryTranslation();
                 }
 
 

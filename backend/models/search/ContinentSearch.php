@@ -2,13 +2,13 @@
 
 namespace backend\models\search;
 
-use apollo11\lobicms\models\ContinentTranslation;
+use intermundia\yiicms\models\ContinentTranslation;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use apollo11\lobicms\models\Continent;
+use intermundia\yiicms\models\Continent;
 
 /**
- * ContinentSearch represents the model behind the search form about `apollo11\lobicms\models\Continent`.
+ * ContinentSearch represents the model behind the search form about `intermundia\yiicms\models\Continent`.
  */
 class ContinentSearch extends Continent
 {

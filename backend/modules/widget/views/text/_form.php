@@ -1,13 +1,14 @@
 <?php
 
-use apollo11\lobicms\widgets\CKEditor;
+use intermundia\yiicms\widgets\CKEditor;
+use backend\widgets\LanguageSelector;
 use yii\bootstrap\ActiveForm;
 use yii\helpers\Html;
 
 /**
  * @var $this  yii\web\View
- * @var $model apollo11\lobicms\models\WidgetText
- * @var $modelTranslation apollo11\lobicms\models\WidgetTextTranslation
+ * @var $model intermundia\yiicms\models\WidgetText
+ * @var $modelTranslation intermundia\yiicms\models\WidgetTextTranslation
  */
 
 ?>
@@ -24,21 +25,15 @@ use yii\helpers\Html;
 
     <div class="well well-sm">
 
-        <?php $languages = \apollo11\lobicms\models\Language::find()->all();
-        echo $form->field($modelTranslation, 'language')
-            ->dropDownList(\yii\helpers\ArrayHelper::map($languages, 'code', 'name'), [
-                'options' => \yii\helpers\ArrayHelper::map($languages, 'code', function ($language) {
-                    $params = array_merge([''], Yii::$app->request->get(), ['language' => $language->code]);
-                    return [
-                        'data-url' => \yii\helpers\Url::to($params)
-                    ];
-                })
-            ]) ?>
+        <?php echo $form->field($modelTranslation, 'language')->widget(LanguageSelector::class, []) ?>
 
         <?php echo $form->field($modelTranslation, 'title')->textInput(['maxlength' => 512]) ?>
 
         <?php echo $form->field($modelTranslation, 'body')->widget(CKEditor::class, [
             'options' => ['rows' => 10],
+            'clientOptions' => [
+                'autoParagraph' => false
+            ],
             'preset' => 'full'
         ]) ?>
 

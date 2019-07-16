@@ -1,0 +1,15 @@
+[class*=col-]:after {content:' '; position:absolute; display:block; width:16px; height:7px; left:0; bottom:0; z-index:999;}
+.col-xs-1:after {background-image:url('../icons/col-1.png');}
+.col-xs-2:after {background-image:url('../icons/col-2.png');}
+.col-xs-3:after {background-image:url('../icons/col-3.png');}
+.col-xs-4:after {background-image:url('../icons/col-4.png');}
+.col-xs-5:after {background-image:url('../icons/col-5.png');}
+.col-xs-6:after {background-image:url('../icons/col-6.png');}
+.col-xs-7:after {background-image:url('../icons/col-7.png');}
+.col-xs-8:after {background-image:url('../icons/col-8.png');}
+.col-xs-9:after {background-image:url('../icons/col-9.png');}
+.col-xs-10:after {background-image:url('../icons/col-10.png');}
+.col-xs-11:after {background-image:url('../icons/col-11.png');}
+.col-xs-12:after {background-image:url('../icons/col-12.png');}
+.col-xs-10:after, .col-xs-11:after, .col-xs-12:after {width:20px;}
+[class*=col-] {border:1px dashed rgba(86, 61, 124, .2) !important; min-height:30px; transition:all .2s ease-in;}

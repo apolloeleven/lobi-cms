@@ -703,7 +703,7 @@ $(document).ready(function () {
 
       _preventEmptyLinksClick();
       _addToggleIconsToMenu();
-      console.log(me.$menu.find('ul>li>a .menu-item-toggle-icon'));
+      // console.log(me.$menu.find('ul>li>a .menu-item-toggle-icon'));
 
       me.$menu.find('ul>li>a>.menu-item-toggle-icon')
         .off('click.lobiAdmin')

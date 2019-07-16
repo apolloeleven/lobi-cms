@@ -47,7 +47,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute' => 'name',
                 'value' =>
                     function ($model) {
-                        /** @var $model \apollo11\lobicms\models\Country */
+                        /** @var $model \intermundia\yiicms\models\Country */
                         return $model->activeTranslation ? $model->activeTranslation->name : "";
                     }
             ],

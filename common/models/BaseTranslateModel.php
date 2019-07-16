@@ -9,7 +9,7 @@
 namespace common\models;
 
 
-abstract class BaseTranslateModel extends \apollo11\lobicms\models\BaseTranslateModel
+abstract class BaseTranslateModel extends \intermundia\yiicms\models\BaseTranslateModel
 {
 
 }

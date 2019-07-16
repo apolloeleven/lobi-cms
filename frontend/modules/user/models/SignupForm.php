@@ -2,7 +2,7 @@
 
 namespace frontend\modules\user\models;
 
-use apollo11\lobicms\models\UserToken;
+use intermundia\yiicms\models\UserToken;
 use cheatsheet\Time;
 use common\commands\SendEmailCommand;
 use common\models\User;

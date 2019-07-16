@@ -2,12 +2,12 @@
 
 namespace backend\models\search;
 
-use apollo11\lobicms\models\TimelineEvent;
+use intermundia\yiicms\models\TimelineEvent;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 
 /**
- * TimelineEventSearch represents the model behind the search form about `apollo11\lobicms\models\TimelineEvent`.
+ * TimelineEventSearch represents the model behind the search form about `intermundia\yiicms\models\TimelineEvent`.
  */
 class TimelineEventSearch extends TimelineEvent
 {

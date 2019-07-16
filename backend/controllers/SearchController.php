@@ -2,8 +2,8 @@
 
 namespace backend\controllers;
 
-use apollo11\lobicms\models\SearchBackend;
-use apollo11\lobicms\web\BackendController;
+use intermundia\yiicms\models\SearchBackend;
+use intermundia\yiicms\web\BackendController;
 use Yii;
 use yii\data\ActiveDataProvider;
 

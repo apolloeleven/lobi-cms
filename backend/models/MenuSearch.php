@@ -5,10 +5,10 @@ namespace backend\models;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use apollo11\lobicms\models\Menu;
+use intermundia\yiicms\models\Menu;
 
 /**
- * MenuSearch represents the model behind the search form about `apollo11\lobicms\models\Menu`.
+ * MenuSearch represents the model behind the search form about `intermundia\yiicms\models\Menu`.
  */
 class MenuSearch extends Menu
 {

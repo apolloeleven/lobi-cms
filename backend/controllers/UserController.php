@@ -2,11 +2,11 @@
 
 namespace backend\controllers;
 
-use apollo11\lobicms\web\BackendController;
+use intermundia\yiicms\web\BackendController;
 use backend\models\search\UserSearch;
 use backend\models\UserForm;
 use common\models\User;
-use apollo11\lobicms\models\UserToken;
+use intermundia\yiicms\models\UserToken;
 use Yii;
 use yii\filters\VerbFilter;
 use yii\helpers\ArrayHelper;

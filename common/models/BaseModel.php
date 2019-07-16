@@ -9,7 +9,7 @@
 namespace common\models;
 
 
-abstract class BaseModel extends \apollo11\lobicms\models\BaseModel
+abstract class BaseModel extends \intermundia\yiicms\models\BaseModel
 {
 
 }

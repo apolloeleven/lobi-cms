@@ -7,7 +7,9 @@
 
 /** @var $this \yii\web\View */
 /** @var $contentTreeItem  \frontend\models\ContentTree */
-/** @var $model  \common\models\BaseModel */
+/** @var $model  \common\models\Page */
+
+$this->title = $model->activeTranslation->meta_title;
 
 $innerContent = $this->render('list', [
     'viewFile' => 'item',
@@ -19,6 +21,6 @@ $content = $this->render('@frontend/views/design/' . $contentTreeItem->table_nam
     [
         'contentTreeItem' => $contentTreeItem,
         'index' => 0,
-        'model' => $contentTreeItem->getModel()
+        'model' => $model
     ]);
 echo str_replace('{{content}}', $innerContent, $content);

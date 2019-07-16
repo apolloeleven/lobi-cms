@@ -1,6 +1,6 @@
 <?php
 /* @var $this yii\web\View */
-/* @var $searchModel apollo11\lobicms\models\Search */
+/* @var $searchModel intermundia\yiicms\models\Search */
 
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
@@ -50,14 +50,14 @@ echo SearchView::widget([
 //            'contentOptions' => ['class' => 'not-draggable'],
 //            'buttons' => [
 //                'view' => function ($url, $searchModel) {
-//                    /* @var $searchModel apollo11\lobicms\models\Search */
+//                    /* @var $searchModel intermundia\yiicms\models\Search */
 //                    $url =$searchModel->contentTree->getFullUrl();
 //                    return Html::a('<span class="glyphicon glyphicon-eye-open"></span>', $url, [
 //                        'title' => Yii::t('backend', 'view'),
 //                    ]);
 //                },
 //                'update' => function ($url, $searchModel) {
-//                    /* @var $baseModel apollo11\lobicms\models\BaseModel */
+//                    /* @var $baseModel intermundia\yiicms\models\BaseModel */
 //                    $baseModel = $searchModel->contentTree->getModel();
 //                    return Html::a('<span class="glyphicon glyphicon-pencil"></span>', $baseModel->getUpdateUrl(), [
 //                        'title' => Yii::t('backend', 'update'),
